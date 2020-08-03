@@ -26,18 +26,7 @@ SESSION_CONFIGS = [
         name='threshold_public_goods',
         num_demo_participants=3,
         app_sequence=['threshold_public_goods'],
-        consent='ConsentForm.pdf',#path to pdf
-        threshold_high = 60,
-        threshold_low = 20,
-        value_high = 60,
-        value_low = 30,
-        total_rounds = 10,
-        group_size = 3,
-        decision_timer=30,
-        waiting_room_lowerlimit=3,
-        simultaneous = 1,
-        base_tokens = 20,
-        increment = 10
+        consent='ConsentForm.pdf'#path to pdf
         )
 ]
 
