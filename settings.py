@@ -7,21 +7,38 @@ SESSION_CONFIGS = [
     #    num_demo_participants=3,
     #    app_sequence=['public_goods', 'payment_info']
     # ),
+    # dict(
+    # 	name ='my_simple_survey',
+    # 	num_demo_participants=3,
+    # 	app_sequence=['my_simple_survey']
+    # ),
+    # dict(
+    #     name ='my_public_goods',
+    #     num_demo_participants=3,
+    #     app_sequence=['my_public_goods']
+    # ),
+    # dict(
+    #     name ='my_trust',
+    #     num_demo_participants=2,
+    #     app_sequence=['my_trust']
+    # ),
     dict(
-    	name ='my_simple_survey',
-    	num_demo_participants=3,
-    	app_sequence=['my_simple_survey']
-    ),
-    dict(
-        name ='my_public_goods',
+        name='threshold_public_goods',
         num_demo_participants=3,
-        app_sequence=['my_public_goods']
-    ),
-    dict(
-        name ='my_trust',
-        num_demo_participants=2,
-        app_sequence=['my_trust']
-    )
+        app_sequence=['threshold_public_goods'],
+        consent='ConsentForm.pdf',#path to pdf
+        threshold_high = 60,
+        threshold_low = 20,
+        value_high = 60,
+        value_low = 30,
+        total_rounds = 10,
+        group_size = 3,
+        decision_timer=30,
+        waiting_room_lowerlimit=3,
+        simultaneous = 1,
+        base_tokens = 20,
+        increment = 10
+        )
 ]
 
 # if you set a property in SESSION_CONFIG_DEFAULTS, it will be inherited by all configs
@@ -52,4 +69,4 @@ DEMO_PAGE_INTRO_HTML = """ """
 SECRET_KEY = 'mnl#tu13@-kiljv3pk0=-bnowakzhfa$(%74#*ul!06!v7=dsg'
 
 # if an app is included in SESSION_CONFIGS, you don't need to list it here
-INSTALLED_APPS = ['otree']
+INSTALLED_APPS = ['otree','custom_templates']
