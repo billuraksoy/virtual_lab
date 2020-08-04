@@ -12,6 +12,9 @@ class Game(Page):
         return dict(
             roundNum = self.round_number
             )
+    def error_message(self, values):
+        if values['contribution_acc_a'] + values['contribution_acc_b'] > Constants.base_tokens:
+            return 'You cannot contribute more tokens than you have.'
     
 class ResWait(WaitPage):
     pass
@@ -19,22 +22,47 @@ class ResWait(WaitPage):
 
 class Results(Page):
     def vars_for_template(self):
+    	players = self.player.group.get_players()
+    	groupConA = 0
+    	groupConB = 0
+    	for pl in players:
+    		groupConA += pl.contribution_acc_a
+    		groupConB += pl.contribution_acc_b
+
     	Aw = "Threshold has been met. You earned "+str(Constants.value_high)+" tokens from Group Account A."
     	Bw = "Threshold has been met. You earned "+str(Constants.value_low)+" tokens from Group Account B."
     	Al = "Threshold has not been met. You did not earn any tokens from Group Account A."
     	Bl = "Threshold has not been met. You did not earn any tokens from Group Account B."
-    	if(1):
+    	
+    	
+    	kept = Constants.base_tokens-self.player.contribution_acc_a-self.player.contribution_acc_b
+    	if(groupConA>=Constants.threshold_high):
     		ht = Aw
+    		AEarn = Constants.value_high
     	else:
     		ht = Al
-    	if(1):
+    		AEarn = 0
+    	if(groupConB>=Constants.threshold_low):
     		lt = Bw
+    		BEarn = Constants.value_low
     	else:
     		lt = Bl
+    		BEarn = 0
+    	
+    	self.player.payoff = kept+AEarn+BEarn
+
     	return dict( 
     		roundNum = self.round_number, 
-    		highText =ht, 
-    		lowText = lt 
+    		highText = ht, 
+    		lowText = lt,
+    		groupConA = groupConA-self.player.contribution_acc_a,
+    		groupConB = groupConB-self.player.contribution_acc_b,
+    		totConA = groupConA,
+    		totConB = groupConB,
+    		kept = kept,
+    		AEarn = AEarn,
+    		BEarn = BEarn,
+    		TotEarn = kept+AEarn+BEarn
     		)
 
 

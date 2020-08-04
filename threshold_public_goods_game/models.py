@@ -18,10 +18,6 @@ Your app description
 
 
 class Constants(BaseConstants):
-    name_in_url = 'threshold_public_goods_game'
-    players_per_group = None
-    num_rounds = 10
-
     threshold_high = 60
     threshold_low = 20
     value_high = 60
@@ -34,9 +30,15 @@ class Constants(BaseConstants):
     base_tokens = 20
     increment = 10
 
+    name_in_url = 'threshold_public_goods_game'
+    players_per_group = group_size
+    num_rounds = 10
+
 
 class Subsession(BaseSubsession):
-    pass
+    def creating_session(self):
+        self.group_randomly()
+        print(self.get_group_matrix())
 
 
 class Group(BaseGroup):
@@ -44,6 +46,7 @@ class Group(BaseGroup):
 
 
 class Player(BasePlayer):
+
     contribution_acc_a = models.CurrencyField(
         min=0,
         initial=0,
@@ -54,25 +57,19 @@ class Player(BasePlayer):
         initial=0,
         label = "Your Contribution"
         )
-
-    def contribution_acc_a_max(self):
-        return Constants.base_tokens-self.contribution_acc_b
     
     def contribution_acc_a_error_message(self, value):
         if(value%10!=0):
             return 'Please only contribute in an increment of '+str(Constants.increment)+' tokens.'
         if(value<0):
             return 'You cannot contribute negative tokens'
-        if(value>Constants.base_tokens-self.contribution_acc_b):
+        if(value+self.contribution_acc_b>Constants.base_tokens):
             return 'You cannot contribute more total tokens than you have'
-    
-    def contribution_acc_b_max(self):
-        return Constants.base_tokens-self.contribution_acc_a
 
     def contribution_acc_b_error_message(self, value):
         if(value%10!=0):
             return 'Please only contribute in an increment of '+str(Constants.increment)+' tokens.'
         if(value<0):
             return 'You cannot contribute negative tokens'
-        if(value>Constants.base_tokens-self.contribution_acc_a):
+        if(value+self.contribution_acc_a>Constants.base_tokens):
             return 'You cannot contribute more total tokens than you have'
