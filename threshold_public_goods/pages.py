@@ -24,12 +24,10 @@ class Informed_Consent(Page):
             )
 
 class Overview(Page):
-    form_model = 'player'
-    form_fields=[]
+    pass
 
 class Rules(Page):
-    form_model = 'player'
-    form_fields=[]
+    pass
 
 class GameOverview(Page):
     form_model = 'player'
@@ -44,7 +42,8 @@ class GameOverview2(Page):
     form_model = 'player'
     form_fields = ['attention_check_2']
 
-
+class TotalEarnings(Page):
+    pass
 
 
 page_sequence = [
@@ -53,5 +52,6 @@ page_sequence = [
     Overview,
     Rules,
     GameOverview,
-    GameOverview2
+    GameOverview2,
+    TotalEarnings
 ]
