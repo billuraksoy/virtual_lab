@@ -9,18 +9,18 @@
 {% block content %}
 	You as well as your group members can contribute to the group accounts. You and your group members receive tokens from any of the two group accounts <u>if and only if</u> the number of tokens allocated to each group account is greater than or equal to its pre-specified number that is called “threshold”.<br><br> 
 
-	<h5>Group Account A:</h5><br><br>  
+	<h5>Group Account A:</h5>
 
 	The threshold for Group Account A is at least {{Constants.threshold_high}} tokens. <br> <br> 
 
-	If the total amount contributed by you and your group members to Group Account A is at least {{Constants.threshold_high}} tokens to this group account, you and your group members will <u>each</u> earn {{Constants.value_high}} tokens from this account. Otherwise, nobody earns any tokens from this account.<br> <br> 
+	If the total amount contributed by you and your group members to Group Account A is {{Constants.threshold_high}} tokens to this group account, you and your group members will <u>each</u> earn {{Constants.value_high}} tokens from this account. Otherwise, nobody earns any tokens from this account.<br> <br> 
 
 
-	<h5>Group Account B: </h5><br><br>  
+	<br><h5>Group Account B: </h5>
 
 	The threshold for Group Account A is at least {{Constants.threshold_low}} tokens. <br><br> 
 
-	If the total amount contributed by you and your group members to Group Account B is at least {{Constants.threshold_low}} tokens to this group account, you and your group members will <u>each</u> earn {{Constants.value_low}} tokens from this account. Otherwise, nobody earns any tokens from this account.<br><br> 
+	If the total amount contributed by you and your group members to Group Account B is {{Constants.threshold_low}} tokens to this group account, you and your group members will <u>each</u> earn {{Constants.value_low}} tokens from this account. Otherwise, nobody earns any tokens from this account.<br><br> 
 
 	{% formfields %}
 	{% delayed_next %}
