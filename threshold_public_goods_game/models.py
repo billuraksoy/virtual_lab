@@ -10,6 +10,7 @@ from otree.api import (
 )
 
 
+
 author = 'Your name here'
 
 doc = """
@@ -36,9 +37,12 @@ class Constants(BaseConstants):
 
 
 class Subsession(BaseSubsession):
-    def creating_session(self):
-        self.group_randomly()
-        print(self.get_group_matrix())
+    def group_by_arrival_time_method(self,waiting_players):
+        import random
+        if(len(waiting_players)>=Constants.waiting_room_lowerlimit):
+            return random.sample(waiting_players,Constants.group_size)
+
+
 
 
 class Group(BaseGroup):

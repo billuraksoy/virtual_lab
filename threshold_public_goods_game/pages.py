@@ -3,7 +3,9 @@ from ._builtin import Page, WaitPage
 from .models import Constants
 
 class GroupWait(WaitPage):
-	pass
+	group_by_arrival_time=True
+	title_text="Please wait while we form your group. This should not take long."
+	body_text="Please do not leave this page.\n\nOnce your group is constructed the experiment will start immediately.\n\nIf you do not put your answers in a timely manner, you will be removed from the study."
 
 class Game(Page):
     form_model = 'player'
@@ -17,7 +19,8 @@ class Game(Page):
             return 'You cannot contribute more tokens than you have.'
     
 class ResWait(WaitPage):
-    pass
+	title_text = "Please wait everyone finishes. This should not take long."
+	body_text = "Please do not leave this page."
 
 
 class Results(Page):
