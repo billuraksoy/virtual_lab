@@ -2,11 +2,54 @@
 {% load otree static %}
 
 {% block title %}
-    Page title
+    Round {{roundNum}} Summary
 {% endblock %}
 
 {% block content %}
+	<style>
+		.grid2{
+			display: grid;
+			grid-template-columns: 1fr 1fr;
+		}
+	</style>
+	<div class = "grid2">
+		<div class = "left">
+			<h5>Group Account A</h5><br>
+			<div class="grid2">
+				<div class = "left">
+					<p>Threshold:</p><br>
+					<p>Earnings if threshold is met:</p><br>
+				</div>
+				<div class = "right">
+					<p>{{Constants.threshold_high}}</p><br>
+					<p>{{Constants.value_high}}</p>
+				</div>
+				<div class = "left">
+					<p>Your Contribution:  </p><br>
+					<p>Group Members’ Contribution:</p><br>
+					<p>TOTAL Contributions:</p><br>
+				</div>
+				<div class = "right">
+					<p>{{}}</p><br>
+					<p>{{}}</p><br>
+					<p>{{}}</p>
+				</div>
+			</div>
+			{{highText}}
+		</div>
+		<div class = "right">
+			<h5>Group Account B</h5><br>
+			<div class="grid2">
+				<div class = "left">
 
+				</div>
+				<div class = "right">
+
+				</div>
+			</div>
+			{{lowText}}
+		</div>
+	</div>
     {% next_button %}
 {% endblock %}
 

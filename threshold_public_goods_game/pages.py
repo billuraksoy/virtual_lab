@@ -18,7 +18,24 @@ class ResWait(WaitPage):
 
 
 class Results(Page):
-    pass
+    def vars_for_template(self):
+    	Aw = "Threshold has been met. You earned "+str(Constants.value_high)+" tokens from Group Account A."
+    	Bw = "Threshold has been met. You earned "+str(Constants.value_low)+" tokens from Group Account B."
+    	Al = "Threshold has not been met. You did not earn any tokens from Group Account A."
+    	Bl = "Threshold has not been met. You did not earn any tokens from Group Account B."
+    	if(1):
+    		ht = Aw
+    	else:
+    		ht = Al
+    	if(1):
+    		lt = Bw
+    	else:
+    		lt = Bl
+    	return dict( 
+    		roundNum = self.round_number, 
+    		highText =ht, 
+    		lowText = lt 
+    		)
 
 
 page_sequence = [GroupWait, Game, ResWait, Results]
