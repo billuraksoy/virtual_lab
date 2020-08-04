@@ -30,6 +30,7 @@ class Constants(BaseConstants):
     simultaneous = 1
     base_tokens = 20
     increment = 10
+    decision_timer = 30
 
     name_in_url = 'threshold_public_goods_game'
     players_per_group = group_size
@@ -40,6 +41,7 @@ class Subsession(BaseSubsession):
     def group_by_arrival_time_method(self,waiting_players):
         import random
         if(len(waiting_players)>=Constants.waiting_room_lowerlimit):
+            #if you've got enough people get a random sample of them and put that into a group
             return random.sample(waiting_players,Constants.group_size)
 
 
@@ -50,6 +52,14 @@ class Group(BaseGroup):
 
 
 class Player(BasePlayer):
+    timed_out=False
+
+    #we don't have to worry about a maximum value here because 
+    #the page will error if the total is too high and if we
+    #try to base each max off of the base_tokens - the contribution
+    #to the other group then that max value is only updated when
+    #a submission attempt is made on the form, which leaves you able
+    #to softlock yourself out of certain contribution combinations.
 
     contribution_acc_a = models.CurrencyField(
         min=0,
@@ -63,7 +73,7 @@ class Player(BasePlayer):
         )
     
     def contribution_acc_a_error_message(self, value):
-        if(value%10!=0):
+        if(value%Constants.increment!=0):
             return 'Please only contribute in an increment of '+str(Constants.increment)+' tokens.'
         if(value<0):
             return 'You cannot contribute negative tokens'
@@ -71,7 +81,7 @@ class Player(BasePlayer):
             return 'You cannot contribute more total tokens than you have'
 
     def contribution_acc_b_error_message(self, value):
-        if(value%10!=0):
+        if(value%Constants.increment!=0):
             return 'Please only contribute in an increment of '+str(Constants.increment)+' tokens.'
         if(value<0):
             return 'You cannot contribute negative tokens'

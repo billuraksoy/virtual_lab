@@ -22,10 +22,11 @@ SESSION_CONFIGS = [
     #     num_demo_participants=2,
     #     app_sequence=['my_trust']
     # ),
+
     dict(
         name='threshold_public_goods',
         num_demo_participants=6,
-        app_sequence=['threshold_public_goods','threshold_public_goods_game'],
+        app_sequence=['threshold_public_goods','threshold_public_goods_game','timeout'],
         consent='ConsentForm.pdf'#path to pdf
         )
 ]
