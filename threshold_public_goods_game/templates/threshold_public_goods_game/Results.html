@@ -7,19 +7,31 @@
 
 {% block content %}
 	<style>
+		.otree-title{
+			text-align:center;
+		}
 		.grid2{
 			display: grid;
 			grid-template-columns: 1fr 1fr;
 		}
+		.grid3{
+			display:grid;
+			grid-template-columns:3fr 1fr;
+		}
+		.wrapper{
+			border:2px solid black;
+			margin:20px;
+			padding:10px;
+		}
 	</style>
 	<div class = "grid2">
-		<div class = "left">
+		<div class = "left wrapper">
 			<h5>Group Account A</h5><br>
-			<div class="grid2">
+			<div class="grid3">
 				<p>Threshold:</p>
-				<p>{{Constants.threshold_high}}</p>
+				<p>{{Constants.threshold_high}} points</p>
 				<p>Earnings if threshold is met:</p>
-				<p>{{Constants.value_high}}</p>
+				<p>{{Constants.value_high}} points</p>
 				<p>Your Contribution:  </p>
 				<p>{{player.contribution_acc_a}}</p>
 				<p>Group Members’ Contribution:</p>
@@ -29,13 +41,13 @@
 			</div>
 			{{highText}}
 		</div>
-		<div class = "right">
+		<div class = "right wrapper">
 			<h5>Group Account B</h5><br>
-			<div class="grid2">
+			<div class="grid3">
 				<p>Threshold:</p>
-				<p>{{Constants.threshold_low}}</p>
+				<p>{{Constants.threshold_low}} points</p>
 				<p>Earnings if threshold is met:</p>
-				<p>{{Constants.value_low}}</p>
+				<p>{{Constants.value_low}} points</p>
 				<p>Your Contribution:  </p>
 				<p>{{player.contribution_acc_b}}</p>
 				<p>Group Members’ Contribution:</p>
@@ -46,9 +58,10 @@
 			{{lowText}}
 		</div>
 	</div>
-	<div>
+	<center>
+	<div class="wrapper" style="width:40%;">
 		<h5>Your Earnings</h5>
-		<div class="grid2">
+		<div class="grid3" style="text-align:left;">
 			<p>Amount Kept:</p>
 			<p>{{kept}}</p>
 			<p>Earnings From Group A:</p>
@@ -59,6 +72,7 @@
 			<p>{{TotEarn}}</p>
 		</div>
 	</div>
+	</center>
     {% next_button %}
 {% endblock %}
 
