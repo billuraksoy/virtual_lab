@@ -29,9 +29,9 @@
 			<h5>Group Account A</h5><br>
 			<div class="grid3">
 				<p>Threshold:</p>
-				<p>{{Constants.threshold_high}} points</p>
+				<p>{{Constants.threshold_high|c}}</p>
 				<p>Earnings if threshold is met:</p>
-				<p>{{Constants.value_high}} points</p>
+				<p>{{Constants.value_high|c}}</p>
 				<p>Your Contribution:  </p>
 				<p>{{player.contribution_acc_a}}</p>
 				<p>Group Members’ Contribution:</p>
@@ -45,9 +45,9 @@
 			<h5>Group Account B</h5><br>
 			<div class="grid3">
 				<p>Threshold:</p>
-				<p>{{Constants.threshold_low}} points</p>
+				<p>{{Constants.threshold_low|c}}</p>
 				<p>Earnings if threshold is met:</p>
-				<p>{{Constants.value_low}} points</p>
+				<p>{{Constants.value_low|c}}</p>
 				<p>Your Contribution:  </p>
 				<p>{{player.contribution_acc_b}}</p>
 				<p>Group Members’ Contribution:</p>
@@ -65,9 +65,9 @@
 			<p>Amount Kept:</p>
 			<p>{{kept}}</p>
 			<p>Earnings From Group A:</p>
-			<p>{{AEarn}}</p>
+			<p>{{AEarn|c}}</p>
 			<p>Earnings From Group B:</p>
-			<p>{{BEarn}}</p>
+			<p>{{BEarn|c}}</p>
 			<p>Your <b>Total Earnings</b> in this round is:</p>
 			<p>{{TotEarn}}</p>
 		</div>
