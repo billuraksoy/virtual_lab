@@ -25,9 +25,11 @@ class Informed_Consent(Page):
 
 class Overview(Page):
     form_model = 'player'
+    form_fields=[]
 
 class Rules(Page):
     form_model = 'player'
+    form_fields=[]
 
 class GameOverview(Page):
     form_model = 'player'
@@ -41,9 +43,8 @@ class GameOverview(Page):
 class GameOverview2(Page):
     form_model = 'player'
     form_fields = ['attention_check_2']
-class MainGame(Page):
-    form_model = 'player'
-    form_fields=[]
+
+
 
 
 page_sequence = [

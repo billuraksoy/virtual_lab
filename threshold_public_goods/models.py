@@ -67,11 +67,3 @@ class Player(BasePlayer):
             [1,'hello'],
             [0,'good']
         ])
-
-    #Main game 
-    currentRound = 0
-    GroupACon = models.CurrencyField(min=0)
-    def GroupACon_max(self):
-        return 
-
-    GroupBCon = models.CurrencyField(min=0)

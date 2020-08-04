@@ -1,0 +1,51 @@
+{% extends "global/Page.html" %}
+{% load otree static %}
+<!-- {% load custom_tags %} -->
+
+{% block title %}
+    Contributions Game – Round {{roundNum}}
+{% endblock %}
+
+{% block content %}
+
+	You have {{Constants.base_tokens}} tokens as your endowment. Please make your contribution decisions below. Remember, you can only contribute in increments of {{Constants.increment}} tokens. Any tokens you do not contribute will be yours to keep. 
+	<style>
+		.grid2{
+			display: grid;
+			grid-template-columns: 1fr 1fr;
+		}
+		
+	</style>
+	<div class = "grid2">
+		<div class = "left">
+			<h5>Group Account A</h5><br>
+			<div class="grid2">
+				<div class = "left">
+					<p>Threshold:</p><br>
+					<p>Earnings if threshold is met:</p><br>
+				</div>
+				<div class = "right">
+					<p>{{Constants.threshold_high}}</p><br>
+					<p>{{Constants.value_high}}</p>
+				</div>
+			</div>
+			{% formfield player.contribution_acc_a %}
+		</div>
+		<div class = "right">
+			<h5>Group Account B</h5><br>
+			<div class="grid2">
+				<div class = "left">
+					<p>Threshold:</p><br>
+					<p>Earnings if threshold is met:</p><br>
+				</div>
+				<div class = "right">
+					<p>{{Constants.threshold_low}}</p><br>
+					<p>{{Constants.value_low}}</p>
+				</div>
+			</div>
+			{% formfield player.contribution_acc_b %}
+		</div>
+	</div>
+	{% delayed_next %}
+	
+{% endblock %}

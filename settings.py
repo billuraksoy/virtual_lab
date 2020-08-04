@@ -25,7 +25,7 @@ SESSION_CONFIGS = [
     dict(
         name='threshold_public_goods',
         num_demo_participants=3,
-        app_sequence=['threshold_public_goods'],
+        app_sequence=['threshold_public_goods','threshold_public_goods_game'],
         consent='ConsentForm.pdf'#path to pdf
         )
 ]
