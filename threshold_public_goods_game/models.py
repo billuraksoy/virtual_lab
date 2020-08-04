@@ -52,8 +52,6 @@ class Group(BaseGroup):
 
 
 class Player(BasePlayer):
-    timed_out=False
-
     #we don't have to worry about a maximum value here because 
     #the page will error if the total is too high and if we
     #try to base each max off of the base_tokens - the contribution
