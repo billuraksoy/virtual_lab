@@ -14,6 +14,7 @@ class Game(Page):
 	
 	def before_next_page(self):
 		self.participant.vars['timed_out']=False
+		self.participant.vars['timed_out_round']=0
 		import random
 		# if you time out do the bot logic
 		if self.timeout_happened:
@@ -44,7 +45,7 @@ class ResWait(WaitPage):
 	body_text = "Please do not leave this page."
 	def app_after_this_page(self, upcoming_apps):
 		if self.participant.vars['timed_out']==True: # if you've timed out, go to the timeout app and stop being here.
-			print("TIME OUT")
+			self.participant.vars['timed_out_round']=self.round_number
 			return upcoming_apps[-1]
 
 
