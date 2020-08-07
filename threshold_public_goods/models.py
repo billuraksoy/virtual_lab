@@ -22,17 +22,17 @@ class Constants(BaseConstants):
     players_per_group = None
     num_rounds = 1
     
-    threshold_high = 60
-    threshold_low = 20
-    value_high = 60
-    value_low = 30
+    threshold_high = 10
+    threshold_low = 6
+    value_high = 10
+    value_low = 7
     total_rounds = 10
-    group_size = 3
+    group_size = 2
     decision_timer=30
     waiting_room_lowerlimit=3
     simultaneous = 1
-    base_tokens = 20
-    increment = 10
+    base_tokens = 5
+    increment = 1
 
 
 class Subsession(BaseSubsession):

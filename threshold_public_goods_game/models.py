@@ -19,17 +19,17 @@ Your app description
 
 
 class Constants(BaseConstants):
-    threshold_high = 60
-    threshold_low = 20
-    value_high = 60
-    value_low = 30
+    threshold_high = 10
+    threshold_low = 6
+    value_high = 10
+    value_low = 7
     total_rounds = 10
-    group_size = 3
+    group_size = 2
     decision_timer=30
     waiting_room_lowerlimit=3
     simultaneous = 1
-    base_tokens = 20
-    increment = 10
+    base_tokens = 5
+    increment = 1
     decision_timer = 30
 
     name_in_url = 'threshold_public_goods_game'
