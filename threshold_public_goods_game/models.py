@@ -24,9 +24,9 @@ class Constants(BaseConstants):
     value_high = 10
     value_low = 7
     total_rounds = 10
-    group_size = 2
+    group_size = 1
     decision_timer=30
-    waiting_room_lowerlimit=3
+    waiting_room_lowerlimit=1
     simultaneous = 1
     base_tokens = 5
     increment = 1

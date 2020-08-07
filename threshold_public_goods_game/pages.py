@@ -33,6 +33,7 @@ class Game(Page):
 				pl.participant.vars['groupmate_timed_out']=True
 
 	def vars_for_template(self):
+		self.participant.vars['groupmate_timed_out']=False
 		return dict( roundNum = self.round_number )
 
 	def error_message(self, values): # entry checking
@@ -56,9 +57,10 @@ class Results(Page):
     def vars_for_template(self):
     	#handle dropping groupmates
     	dropText=""
-    	if(self.participant.vars['groupmate_timed_out']==True):
-    		self.participant.vars['groupmate_timed_out']=False
-    		dropText="Your group member has timed out. Thus, the computer randomly made a decision on their behalf."
+    	if('groupmate_timed_out' in self.participant.vars.keys()):
+	    	if(self.participant.vars['groupmate_timed_out']==True):
+	    		self.participant.vars['groupmate_timed_out']=False
+	    		dropText="Your group member has timed out. Thus, the computer randomly made a decision on their behalf."
     	
 
     	# Calculate the total contributions for each group
@@ -110,6 +112,11 @@ class Results(Page):
     		BEarn = BEarn,
     		TotEarn = kept+AEarn+BEarn
     		)
+    def before_next_page(self):
+		#If it's the last round save the data to the participant otherwise 
+		#we won't be able to access it in the next app
+        if(self.player.round_number==Constants.num_rounds):
+            self.participant.vars['GameRounds']=[pl.payoff for pl in self.player.in_all_rounds()]
 
 
 page_sequence = [GroupWait, Game, ResWait, Results]
