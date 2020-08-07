@@ -11,7 +11,7 @@ class Game(Page):
 	timeout_seconds = Constants.decision_timer
 	form_model = 'player'
 	form_fields = ['contribution_acc_a','contribution_acc_b']
-	
+
 	def before_next_page(self):
 		self.participant.vars['timed_out']=False
 		self.participant.vars['timed_out_round']=0
@@ -28,6 +28,9 @@ class Game(Page):
 			self.player.contribution_acc_a = A
 			self.player.contribution_acc_b = B
 			self.participant.vars['timed_out']=True
+			others = self.player.get_others_in_group()
+			for pl in others:
+				pl.participant.vars['groupmate_timed_out']=True
 
 	def vars_for_template(self):
 		return dict( roundNum = self.round_number )
@@ -51,6 +54,13 @@ class ResWait(WaitPage):
 
 class Results(Page):
     def vars_for_template(self):
+    	#handle dropping groupmates
+    	dropText=""
+    	if(self.participant.vars['groupmate_timed_out']==True):
+    		self.participant.vars['groupmate_timed_out']=False
+    		dropText="Your group member has timed out. Thus, the computer randomly made a decision on their behalf."
+    	
+
     	# Calculate the total contributions for each group
     	players = self.player.group.get_players()
     	groupConA = 0
@@ -87,6 +97,7 @@ class Results(Page):
     	self.player.payoff = kept+AEarn+BEarn
 
     	return dict( 
+    		gDropText=dropText,
     		roundNum = self.round_number, 
     		highText = ht, 
     		lowText = lt,
