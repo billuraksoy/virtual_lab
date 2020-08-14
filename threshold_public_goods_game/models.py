@@ -26,7 +26,7 @@ class Constants(BaseConstants):
     total_rounds = 10
     group_size = 2
     decision_timer=30
-    waiting_room_lowerlimit=1
+    waiting_room_lowerlimit=2
     simultaneous = 1
     base_tokens = 5
     increment = 1
