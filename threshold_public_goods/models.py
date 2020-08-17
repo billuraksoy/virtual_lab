@@ -50,7 +50,7 @@ class Player(BasePlayer):
         initial = False,
         label = '')
     attention_check_1 = models.IntegerField(
-        label="Please select rabbit",
+        label="This question is to check your attention. Please select rabbit",
         initial=0,
         choices=[
             [0,'no selection'],
@@ -59,7 +59,7 @@ class Player(BasePlayer):
             [1,'rabbit']
         ])
     attention_check_2 = models.IntegerField(
-        label="Please select hello",
+        label="This question is to check your attention. Please select hello",
         initial=0,
         choices=[
             [0,'no selection'],
