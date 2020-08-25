@@ -47,7 +47,7 @@ class TotalEarnings(Page):
 
 
 page_sequence = [
-    PID_Begin,
+    #PID_Begin,
     Informed_Consent,
     Overview,
     Rules,
