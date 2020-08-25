@@ -1,0 +1,82 @@
+{% extends "global/Page.html" %}
+{% load otree static %}
+
+{% block title %}
+    Round {{roundNum}} Summary
+{% endblock %}
+
+{% block content %}
+	<style>
+		.otree-title{
+			text-align:center;
+		}
+		.grid2{
+			display: grid;
+			grid-template-columns: 1fr 1fr;
+		}
+		.grid3{
+			display:grid;
+			grid-template-columns:3fr 1fr;
+		}
+		.wrapper{
+			border:2px solid black;
+			margin:20px;
+			padding:10px;
+		}
+	</style>
+	<center><h5>{{gDropText}}</h5></center>
+	<div class = "grid2">
+		<div class = "left wrapper">
+			<h5>Group Account A</h5><br>
+			<div class="grid3">
+				<p>Threshold:</p>
+				<p>{{Constants.threshold_high|c}}</p>
+				<p>Earnings if threshold is met:</p>
+				<p>{{Constants.value_high|c}}</p>
+				<p>Your Contribution:  </p>
+				<p>{{player.contribution_acc_a}}</p>
+				<p>Group Members’ Contribution:</p>
+				<p>{{groupConA}}</p>
+				<p>TOTAL Contributions:</p>
+				<p>{{totConA}}</p>
+			</div>
+			{{highText}}
+		</div>
+		<div class = "right wrapper">
+			<h5>Group Account B</h5><br>
+			<div class="grid3">
+				<p>Threshold:</p>
+				<p>{{Constants.threshold_low|c}}</p>
+				<p>Earnings if threshold is met:</p>
+				<p>{{Constants.value_low|c}}</p>
+				<p>Your Contribution:  </p>
+				<p>{{player.contribution_acc_b}}</p>
+				<p>Group Members’ Contribution:</p>
+				<p>{{groupConB}}</p>
+				<p>TOTAL Contributions:</p>
+				<p>{{totConB}}</p>
+			</div>
+			{{lowText}}
+		</div>
+	</div>
+	<center>
+	<div class="wrapper" style="width:40%;">
+		<h5>Your Earnings</h5>
+		<div class="grid3" style="text-align:left;">
+			<p>Amount Kept:</p>
+			<p>{{kept}}</p>
+			<p>Earnings From Group A:</p>
+			<p>{{AEarn|c}}</p>
+			<p>Earnings From Group B:</p>
+			<p>{{BEarn|c}}</p>
+			<p>Your <b>Total Earnings</b> in this round is:</p>
+			<p>{{TotEarn}}</p>
+		</div>
+	</div>
+	You will be randomly re-matched with a <b>different</b> participant in the next round. Please click next when you are ready to start the next round.
+	</center>
+
+    {% next_button %}
+{% endblock %}
+
+

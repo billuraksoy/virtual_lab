@@ -1,0 +1,22 @@
+{% extends "global/Page.html" %}
+{% load otree static %}
+<!-- {% load custom_tags %} -->
+
+{% block title %}
+    Contribution Game - Overview
+{% endblock %}
+
+{% block content %}
+	At the beginning of each round, each group member will each start out with an endowment of {{Constants.base_tokens}} tokens. Thus, the group will have a total of {{total_tokens}} tokens ({{Constants.base_tokens}} tokens x {{Constants.group_size}} group members) in each round.<br><br>
+
+	In each round, you have to decide on the allocation of your {{Constants.base_tokens}} tokens. You can either keep your {{Constants.base_tokens}} tokens to yourself or you can contribute all or some of it between the two Group Acounts (Group Account A and Group Account B). <br><br>
+
+	You can only contribute to these group accounts in increments of {{Constants.increment}} tokens. <br><br>
+
+	In each round, you and your group member will face the same decision. <b>However, in each round, you will randomly be re-matched with {{other_part}} other participant.</b> <br><br>
+
+	At the end of each round, you will receive feedback on total contributions to each group account and your earnings in that round. <br><br>
+	{% formfields %}
+	{% delayed_next %}
+
+{% endblock %}
