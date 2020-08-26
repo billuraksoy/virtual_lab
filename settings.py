@@ -22,9 +22,8 @@ SESSION_CONFIGS = [
     #     num_demo_participants=2,
     #     app_sequence=['my_trust']
     # ),
-
     dict(
-        name='threshold_public_goods',
+        name='mtpg',
         num_demo_participants=6,
         app_sequence=['threshold_public_goods','threshold_public_goods_game','threshold_public_goods_end','timeout'],
         consent='ConsentForm.pdf'#path to pdf
@@ -37,7 +36,15 @@ SESSION_CONFIGS = [
 # e.g. self.session.config['participation_fee']
 
 SESSION_CONFIG_DEFAULTS = dict(
-    real_world_currency_per_point=1.00, participation_fee=0.00, doc=""
+    real_world_currency_per_point=1.00, 
+    participation_fee=0.00, 
+    participation_payment=4,
+    large_difference_treatment=1,
+    simultaneous=1,
+    decision_timer=30,
+    total_rounds=10,
+    synchronous_game=1,
+    doc=""
 )
 
 # ISO-639 code
