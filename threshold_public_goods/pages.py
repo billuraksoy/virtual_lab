@@ -44,9 +44,13 @@ class GameOverview2(Page):
 
 class TotalEarnings(Page):
     pass
+
 class Question(Page):
     form_model='player'
     form_fiels=['question1','question2','question3']
+
+class Message(Page):
+    pass
 
 page_sequence = [
     #PID_Begin,
@@ -56,5 +60,6 @@ page_sequence = [
     GameOverview,
     GameOverview2,
     TotalEarnings,
-    Question
+    Question,
+    Message
 ]
