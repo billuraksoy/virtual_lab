@@ -6,6 +6,9 @@ from .models import Constants
 class Survey(Page):
 	form_model = 'player'
 	form_fields=['birth_year','gender','income','ethnicity','other','major','paypal']
+class Survey2(Page):
+	form_model = 'player'
+	form_fields=['understanding','thoughts','strategy','suggestions']
 class Summary(Page):
 	def vars_for_template(self):
 		import random
@@ -40,4 +43,4 @@ class Summary(Page):
 			)
 
 
-page_sequence = [Survey, Summary]
+page_sequence = [Survey, Survey2, Summary]
