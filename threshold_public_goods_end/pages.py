@@ -5,7 +5,10 @@ from .models import Constants
 
 class Survey(Page):
 	form_model = 'player'
-	form_fields=['birth_year','gender','income','ethnicity','other','major','paypal']
+	form_fields=['birth_year','gender','income','ethnicity','other','major']
+class Paypal(Page):
+	form_model = 'player'
+	form_fields=['paypal']
 class Survey2(Page):
 	form_model = 'player'
 	form_fields=['understanding','thoughts','strategy','suggestions']
@@ -43,4 +46,4 @@ class Summary(Page):
 			)
 
 
-page_sequence = [Survey, Survey2, Summary]
+page_sequence = [Survey, Paypal, Survey2, Summary]
