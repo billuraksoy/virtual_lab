@@ -21,36 +21,41 @@
 		.wrapper{
 			border:2px solid black;
 			margin:10px;
-			padding:0;
+			padding-top:10px;
 		}
 		.grid2{
 			text-align:center;
 			display: grid;
 			grid-template-columns: 1fr 1fr;
-			width:40%;
+			width:70%;
+		}
+		.right{
+			text-align:right;
 		}
 	</style>
 	<p>Now, we would like to make sure that you understand the game instructions. If you have any questions please use Zoom’s chat function to ask your questions to the panelists.</p>
+	<center>
 	<div class = "grid2">
-		<div class = "left wrapper">
+		<div class = "wrapper">
 			<h5>Group Account A</h5><br>
 			<div class="grid3">
 				<p>Threshold:</p>
-				<p>{{Constants.threshold_high}}</p>
+				<p class="right">{{threshold_high}}</p>
 				<p>Earnings if threshold is met:</p>
-				<p>{{Constants.value_high}}</p>
+				<p class="right">{{value_high}}</p>
 			</div>
 		</div>
-		<div class = "right wrapper">
+		<div class = "wrapper">
 			<h5>Group Account B</h5><br>
 			<div class="grid3">
 				<p>Threshold:</p>
-				<p>{{Constants.threshold_low}}</p>
+				<p class="right">{{threshold_low}}</p>
 				<p>Earnings if threshold is met:</p>
-				<p>{{Constants.value_low}}</p>
+				<p class="right">{{value_low}}</p>
 			</div>
 		</div>
 	</div>
+	</center>
 	<p>Suppose that your group member contributed 4 tokens to Group Account B. And suppose that you contributed 1 token to Group Account A and 3 tokens to Group Account B. Please answer the following questions for this hypothetical example. </p>
 	{% formfields %}
 	{% delayed_next %}

@@ -8,11 +8,13 @@ class GroupWait(WaitPage):
     body_text="Please do not leave this page.\n\nOnce your group is constructed the experiment will start immediately.\n\nIf you do not put your answers in a timely manner, you will be removed from the study."
 
 class Game(Page):
-    timeout_seconds = Constants.decision_timer
+    def get_timeout_seconds(self):
+        return self.session.config['decision_timer']
     form_model = 'player'
     form_fields = ['contribution_acc_a','contribution_acc_b']
 
     def before_next_page(self):
+        d=self.player.TreatmentVars()
         self.participant.vars['timed_out']=False
         self.participant.vars['timed_out_round']=0
         import random
@@ -21,9 +23,9 @@ class Game(Page):
             # pick your first contribution
             # if base_tokens = 20 and increment = 10 then the range function will return 0, 10, 20 
             # and random will chose between them
-            A = random.choice(range(0,Constants.base_tokens+1,Constants.increment))
+            A = random.choice(range(0,d['base_tokens']+1,d['increment']))
             # same basic principle as above but you have less tokens to work with
-            B = random.choice(range(0,Constants.base_tokens+1-A,Constants.increment))
+            B = random.choice(range(0,d['base_tokens']+1-A,d['increment']))
             # set the player response values
             self.player.contribution_acc_a = A
             self.player.contribution_acc_b = B
@@ -34,10 +36,14 @@ class Game(Page):
 
     def vars_for_template(self):
         self.participant.vars['groupmate_timed_out']=False
-        return dict( roundNum = self.round_number )
+        return dict( 
+            self.player.TreatmentVars(), 
+            roundNum = self.round_number 
+            )
 
     def error_message(self, values): # entry checking
-        if values['contribution_acc_a'] + values['contribution_acc_b'] > Constants.base_tokens:
+        d=self.player.TreatmentVars()
+        if values['contribution_acc_a'] + values['contribution_acc_b'] > d['base_tokens']:
             return 'You cannot contribute more tokens than you have.'
 
 # class Timeout(Page):
@@ -55,6 +61,7 @@ class ResWait(WaitPage):
 
 class Results(Page):
     def vars_for_template(self):
+        d=self.player.TreatmentVars()
         #handle dropping groupmates
         dropText=""
         if('groupmate_timed_out' in self.participant.vars.keys()):
@@ -80,19 +87,19 @@ class Results(Page):
         l = "not"
         
         # calculate the amount of tokens the player has left over
-        kept = Constants.base_tokens-self.player.contribution_acc_a-self.player.contribution_acc_b
+        kept = d['base_tokens']-self.player.contribution_acc_a-self.player.contribution_acc_b
         
         # set up the return vars
-        if(groupConA>=Constants.threshold_high):
+        if(groupConA>=d['threshold_high']):
             ht = w
-            AEarn = Constants.value_high
+            AEarn = d['value_high']
         else:
             ht = l
             AEarn = 0
         
-        if(groupConB>=Constants.threshold_low):
+        if(groupConB>=d['threshold_low']):
             lt = w
-            BEarn = Constants.value_low
+            BEarn = d['value_low']
         else:
             lt = l
             BEarn = 0
@@ -101,6 +108,7 @@ class Results(Page):
         self.player.payoff = kept+AEarn+BEarn
 
         return dict( 
+            d,
             gDropText=dropText,
             roundNum = self.round_number, 
             highText = ht, 
@@ -117,7 +125,7 @@ class Results(Page):
     def before_next_page(self):
         #If it's the last round save the data to the participant otherwise 
         #we won't be able to access it in the next app
-        if(self.player.round_number==Constants.num_rounds):
+        if(self.player.round_number==self.player.TreatmentVars()['total_rounds']):
             self.participant.vars['GameRounds']=[pl.payoff for pl in self.player.in_all_rounds()]
 
 

@@ -23,10 +23,18 @@ SESSION_CONFIGS = [
     #     app_sequence=['my_trust']
     # ),
     dict(
-        name='mtpg',
+        name='mtpgT0',#Sim=1, ld=1
         num_demo_participants=6,
         app_sequence=['threshold_public_goods','threshold_public_goods_game','threshold_public_goods_end','timeout'],
-        consent='ConsentForm.pdf'#path to pdf
+        consent='ConsentForm.pdf',#path to pdf
+        threshold_high = 10,
+        threshold_low = 6,
+        value_high = 10,
+        value_low = 7,
+        base_tokens = 5,
+        increment = 1,
+        waiting_room_lowerlimit=2,
+        group_size=2
         )
 ]
 
@@ -42,8 +50,8 @@ SESSION_CONFIG_DEFAULTS = dict(
     large_difference_treatment=1,
     simultaneous=1,
     decision_timer=30,
-    total_rounds=10,
-    synchronous_game=1,
+    total_rounds=10,#Otree doesn't natively support variable round numbers, there's a number of work arounds but they're all huristics
+    synchronous_game=0,
     doc=""
 )
 
