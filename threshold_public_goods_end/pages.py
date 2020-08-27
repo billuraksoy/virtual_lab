@@ -5,8 +5,7 @@ from .models import Constants
 
 class Survey(Page):
 	form_model = 'player'
-	form_fields = ['birth_year','gender','education','income','ethnicity','other']
-
+	form_fields=['birth_year','gender','income','ethnicity','other','major']
 class Summary(Page):
 	def vars_for_template(self):
 		import random

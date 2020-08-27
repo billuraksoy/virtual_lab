@@ -52,7 +52,7 @@ class Player(BasePlayer):
             participation_payment = self.session.config['participation_payment']
             );
     birth_year = models.IntegerField(
-        min=1875,
+        min=1900,
         max=2020,
         label= "What is your year of birth?")
     gender = models.IntegerField(
@@ -92,6 +92,8 @@ class Player(BasePlayer):
             [5,'Hispanic or Latino'],
             [6,'Middle Eastern or Arab'],
             [7,'Other (please state below)']
-        ]
+        ],
+        widget=widgets.RadioSelect
         )
-    other = models.StringField(blank=True)
+    other = models.StringField(blank=True, label="")
+    major = models.StringField(label="What is your major?")
