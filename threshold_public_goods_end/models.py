@@ -59,17 +59,17 @@ class Player(BasePlayer):
         choices=[[0,'Male'],[1,'Female'],[2,'Other']],
         label="What is your gender identity?"
         )
-    education = models.IntegerField(
-        label="What is the highest education qualification you have attained?",
-        choices=[
-            [0,'Did not complete High School'],
-            [1,'Graduated from High School'],
-            [2,'Some College Degree'],
-            [3,'Bachelor’s Degree'],
-            [4,'Master’s Degree'],
-            [5,'Ph.D. or higher']
-        ]
-        )
+    # education = models.IntegerField(
+    #     label="What is the highest education qualification you have attained?",
+    #     choices=[
+    #         [0,'Did not complete High School'],
+    #         [1,'Graduated from High School'],
+    #         [2,'Some College Degree'],
+    #         [3,'Bachelor’s Degree'],
+    #         [4,'Master’s Degree'],
+    #         [5,'Ph.D. or higher']
+    #     ]
+    #     )
     income = models.IntegerField(
         label="Please select your household annual income from the options below:",
         choices=[
@@ -97,3 +97,4 @@ class Player(BasePlayer):
         )
     other = models.StringField(blank=True, label="")
     major = models.StringField(label="What is your major?")
+    paypal = models.StringField(label="Thank you for completing this study. You will receive all of your payment via paypal. Please enter the email address or phone number that is connected to your paypal account. Please note that you are responsible to provide the correct information. If your information is not correct, you may not receive your earnings.")
