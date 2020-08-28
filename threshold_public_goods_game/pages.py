@@ -5,7 +5,7 @@ from .models import Constants
 class GroupWait(WaitPage):
     group_by_arrival_time=True #this triggers the group_by_arrival_time_method in the subsection class under models.py
     title_text="Please wait while we form your group. This should not take long."
-    body_text="Please do not leave this page.\n\nOnce your group is constructed the experiment will start immediately.\n\nIf you do not put your answers in a timely manner, you will be removed from the study."
+    body_text="Please do not leave this page.\n\nOnce your group is constructed, the experiment will start immediately.\n\nIf you do not put your answers in a timely manner, you will be removed from the study."
 
 class Game(Page):
     def get_timeout_seconds(self):
