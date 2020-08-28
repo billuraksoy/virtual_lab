@@ -64,7 +64,18 @@ REAL_WORLD_CURRENCY_CODE = 'USD'
 USE_POINTS = True
 POINTS_CUSTOM_NAME = 'tokens'
 
-ROOMS = []
+ROOMS = [
+    dict(
+        name='erl',
+        display_name='ERL',
+        participant_label_file='_rooms/erl.txt',
+        use_secure_urls=True
+        ),
+    dict(
+        name='econ_lab',
+        display_name='Economic Research Lab'
+        ),
+    ]
 
 ADMIN_USERNAME = 'admin'
 # for security, best to set admin password in an environment variable
