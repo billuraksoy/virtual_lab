@@ -26,7 +26,7 @@ SESSION_CONFIGS = [
         name='mtpgT0',#Sim=1, ld=1
         num_demo_participants=6,
         app_sequence=['threshold_public_goods','threshold_public_goods_game','threshold_public_goods_end','timeout'],
-        consent='ConsentForm.pdf',#path to pdf
+        consent='global/ConsentForm.pdf',#path to pdf
         threshold_high = 10,
         threshold_low = 6,
         value_high = 10,
@@ -64,7 +64,18 @@ REAL_WORLD_CURRENCY_CODE = 'USD'
 USE_POINTS = True
 POINTS_CUSTOM_NAME = 'tokens'
 
-ROOMS = []
+ROOMS = [
+    dict(
+        name='erl',
+        display_name='ERL',
+        participant_label_file='_rooms/erl.txt',
+        use_secure_urls=True
+        ),
+    dict(
+        name='econ_lab',
+        display_name='Economic Research Lab'
+        ),
+    ]
 
 ADMIN_USERNAME = 'admin'
 # for security, best to set admin password in an environment variable
