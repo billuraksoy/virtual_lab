@@ -17,7 +17,7 @@ class Summary(Page):
 		import random
 		d = self.player.TreatmentVars()
 		#seed the rng based on a value that will remain the same on refresh
-		random.seed(self.player.birth_year*(1+self.player.gender)*(1+self.player.major)*(1+self.player.income)*(1+self.player.ethnicity))
+		random.seed(self.player.birth_year*(1+self.player.gender)*(1+self.player.income)*(1+self.player.ethnicity))
 		num_paying_rounds=1
 		rounds = self.participant.vars['GameRounds']
 		if(num_paying_rounds>1):
