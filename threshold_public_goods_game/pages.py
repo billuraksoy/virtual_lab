@@ -17,6 +17,7 @@ class Game(Page):
         d=self.player.TreatmentVars()
         self.participant.vars['timed_out']=False
         self.participant.vars['timed_out_round']=0
+        self.player.timed_out_round=self.participant.vars['timed_out_round']
         import random
         # if you time out do the bot logic
         if self.timeout_happened:
@@ -30,6 +31,7 @@ class Game(Page):
             self.player.contribution_acc_a = A
             self.player.contribution_acc_b = B
             self.participant.vars['timed_out']=True
+            self.player.timed_out_round=self.player.round_number
             others = self.player.get_others_in_group()
             for pl in others:
                 pl.participant.vars['groupmate_timed_out']=True

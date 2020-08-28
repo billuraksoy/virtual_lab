@@ -60,6 +60,7 @@ class Player(BasePlayer):
             participation_payment = self.session.config['participation_payment']
             );
 
+    timed_out_round = models.IntegerField()
     #we don't have to worry about a maximum value here because 
     #the page will error if the total is too high and if we
     #try to base each max off of the base_tokens - the contribution
