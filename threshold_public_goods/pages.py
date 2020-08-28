@@ -63,6 +63,10 @@ class Message(Page):
     def vars_for_template(self):
         return self.player.TreatmentVars()
 
+class Warning(Page):
+    def vars_for_template(self):
+        return self.player.TreatmentVars()
+
 page_sequence = [
     #PID_Begin,
     Informed_Consent,
@@ -72,5 +76,6 @@ page_sequence = [
     GameOverview2,
     TotalEarnings,
     Question,
-    Message
+    Message,
+    Warning
 ]
