@@ -26,7 +26,7 @@ SESSION_CONFIGS = [
         name='mtpgT0',#Sim=1, ld=1
         num_demo_participants=6,
         app_sequence=['threshold_public_goods','threshold_public_goods_game','threshold_public_goods_end','timeout'],
-        consent='ConsentForm.pdf',#path to pdf
+        consent='global/ConsentForm.pdf',#path to pdf
         threshold_high = 10,
         threshold_low = 6,
         value_high = 10,
