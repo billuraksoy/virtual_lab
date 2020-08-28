@@ -23,6 +23,9 @@ class Informed_Consent(Page):
             self.player.TreatmentVars(),
             informed_consent = self.session.config['consent']
             )
+    def before_next_page(self):
+        self.player.participant.vars['timed_out']=False
+        self.player.participant.vars['groupmate_timed_out']=False
 
 class Overview(Page):
     def vars_for_template(self):
