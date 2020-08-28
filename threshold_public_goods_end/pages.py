@@ -8,7 +8,10 @@ class Survey(Page):
 	form_fields=['birth_year','gender','income','ethnicity','other','major']
 class Paypal(Page):
 	form_model = 'player'
-	form_fields=['paypal']
+	form_fields=['paypal','venmo']
+	def error_message(self, values):
+		if values['paypal']==None and values['venmo']==None:
+			return "You must enter identifying information for either a PayPal or a Venmo account."
 class Survey2(Page):
 	form_model = 'player'
 	form_fields=['understanding','thoughts','strategy','suggestions']

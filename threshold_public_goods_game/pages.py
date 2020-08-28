@@ -66,10 +66,16 @@ class Results(Page):
     def vars_for_template(self):
         d=self.player.TreatmentVars()
         #handle dropping groupmates
-        part1 = "You will be randomly re-matched with a "
-        part2 = "different"
-        part3 = " participant in the next round. Please click next when you are ready to start the next round."
+        part1 = ""
+        part2 = ""
+        part3 = ""
         dropText=""
+        if(self.player.round_number==self.player.TreatmentVars()['total_rounds']):
+            part1="Please click NEXT."
+        else:
+            part1 = "You will be randomly re-matched with a "
+            part2 = "different"
+            part3 = " participant in the next round. Please click next when you are ready to start the next round."
         if self.participant.vars.get('groupmate_timed_out', None)==True:
             dropText="Your group member has timed out. Thus, the computer randomly made a decision on their behalf. Since we need an even number of subjects for this study, you will not be able to move forward. However, we will pay you a total of $9 for your participation today."
             part1="We are sorry for this inconvenience. Please click next to participate in our short survey and also to provide your paypal/venmo information."
