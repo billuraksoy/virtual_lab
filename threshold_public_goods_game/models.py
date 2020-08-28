@@ -19,30 +19,18 @@ Your app description
 
 
 class Constants(BaseConstants):
-    threshold_high = 10
-    threshold_low = 6
-    value_high = 10
-    value_low = 7
-    total_rounds = 10
-    group_size = 2
-    decision_timer=30
-    waiting_room_lowerlimit=2
-    simultaneous = 1
-    base_tokens = 5
-    increment = 1
-    decision_timer = 30
-
-    name_in_url = 'threshold_public_goods_game'
-    players_per_group = group_size
+    name_in_url = 'mtpgg'
+    players_per_group=None
     num_rounds = 10
 
 
 class Subsession(BaseSubsession):
     def group_by_arrival_time_method(self,waiting_players):
         import random
-        if(len(waiting_players)>=Constants.waiting_room_lowerlimit):
+        d=self.get_players()[0].TreatmentVars()
+        if(len(waiting_players)>=d['waiting_room_lowerlimit']):
             #if you've got enough people get a random sample of them and put that into a group
-            return random.sample(waiting_players,Constants.group_size)
+            return random.sample(waiting_players,d['group_size'])
 
 
 
@@ -52,6 +40,27 @@ class Group(BaseGroup):
 
 
 class Player(BasePlayer):
+    def TreatmentVars(self):
+        if(self.session.config['synchronous_game']):
+            wrll=len(self.get_others_in_subsession())#in this case the min in waiting room is the number in session
+        else:
+            wrll=self.session.config['waiting_room_lowerlimit']
+        return dict(
+            threshold_high = self.session.config['threshold_high'],
+            threshold_low = self.session.config['threshold_low'],
+            value_high = self.session.config['value_high'],
+            value_low = self.session.config['value_low'],
+            total_rounds = self.session.config['total_rounds'],
+            group_size = self.session.config['group_size'],
+            waiting_room_lowerlimit=wrll,
+            simultaneous = self.session.config['simultaneous'],
+            base_tokens = self.session.config['base_tokens'],
+            increment = self.session.config['increment'],
+            decision_timer = self.session.config['decision_timer'],
+            participation_payment = self.session.config['participation_payment']
+            );
+
+    timed_out_round = models.IntegerField()
     #we don't have to worry about a maximum value here because 
     #the page will error if the total is too high and if we
     #try to base each max off of the base_tokens - the contribution
@@ -71,17 +80,19 @@ class Player(BasePlayer):
         )
     
     def contribution_acc_a_error_message(self, value):
-        if(value%Constants.increment!=0):
-            return 'Please only contribute in an increment of '+str(Constants.increment)+' tokens.'
+        d=self.TreatmentVars()
+        if(value%d['increment']!=0):
+            return 'Please only contribute in an increment of '+str(d['increment'])+' tokens.'
         if(value<0):
             return 'You cannot contribute negative tokens'
-        if(value+self.contribution_acc_b>Constants.base_tokens):
-            return 'You cannot contribute more total tokens than you have'
+        if(value+self.contribution_acc_b>d['base_tokens']):
+            return 'You cannot contribute more than your endowment which is '+d['base_tokens']+' tokens'
 
     def contribution_acc_b_error_message(self, value):
-        if(value%Constants.increment!=0):
-            return 'Please only contribute in an increment of '+str(Constants.increment)+' tokens.'
+        d=self.TreatmentVars()
+        if(value%d['increment']!=0):
+            return 'Please only contribute in an increment of '+str(d['increment'])+' tokens.'
         if(value<0):
             return 'You cannot contribute negative tokens'
-        if(value+self.contribution_acc_a>Constants.base_tokens):
-            return 'You cannot contribute more total tokens than you have'
+        if(value+self.contribution_acc_a>d['base_tokens']):
+            return 'You cannot contribute more than your endowment which is '+d['base_tokens']+' tokens'

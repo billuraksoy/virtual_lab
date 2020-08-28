@@ -1,0 +1,17 @@
+{% extends "global/Page.html" %}
+{% load otree static %}
+<!-- {% load custom_tags %} -->
+
+{% block title %}
+    Survey
+{% endblock %}
+
+{% block content %}
+	<style>
+		.otree-title{
+			text-align:center;
+		}
+	</style>
+	{% formfields %}
+	{% next_button %}
+{% endblock %}

@@ -20,38 +20,62 @@ class Informed_Consent(Page):
 
     def vars_for_template(self):
         return dict(
-            informed_consent = self.session.config['consent'],
+            self.player.TreatmentVars(),
+            informed_consent = self.session.config['consent']
             )
 
 class Overview(Page):
-    pass
+    def vars_for_template(self):
+        return self.player.TreatmentVars()
 
 class Rules(Page):
-    pass
+    def vars_for_template(self):
+        return self.player.TreatmentVars()
 
 class GameOverview(Page):
     form_model = 'player'
     form_fields = ['attention_check_1']
     def vars_for_template(self):
+        d = self.player.TreatmentVars()
         return dict(
-            total_tokens = Constants.base_tokens*Constants.group_size,
-            other_part = Constants.group_size-1
+            d,
+            total_tokens = d['base_tokens']*d['group_size'],
+            other_part = d['group_size']-1
             )
 
 class GameOverview2(Page):
     form_model = 'player'
     form_fields = ['attention_check_2']
+    def vars_for_template(self):
+        return self.player.TreatmentVars()
 
 class TotalEarnings(Page):
-    pass
+    def vars_for_template(self):
+        return self.player.TreatmentVars()
 
+class Question(Page):
+    form_model='player'
+    form_fields=['question1','question2','question3']
+    def vars_for_template(self):
+        return self.player.TreatmentVars()
+
+class Message(Page):
+    def vars_for_template(self):
+        return self.player.TreatmentVars()
+
+class Warning(Page):
+    def vars_for_template(self):
+        return self.player.TreatmentVars()
 
 page_sequence = [
-    PID_Begin,
+    #PID_Begin,
     Informed_Consent,
     Overview,
     Rules,
     GameOverview,
     GameOverview2,
-    TotalEarnings
+    TotalEarnings,
+    Question,
+    Message,
+    Warning
 ]
