@@ -86,7 +86,7 @@ class Player(BasePlayer):
         if(value<0):
             return 'You cannot contribute negative tokens'
         if(value+self.contribution_acc_b>d['base_tokens']):
-            return 'You cannot contribute more than your endowment which is '+d['base_tokens']+' tokens'
+            return 'You cannot contribute more than your endowment which is '+str(d['base_tokens'])+' tokens'
 
     def contribution_acc_b_error_message(self, value):
         d=self.TreatmentVars()
@@ -95,4 +95,4 @@ class Player(BasePlayer):
         if(value<0):
             return 'You cannot contribute negative tokens'
         if(value+self.contribution_acc_a>d['base_tokens']):
-            return 'You cannot contribute more than your endowment which is '+d['base_tokens']+' tokens'
+            return 'You cannot contribute more than your endowment which is '+str(d['base_tokens'])+' tokens'
