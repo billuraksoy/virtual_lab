@@ -47,8 +47,8 @@ class Player(BasePlayer):
         if(self.session.config['synchronous_game']):
             N=0
             for a in self.session.get_participants():
-                if a.vars.get('timed_out',default=None) == False:
-                    if a.vars.get('groupmate_timed_out',default=False)==False:
+                if a.vars.get('timed_out', None) == False:
+                    if a.vars.get('groupmate_timed_out', False)==False:
                         N+=1
 
             wrll=N#in this case the min in waiting room is the number in session
