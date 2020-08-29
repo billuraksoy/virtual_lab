@@ -28,14 +28,14 @@ class Subsession(BaseSubsession):
     def after_arrive(self):
         import random
         players=self.get_players()
-        print(players)
+        #print(players)
         d=players[0].TreatmentVars()
         matrix=[]
         random.shuffle(players)
-        print(players)
+        #print(players)
         for a in range(0, len(players), d['group_size']):
             matrix.append(players[a:a+d['group_size']])
-        print(matrix)
+        #print(matrix)
         self.set_group_matrix(matrix)
 
 
