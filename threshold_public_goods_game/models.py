@@ -25,6 +25,20 @@ class Constants(BaseConstants):
 
 
 class Subsession(BaseSubsession):
+    def after_arrive(self):
+        import random
+        players=self.get_players()
+        print(players)
+        d=players[0].TreatmentVars()
+        matrix=[]
+        random.shuffle(players)
+        print(players)
+        for a in range(0, len(players), d['group_size']):
+            matrix.append(players[a:a+d['group_size']])
+        print(matrix)
+        self.set_group_matrix(matrix)
+
+
     def group_by_arrival_time_method(self,waiting_players):
         import random
         d=(self.get_players()[0]).TreatmentVars()
@@ -44,16 +58,15 @@ class Group(BaseGroup):
 
 class Player(BasePlayer):
     def TreatmentVars(self):
-        if(self.session.config['synchronous_game']):
-            N=0
-            for a in self.session.get_participants():
-                if a.vars.get('timed_out', None) == False:
-                    if a.vars.get('groupmate_timed_out', False)==False:
-                        N+=1
-
-            wrll=N#in this case the min in waiting room is the number in session
-        else:
-            wrll=self.session.config['waiting_room_lowerlimit']
+        # if(self.session.config['synchronous_game']):
+        #     N=0
+        #     for a in self.session.get_participants():
+        #         if a.vars.get('timed_out', None) == False:
+        #             if a.vars.get('groupmate_timed_out', False)==False:
+        #                 N+=1
+        #     wrll=N#in this case the min in waiting room is the number in session
+        # else:
+        wrll=self.session.config['waiting_room_lowerlimit']
         return dict(
             threshold_high = self.session.config['threshold_high'],
             threshold_low = self.session.config['threshold_low'],

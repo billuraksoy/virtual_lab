@@ -2,11 +2,19 @@ from otree.api import Currency as c, currency_range
 from ._builtin import Page, WaitPage
 from .models import Constants
 
-class GroupWait(WaitPage):
+class GroupWaitAsyncGame(WaitPage):
     group_by_arrival_time=True #this triggers the group_by_arrival_time_method in the subsection class under models.py
     title_text="Please wait while we form your group. This should not take long."
     body_text="Please do not leave this page.\n\nOnce your group is constructed, the experiment will start immediately.\n\nIf you do not put your answers in a timely manner, you will be removed from the study."
-
+    def is_displayed(self):
+        return not self.session.config['synchronous_game']
+class GroupWaitSyncGame(WaitPage):
+    wait_for_all_groups = True
+    after_all_players_arrive = 'after_arrive'
+    title_text="Please wait while we form your group. This should not take long."
+    body_text="Please do not leave this page.\n\nOnce your group is constructed, the experiment will start immediately.\n\nIf you do not put your answers in a timely manner, you will be removed from the study."
+    def is_displayed(self):
+        return self.session.config['synchronous_game']
 class Game(Page):
     def get_timeout_seconds(self):
         return self.session.config['decision_timer']
@@ -145,4 +153,4 @@ class Results(Page):
             self.participant.vars['GameRounds']=[pl.payoff for pl in self.player.in_all_rounds()]
 
 
-page_sequence = [GroupWait, Game, ResWait, Results]
+page_sequence = [GroupWaitAsyncGame, GroupWaitSyncGame, Game, ResWait, Results]
