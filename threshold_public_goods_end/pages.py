@@ -28,7 +28,7 @@ class Summary(Page):
 			TokensEarned="5"
 			ME=5
 		else:
-			random.seed(self.player.birth_year*(1+self.player.gender)*(1+self.player.income)*(1+self.player.ethnicity))
+			random.seed(self.player.birth_year*(1+self.player.gender)*(1+self.player.income))
 			num_paying_rounds=1
 			rounds = self.participant.vars['GameRounds']
 			if(num_paying_rounds>1):

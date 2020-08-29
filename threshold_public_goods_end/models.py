@@ -8,7 +8,7 @@ from otree.api import (
     Currency as c,
     currency_range,
 )
-
+from django import forms
 
 author = 'Your name here'
 
@@ -21,6 +21,16 @@ class Constants(BaseConstants):
     name_in_url = 'mtpge'
     players_per_group = None
     num_rounds = 1
+    ch=[
+        ['0','White'],
+        ['1','Black or African American'],
+        ['2','American Indian or Alaskan Native'],
+        ['3','Asian'],
+        ['4','Native Hawaiian or Pacific Islander'],
+        ['5','Hispanic or Latino'],
+        ['6','Middle Eastern or Arab'],
+        ['7','Other (please state below)']
+    ]
 
 
 class Subsession(BaseSubsession):
@@ -81,19 +91,11 @@ class Player(BasePlayer):
             [5,'$100,000 or more']
         ] 
         )
-    ethnicity = models.IntegerField(
-        label="What is your ethnicity?",
-        choices=[
-            [0,'White'],
-            [1,'Black or African American'],
-            [2,'American Indian or Alaskan Native'],
-            [3,'Asian'],
-            [4,'Native Hawaiian or Pacific Islander'],
-            [5,'Hispanic or Latino'],
-            [6,'Middle Eastern or Arab'],
-            [7,'Other (please state below)']
-        ],
-        widget=widgets.RadioSelect
+    
+    ethnicity = models.StringField(
+        default=-1,
+        label="",
+        widget=forms.CheckboxSelectMultiple(choices=Constants.ch)
         )
     other = models.StringField(blank=True, label="")
     major = models.StringField(label="What is your major?")
