@@ -2,11 +2,19 @@ from otree.api import Currency as c, currency_range
 from ._builtin import Page, WaitPage
 from .models import Constants
 
-class GroupWait(WaitPage):
+class GroupWaitAsyncGame(WaitPage):
     group_by_arrival_time=True #this triggers the group_by_arrival_time_method in the subsection class under models.py
     title_text="Please wait while we form your group. This should not take long."
     body_text="Please do not leave this page.\n\nOnce your group is constructed, the experiment will start immediately.\n\nIf you do not put your answers in a timely manner, you will be removed from the study."
-
+    def is_displayed(self):
+        return not self.session.config['synchronous_game']
+class GroupWaitSyncGame(WaitPage):
+    wait_for_all_groups = True
+    after_all_players_arrive = 'after_arrive'
+    title_text="Please wait while we form your group. This should not take long."
+    body_text="Please do not leave this page.\n\nOnce your group is constructed, the experiment will start immediately.\n\nIf you do not put your answers in a timely manner, you will be removed from the study."
+    def is_displayed(self):
+        return self.session.config['synchronous_game']
 class Game(Page):
     def get_timeout_seconds(self):
         return self.session.config['decision_timer']
@@ -15,7 +23,6 @@ class Game(Page):
 
     def before_next_page(self):
         d=self.player.TreatmentVars()
-        self.participant.vars['timed_out']=False
         self.participant.vars['timed_out_round']=0
         self.player.timed_out_round=self.participant.vars['timed_out_round']
         import random
@@ -37,7 +44,6 @@ class Game(Page):
                 pl.participant.vars['groupmate_timed_out']=True
 
     def vars_for_template(self):
-        self.participant.vars['groupmate_timed_out']=False
         return dict( 
             self.player.TreatmentVars(), 
             roundNum = self.round_number 
@@ -56,21 +62,34 @@ class ResWait(WaitPage):
     title_text = "Please wait until everyone finishes. This should not take long."
     body_text = "Please do not leave this page."
     def app_after_this_page(self, upcoming_apps):
-        if self.participant.vars['timed_out']==True: # if you've timed out, go to the timeout app and stop being here.
+        if self.participant.vars.get('timed_out', None)==True: # if you've timed out, go to the timeout app and stop being here.
             self.participant.vars['timed_out_round']=self.round_number
             return upcoming_apps[-1]
 
 
 class Results(Page):
+    def app_after_this_page(self,upcoming_apps):
+        if self.participant.vars.get('groupmate_timed_out', None)==True:
+            return upcoming_apps[0]
     def vars_for_template(self):
         d=self.player.TreatmentVars()
         #handle dropping groupmates
+        part1 = ""
+        part2 = ""
+        part3 = ""
         dropText=""
-        if('groupmate_timed_out' in self.participant.vars.keys()):
-            if(self.participant.vars['groupmate_timed_out']==True):
-                self.participant.vars['groupmate_timed_out']=False
-                dropText="Your group member has timed out. Thus, the computer randomly made a decision on their behalf."
-        
+        if(self.player.round_number==self.player.TreatmentVars()['total_rounds']):
+            part1="Please click NEXT."
+        else:
+            part1 = "You will be randomly re-matched with a "
+            part2 = "different"
+            part3 = " participant in the next round. Please click next when you are ready to start the next round."
+        if self.participant.vars.get('groupmate_timed_out', None)==True:
+            dropText="Your group member has timed out. Thus, the computer randomly made a decision on their behalf. Since we need an even number of subjects for this study, you will not be able to move forward. However, we will pay you a total of $9 for your participation today."
+            part1="We are sorry for this inconvenience. Please click next to participate in our short survey and also to provide your paypal/venmo information."
+            part2=""
+            part3=""
+                
 
         # Calculate the total contributions for each group
         players = self.player.group.get_players()
@@ -122,7 +141,10 @@ class Results(Page):
             kept = kept,
             AEarn = AEarn,
             BEarn = BEarn,
-            TotEarn = kept+AEarn+BEarn
+            TotEarn = kept+AEarn+BEarn,
+            part1=part1,
+            part2=part2,
+            part3=part3
             )
     def before_next_page(self):
         #If it's the last round save the data to the participant otherwise 
@@ -131,4 +153,4 @@ class Results(Page):
             self.participant.vars['GameRounds']=[pl.payoff for pl in self.player.in_all_rounds()]
 
 
-page_sequence = [GroupWait, Game, ResWait, Results]
+page_sequence = [GroupWaitAsyncGame, GroupWaitSyncGame, Game, ResWait, Results]

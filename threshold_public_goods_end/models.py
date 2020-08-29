@@ -8,7 +8,7 @@ from otree.api import (
     Currency as c,
     currency_range,
 )
-
+from django import forms
 
 author = 'Your name here'
 
@@ -21,6 +21,16 @@ class Constants(BaseConstants):
     name_in_url = 'mtpge'
     players_per_group = None
     num_rounds = 1
+    ch=[
+        ['0','White'],
+        ['1','Black or African American'],
+        ['2','American Indian or Alaskan Native'],
+        ['3','Asian'],
+        ['4','Native Hawaiian or Pacific Islander'],
+        ['5','Hispanic or Latino'],
+        ['6','Middle Eastern or Arab'],
+        ['7','Other (please state below)']
+    ]
 
 
 class Subsession(BaseSubsession):
@@ -81,23 +91,16 @@ class Player(BasePlayer):
             [5,'$100,000 or more']
         ] 
         )
-    ethnicity = models.IntegerField(
-        label="What is your ethnicity?",
-        choices=[
-            [0,'White'],
-            [1,'Black or African American'],
-            [2,'American Indian or Alaskan Native'],
-            [3,'Asian'],
-            [4,'Native Hawaiian or Pacific Islander'],
-            [5,'Hispanic or Latino'],
-            [6,'Middle Eastern or Arab'],
-            [7,'Other (please state below)']
-        ],
-        widget=widgets.RadioSelect
+    
+    ethnicity = models.StringField(
+        default=-1,
+        label="",
+        widget=forms.CheckboxSelectMultiple(choices=Constants.ch)
         )
     other = models.StringField(blank=True, label="")
     major = models.StringField(label="What is your major?")
-    paypal = models.StringField(label="Thank you for completing this study. You will receive all of your payment via paypal. Please enter the email address or phone number that is connected to your paypal account. Please note that you are responsible to provide the correct information. If your information is not correct, you may not receive your earnings.")
+    paypal = models.StringField(label="PayPal:", blank=True)
+    venmo = models.StringField(label="Venmo:", blank=True)
     understanding = models.LongStringField(label="Were the instructions easy to understand?")
     thoughts = models.LongStringField(label="What did you think about the experiment?")
     strategy = models.LongStringField(label="Did you use a particular strategy when making your decisions?")

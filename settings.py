@@ -69,12 +69,7 @@ ROOMS = [
         name='erl',
         display_name='ERL',
         participant_label_file='_rooms/erl.txt',
-        use_secure_urls=True
-        ),
-    dict(
-        name='econ_lab',
-        display_name='Economic Research Lab'
-        ),
+        )
     ]
 
 ADMIN_USERNAME = 'admin'

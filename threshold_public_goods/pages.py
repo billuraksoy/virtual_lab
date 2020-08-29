@@ -23,6 +23,9 @@ class Informed_Consent(Page):
             self.player.TreatmentVars(),
             informed_consent = self.session.config['consent']
             )
+    def before_next_page(self):
+        self.player.participant.vars['timed_out']=False
+        self.player.participant.vars['groupmate_timed_out']=False
 
 class Overview(Page):
     def vars_for_template(self):
@@ -66,7 +69,11 @@ class Message(Page):
 class Warning(Page):
     def vars_for_template(self):
         return self.player.TreatmentVars()
-
+class Wait(WaitPage):
+    title_text="Please wait while we form your group. This should not take long."
+    body_text="Please do not leave this page.\n\nOnce your group is constructed, the experiment will start immediately.\n\nIf you do not put your answers in a timely manner, you will be removed from the study."
+    def is_displayed(self):
+        return self.session.config['synchronous_game']
 page_sequence = [
     #PID_Begin,
     Informed_Consent,
@@ -77,5 +84,6 @@ page_sequence = [
     TotalEarnings,
     Question,
     Message,
-    Warning
+    Warning,
+    Wait
 ]
