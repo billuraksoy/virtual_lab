@@ -22,14 +22,14 @@ class Constants(BaseConstants):
     players_per_group = None
     num_rounds = 1
     ch=[
-        ['0','White'],
-        ['1','Black or African American'],
-        ['2','American Indian or Alaskan Native'],
-        ['3','Asian'],
-        ['4','Native Hawaiian or Pacific Islander'],
-        ['5','Hispanic or Latino'],
-        ['6','Middle Eastern or Arab'],
-        ['7','Other (please state below)']
+        ['White'],
+        ['Black or African American'],
+        ['American Indian or Alaskan Native'],
+        ['Asian'],
+        ['Native Hawaiian or Pacific Islander'],
+        ['Hispanic or Latino'],
+        ['Middle Eastern or Arab'],
+        ['Other (please state below)']
     ]
 
 
@@ -93,7 +93,6 @@ class Player(BasePlayer):
         )
     
     ethnicity = models.StringField(
-        default=-1,
         label="",
         widget=forms.CheckboxSelectMultiple(choices=Constants.ch)
         )
