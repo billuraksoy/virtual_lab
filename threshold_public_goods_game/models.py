@@ -100,21 +100,3 @@ class Player(BasePlayer):
         initial=0,
         label = "Your Contribution"
         )
-    
-    def contribution_acc_a_error_message(self, value):
-        d=self.TreatmentVars()
-        if(value%d['increment']!=0):
-            return 'Please only contribute in an increment of '+str(d['increment'])+' tokens.'
-        if(value<0):
-            return 'You cannot contribute negative tokens'
-        if(value+self.contribution_acc_b>d['base_tokens']):
-            return 'You cannot contribute more than your endowment which is '+str(d['base_tokens'])+' tokens'
-
-    def contribution_acc_b_error_message(self, value):
-        d=self.TreatmentVars()
-        if(value%d['increment']!=0):
-            return 'Please only contribute in an increment of '+str(d['increment'])+' tokens.'
-        if(value<0):
-            return 'You cannot contribute negative tokens'
-        if(value+self.contribution_acc_a>d['base_tokens']):
-            return 'You cannot contribute more than your endowment which is '+str(d['base_tokens'])+' tokens'

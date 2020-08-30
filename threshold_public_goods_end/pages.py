@@ -1,11 +1,18 @@
-from otree.api import Currency as c, currency_range
+from otree.api import Currency as c, currency_range 
 from ._builtin import Page, WaitPage
 from .models import Constants
 
 
 class Survey(Page):
 	form_model = 'player'
-	form_fields=['birth_year','gender','income','ethnicity','other','major']
+	form_fields=['birth_year','gender','income','Wh','Bl','Na','As','Nh','Hi','Me','OtherBool','other','major']
+	def error_message(self,values):
+		lst=['Wh','Bl','Na','As','Nh','Hi','Me','OtherBool']
+		error=True
+		for i in lst:
+			error = error and not values[i]
+		if error:
+			return "You must select at least one ethnicity."
 class Paypal(Page):
 	form_model = 'player'
 	form_fields=['paypal','venmo']
@@ -24,9 +31,9 @@ class Summary(Page):
 		PayingRound=""
 		ME=0
 		if self.participant.vars.get('groupmate_timed_out', None)==True:
-			PayingRound="Because your partner disconnected and since we need an even number of subjects for this study, you have been removed from the study pool but will be payed as if you achieved the maximum score."
-			TokensEarned="5"
-			ME=5
+			PayingRound="Because your partner disconnected and since we need an even number of subjects for this study, you have been removed from the study pool but will be entered as if you achieved the maximum score."
+			TokensEarned="10"
+			ME=10
 		else:
 			random.seed(self.player.birth_year*(1+self.player.gender)*(1+self.player.income))
 			num_paying_rounds=1
@@ -34,7 +41,7 @@ class Summary(Page):
 			if(num_paying_rounds>1):
 				PayingRound="Rounds chosen for payment:"
 				TokensEarned="in these rounds: "
-				payRounds = random.sample(range(0,d['total_rounds']),num_paying_rounds)
+				payRounds = random.sample(range(1,d['total_rounds']),num_paying_rounds)
 				ME=0
 				for pRound in payRounds:
 					ME+=rounds[pRound]
@@ -43,7 +50,7 @@ class Summary(Page):
 			else:
 				PayingRound="Round chosen for payment: "
 				TokensEarned="in this round: "
-				payRound = random.choice(range(0,d['total_rounds']))
+				payRound = random.choice(range(1,d['total_rounds']))
 				PayingRound+=str(payRound)
 				TokensEarned+=str(rounds[payRound])
 				ME=rounds[payRound]

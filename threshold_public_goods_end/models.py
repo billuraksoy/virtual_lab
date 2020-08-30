@@ -21,16 +21,16 @@ class Constants(BaseConstants):
     name_in_url = 'mtpge'
     players_per_group = None
     num_rounds = 1
-    ch=[
-        ['0','White'],
-        ['1','Black or African American'],
-        ['2','American Indian or Alaskan Native'],
-        ['3','Asian'],
-        ['4','Native Hawaiian or Pacific Islander'],
-        ['5','Hispanic or Latino'],
-        ['6','Middle Eastern or Arab'],
-        ['7','Other (please state below)']
-    ]
+    # ch=[
+    #     ['0','White'],
+    #     ['1','Black or African American'],
+    #     ['2','American Indian or Alaskan Native'],
+    #     ['3','Asian'],
+    #     ['4','Native Hawaiian or Pacific Islander'],
+    #     ['5','Hispanic or Latino'],
+    #     ['6','Middle Eastern or Arab'],
+    #     ['7','Other (please state below)']
+    # ]
 
 
 class Subsession(BaseSubsession):
@@ -91,13 +91,25 @@ class Player(BasePlayer):
             [5,'$100,000 or more']
         ] 
         )
-    
-    ethnicity = models.StringField(
-        default=-1,
-        label="",
-        widget=forms.CheckboxSelectMultiple(choices=Constants.ch)
-        )
+    def make_field(label):
+        return models.BooleanField(
+            label=label,
+            widget=widgets.CheckboxInput,
+            initial=False,
+            blank=True
+            )
+    Wh=make_field("White")
+    Bl=make_field("Black or African American")
+    Na=make_field("American Indian or Alaskan Native")
+    As=make_field("Asian")
+    Nh=make_field("Native Hawaiian or Pacific Islander")
+    Hi=make_field("Hispanic or Latino")
+    Me=make_field("Middle Eastern or Arab")
+    OtherBool=make_field("Other (please state below)")
     other = models.StringField(blank=True, label="")
+    def other_error_message(self,value):
+        if self.OtherBool and value == None:
+            return 'If you select Other, you must specify in the provided field.'
     major = models.StringField(label="What is your major?")
     paypal = models.StringField(label="PayPal:", blank=True)
     venmo = models.StringField(label="Venmo:", blank=True)

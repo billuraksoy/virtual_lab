@@ -51,6 +51,8 @@ class Game(Page):
 
     def error_message(self, values): # entry checking
         d=self.player.TreatmentVars()
+        if values['contribution_acc_a'] < 0 or values['contribution_acc_b'] < 0:
+            return 'You cannot contribute negative tokens.'
         if values['contribution_acc_a'] + values['contribution_acc_b'] > d['base_tokens']:
             return 'You cannot contribute more tokens than you have.'
 
@@ -85,7 +87,7 @@ class Results(Page):
             part2 = "different"
             part3 = " participant in the next round. Please click next when you are ready to start the next round."
         if self.participant.vars.get('groupmate_timed_out', None)==True:
-            dropText="Your group member has timed out. Thus, the computer randomly made a decision on their behalf. Since we need an even number of subjects for this study, you will not be able to move forward. However, we will pay you a total of $9 for your participation today."
+            dropText="Your group member has timed out. Thus, the computer randomly made a decision on their behalf. Since we need an even number of subjects for this study, you will not be able to move forward. However, we will enter you to win a total of $14 for your participation today."
             part1="We are sorry for this inconvenience. Please click next to participate in our short survey and also to provide your paypal/venmo information."
             part2=""
             part3=""
