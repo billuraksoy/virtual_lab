@@ -78,8 +78,8 @@ class Player(BasePlayer):
         initial=-1,
         choices=[
             [-1,"No Selection"],
-            [0,"No"],
-            [1,"Yes"]
+            [1,"Yes"],
+            [0,"No"]
         ])
     def question1_error_message(self, value):
         if(value==-1):
@@ -91,8 +91,8 @@ class Player(BasePlayer):
         initial=-1,
         choices=[
             [-1,"No Selection"],
-            [0,"No"],
-            [1,"Yes"]
+            [1,"Yes"],
+            [0,"No"]
         ])
     def question2_error_message(self, value):
         if(value==-1):
@@ -100,7 +100,7 @@ class Player(BasePlayer):
         if(value==0):
             return 'Since the total tokens contributed to Group Account B is more than or equal to its threshold, the threshold is met. Thus, you will receive 7 tokens from this account'
     question3 = models.IntegerField(
-        label="How many tokens will you have in this hypothetical situation?"
+        label="What are your total earnings in this hypothetical situation?"
         )
     def question3_error_message(self,value):
         if(int(value)!=8):
