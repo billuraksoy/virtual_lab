@@ -34,7 +34,7 @@ class Summary(Page):
 			if(num_paying_rounds>1):
 				PayingRound="Rounds chosen for payment:"
 				TokensEarned="in these rounds: "
-				payRounds = random.sample(range(0,d['total_rounds']),num_paying_rounds)
+				payRounds = random.sample(range(1,d['total_rounds']),num_paying_rounds)
 				ME=0
 				for pRound in payRounds:
 					ME+=rounds[pRound]
@@ -43,7 +43,7 @@ class Summary(Page):
 			else:
 				PayingRound="Round chosen for payment: "
 				TokensEarned="in this round: "
-				payRound = random.choice(range(0,d['total_rounds']))
+				payRound = random.choice(range(1,d['total_rounds']))
 				PayingRound+=str(payRound)
 				TokensEarned+=str(rounds[payRound])
 				ME=rounds[payRound]
