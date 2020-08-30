@@ -51,6 +51,8 @@ class Game(Page):
 
     def error_message(self, values): # entry checking
         d=self.player.TreatmentVars()
+        if values['contribution_acc_a'] < 0 or values['contribution_acc_b'] < 0:
+            return 'You cannot contribute negative tokens.'
         if values['contribution_acc_a'] + values['contribution_acc_b'] > d['base_tokens']:
             return 'You cannot contribute more tokens than you have.'
 
