@@ -51,7 +51,7 @@ SESSION_CONFIG_DEFAULTS = dict(
     simultaneous=1,
     decision_timer=30,
     total_rounds=10,#Otree doesn't natively support variable round numbers, there's a number of work arounds but they're all huristics
-    synchronous_game=0,
+    synchronous_game=1,
     doc=""
 )
 
