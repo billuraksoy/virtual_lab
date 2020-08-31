@@ -110,7 +110,7 @@ class Player(BasePlayer):
     def other_error_message(self,value):
         if self.OtherBool and value == None:
             return 'If you select Other, you must specify in the provided field.'
-    major = models.StringField(label="What is your major?")
+    major = models.StringField(label="Please enter your full name and major to receive your bonus grade.")
     paypal = models.StringField(label="PayPal:", blank=True)
     venmo = models.StringField(label="Venmo:", blank=True)
     understanding = models.LongStringField(label="Were the instructions easy to understand?")
