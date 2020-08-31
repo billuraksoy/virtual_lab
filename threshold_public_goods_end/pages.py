@@ -46,8 +46,9 @@ class Summary(Page):
 				ME=0
 				for pRound in payRounds:
 					ME+=rounds[pRound]
-					PayingRound+=" "+str(pRound+1)
+					PayingRound+=" "+str(pRound+1 )
 					TokensEarned+=" "+str(rounds[pRound])
+					self.player.round_chosen_for_payment=pRound
 			else:
 				PayingRound="Round chosen for payment: "
 				TokensEarned="in this round: "
@@ -55,6 +56,7 @@ class Summary(Page):
 				PayingRound+=str(payRound+1)
 				TokensEarned+=str(rounds[payRound])
 				ME=rounds[payRound]
+				self.player.round_chosen_for_payment=pRound
 		self.player.payoff=ME+self.session.config['participation_payment']
 		return dict(
 			d,
