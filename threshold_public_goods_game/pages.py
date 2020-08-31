@@ -113,6 +113,10 @@ class Results(Page):
         kept = d['base_tokens']-self.player.contribution_acc_a-self.player.contribution_acc_b
         
         # set up the return vars
+        for pl in players:
+            pl.acc_a_total=int(groupConA)
+            pl.acc_b_total=int(groupConB)
+
         if(groupConA>=d['threshold_high']):
             ht = w
             AEarn = d['value_high']
@@ -153,6 +157,8 @@ class Results(Page):
         #we won't be able to access it in the next app
         if(self.player.round_number==self.player.TreatmentVars()['total_rounds']):
             self.participant.vars['GameRounds']=[pl.payoff for pl in self.player.in_all_rounds()]
+            self.participant.vars['a_total']=[pl.acc_a_total for pl in self.player.in_all_rounds()]
+            self.participant.vars['b_total']=[pl.acc_b_total for pl in self.player.in_all_rounds()]
 
 
 page_sequence = [GroupWaitAsyncGame, GroupWaitSyncGame, Game, ResWait, Results]
