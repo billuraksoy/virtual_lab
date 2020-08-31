@@ -117,3 +117,4 @@ class Player(BasePlayer):
     thoughts = models.LongStringField(label="What did you think about the experiment?")
     strategy = models.LongStringField(label="Did you use a particular strategy when making your decisions?")
     suggestions = models.LongStringField(label="Do you have any suggestions for us to improve the study?")
+    round_chosen_for_payment=models.IntegerField(label="")
