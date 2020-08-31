@@ -118,3 +118,7 @@ class Player(BasePlayer):
     strategy = models.LongStringField(label="Did you use a particular strategy when making your decisions?")
     suggestions = models.LongStringField(label="Do you have any suggestions for us to improve the study?")
     round_chosen_for_payment=models.IntegerField(label="")
+    groupAThresholdMet = models.BooleanField(label="")
+    groupBThresholdMet = models.BooleanField(label="")
+    groupATotalContribution = models.IntegerField(label="")
+    groupBTotalContribution = models.IntegerField(label="")

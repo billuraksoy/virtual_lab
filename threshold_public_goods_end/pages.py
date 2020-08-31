@@ -38,7 +38,9 @@ class Summary(Page):
 			random.seed(self.player.birth_year*(1+self.player.gender)*(1+self.player.income))
 			num_paying_rounds=1
 			rounds = self.participant.vars['GameRounds']
-			print(rounds)
+			a_totals = self.participant.vars['a_total']
+			b_totals = self.participant.vars['b_total']
+			#print(rounds)
 			if(num_paying_rounds>1):
 				PayingRound="Rounds chosen for payment:"
 				TokensEarned="in these rounds: "
@@ -56,7 +58,12 @@ class Summary(Page):
 				PayingRound+=str(payRound+1)
 				TokensEarned+=str(rounds[payRound])
 				ME=rounds[payRound]
-				self.player.round_chosen_for_payment=pRound
+				self.player.round_chosen_for_payment=payRound
+				self.player.groupAThresholdMet = (a_totals[payRound]>=d['threshold_high'])
+				self.player.groupBThresholdMet = (b_totals[payRound]>=d['threshold_low'])
+				self.player.groupATotalContribution = a_totals[payRound]
+				self.player.groupBTotalContribution = b_totals[payRound]
+
 		self.player.payoff=ME+self.session.config['participation_payment']
 		return dict(
 			d,

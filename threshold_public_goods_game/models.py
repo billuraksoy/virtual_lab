@@ -100,3 +100,5 @@ class Player(BasePlayer):
         initial=0,
         label = "Your Contribution"
         )
+    acc_a_total=models.IntegerField(label="")
+    acc_b_total=models.IntegerField(label="")
