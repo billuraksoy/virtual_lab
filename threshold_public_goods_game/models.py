@@ -26,13 +26,15 @@ class Constants(BaseConstants):
 
 class Subsession(BaseSubsession):
     def after_arrive(self):
+        #I have to do this instead of group_randomly because of the variable group size
         import random
-        players=self.get_players()
+        players=self.get_players()#get all the players
         #print(players)
-        d=players[0].TreatmentVars()
+        d=players[0].TreatmentVars()#get the treatment variables
         matrix=[]
-        random.shuffle(players)
+        random.shuffle(players)#shuffle the players in place
         #print(players)
+        #push the players into the matrix in the random order that the shuffle provided
         for a in range(0, len(players), d['group_size']):
             matrix.append(players[a:a+d['group_size']])
         #print(matrix)
@@ -42,9 +44,28 @@ class Subsession(BaseSubsession):
     def group_by_arrival_time_method(self,waiting_players):
         import random
         d=(self.get_players()[0]).TreatmentVars()
+        participants = [pl.participant for pl in self.get_players()]#There is no get_participants function for subsession objects
         # a few debug prints
         # print("number of waiting players: "+str(len(waiting_players))) 
         # print("lower limit: "+str(d['waiting_room_lowerlimit']))
+
+        #handles the case where the number of players is less than the lower limit but
+        #there are no more players left to wait
+        #important to note that this wait page is the first thing that happens in the round -
+        #so anyone where round_number is < the waiting players is before them and anyone whose
+        #round number is >= the waiting players is after them
+        special_case = True
+        for partic in participants:
+            #if someone hasn't gotten here yet, break because that invalidates the criteria
+            if partic._index_in_pages < waiting_players[0].participant._index_in_pages:
+                special_case = False
+                break
+        #if you broke there
+        if special_case:
+            if len(waiting_players) >= d['group_size']:
+                return random.sample(waiting_players,d['group_size'])
+            
+        #handles the normal case
         if(len(waiting_players)>=d['waiting_room_lowerlimit'] and len(waiting_players) >= d['group_size']):
             #if you've got enough people get a random sample of them and put that into a group
             return random.sample(waiting_players,d['group_size'])
