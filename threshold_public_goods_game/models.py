@@ -122,4 +122,5 @@ class Player(BasePlayer):
         label = "Your Contribution"
         )
     acc_a_total=models.IntegerField(label="")
-    acc_b_total=models.IntegerField(label="")
+    acc_b_total=models.IntegerField(label="")    thresh_a_met = models.BooleanField(label="")
+    thresh_b_met = models.BooleanField(label="")

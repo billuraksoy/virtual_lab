@@ -115,7 +115,9 @@ class Results(Page):
         # set up the return vars
         for pl in players:
             pl.acc_a_total=int(groupConA)
+            pl.thresh_a_met = bool(groupConA>=d['threshold_high'])
             pl.acc_b_total=int(groupConB)
+            pl.thresh_b_met = bool(groupConB>=d['threshold_low'])
 
         if(groupConA>=d['threshold_high']):
             ht = w
