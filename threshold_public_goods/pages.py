@@ -88,9 +88,9 @@ class Warning(Page):
                 italics = "second mover"
                 pt2 = ". This means you will always make your decision after finding out about your group member’s contribution decisions. Your group member goes first and makes their own contribution decisions. And then, you see their decisions and make your own decision. At the end of each round, everyone will be informed about contributions to the group accounts and you will learn your earnings in that round. After reading information provided in these summary screens, do not forget to click next in a timely manner. This will prevent delays in the experiment."
         else:
-            pt1="You and group member will simultaneously decide on your contributions to the group accounts. At the end of each round, you will be provided a round "
+            pt1="You and your group member will make contribution decisions simultaneously. At the end of each round, you will be provided a round "
             bold="summary screen"
-            pt2=" where we provide information about contributions to the group accounts and your earnings in that round."
+            pt2=" where we provide information about contributions to the group accounts and your earnings in that round. After reading the information provided on these summary screens, do not forget to click next in a timely manner. This will prevent delays in the experiment."
         return dict(
             self.player.TreatmentVars(),
             mover_title = mover_title,
