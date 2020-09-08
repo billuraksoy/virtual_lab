@@ -8,7 +8,7 @@ from otree.api import (
     Currency as c,
     currency_range,
 )
-
+from otree import common 
 
 
 author = 'Your name here'
@@ -26,20 +26,13 @@ class Constants(BaseConstants):
 
 class Subsession(BaseSubsession):
     def after_arrive(self):
-        #I have to do this instead of group_randomly because of the variable group size
-        import random
-        players=self.get_players()#get all the players
-        #print(players)
-        d=players[0].TreatmentVars()#get the treatment variables
-        matrix=[]
-        random.shuffle(players)#shuffle the players in place
-        #print(players)
-        #push the players into the matrix in the random order that the shuffle provided
+        players=self.get_players()
+        d=players[0].TreatmentVars()
+        matrix=[]#fill up a matrix in numerical id order (note, we don't use self.get_matrix here because we want to control group size)
         for a in range(0, len(players), d['group_size']):
             matrix.append(players[a:a+d['group_size']])
-        #print(matrix)
-        self.set_group_matrix(matrix)
-
+        print(matrix)
+        self.set_group_matrix(common._group_randomly(matrix, fixed_id_in_group = not d['simultaneous']))
 
     def group_by_arrival_time_method(self,waiting_players):
         import random
@@ -122,5 +115,6 @@ class Player(BasePlayer):
         label = "Your Contribution"
         )
     acc_a_total=models.IntegerField(label="")
-    acc_b_total=models.IntegerField(label="")    thresh_a_met = models.BooleanField(label="")
+    acc_b_total=models.IntegerField(label="")
+    thresh_a_met = models.BooleanField(label="")
     thresh_b_met = models.BooleanField(label="")
