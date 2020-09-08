@@ -35,6 +35,20 @@ SESSION_CONFIGS = [
         increment = 1,
         waiting_room_lowerlimit=2,
         group_size=2
+        ),
+    dict(
+        name='mtpgT1',#Sim=1, ld=0
+        num_demo_participants=6,
+        app_sequence=['threshold_public_goods','threshold_public_goods_game','threshold_public_goods_end','timeout'],
+        consent='global/ConsentForm.pdf',#path to pdf
+        threshold_high=8,
+        value_high=10,
+        threshold_low=6,
+        value_low=7,
+        base_tokens = 5,
+        increment = 1,
+        waiting_room_lowerlimit=2,
+        group_size=2
         )
 ]
 

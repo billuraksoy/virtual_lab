@@ -3,6 +3,7 @@ from ._builtin import Page, WaitPage
 from .models import Constants
 
 class GroupWaitAsyncGame(WaitPage):
+    #Important note: Wait pages do not like to be templated and will, in fact, throw a fit if you try to do "template_name = " on them
     group_by_arrival_time=True #this triggers the group_by_arrival_time_method in the subsection class under models.py
     title_text="Please wait while we form your group. This should not take long."
     body_text="Please do not leave this page.\n\nOnce your group is constructed, the experiment will start immediately.\n\nIf you do not put your answers in a timely manner, you will be removed from the study."
@@ -46,7 +47,7 @@ class Game(Page):
     def vars_for_template(self):
         return dict( 
             self.player.TreatmentVars(), 
-            roundNum = self.round_number 
+            roundNum = self.round_number
             )
 
     def error_message(self, values): # entry checking
@@ -56,9 +57,56 @@ class Game(Page):
         if values['contribution_acc_a'] + values['contribution_acc_b'] > d['base_tokens']:
             return 'You cannot contribute more tokens than you have.'
 
-# class Timeout(Page):
-#     def is_displayed(self):
-#         return self.player.timed_out
+#Use what we've coded so far for the game as a parent class and create childclasses for it.
+class p1Game(Game):
+    template_name = 'threshold_public_goods_game/Game.html'
+    def vars_for_template(self):
+        return dict(
+            super().vars_for_template(),
+            after="Your contributions to Group Accounts A and B (if any) will be presented to your group member. Your group member will observe your contribution behavior and then make their own contribution decision.",
+            group_a_con="",
+            group_b_con="",
+            display_contributions = 0,
+            )
+    def is_displayed(self):
+        return not self.session.config['simultaneous'] and self.player.id_in_group==1
+
+class p2Game(Game):
+    template_name = 'threshold_public_goods_game/Game.html'
+    def vars_for_template(self):
+        players = self.player.group.get_players()
+        group_a_con = 0
+        group_b_con = 0
+        for pl in players:
+            group_a_con += pl.contribution_acc_a
+            group_b_con += pl.contribution_acc_b
+
+        return dict(
+            super().vars_for_template(),
+            after="Your group member’s contributions to Group Accounts A and B (if any) are presented below.",
+            group_a_con=group_a_con,
+            group_b_con=group_b_con,
+            display_contributions = 1,
+            )
+    def is_displayed(self):
+        return not self.session.config['simultaneous'] and self.player.id_in_group==2
+
+class SeqWait(WaitPage):
+    def is_displayed(self):
+        return not self.session.config['simultaneous']
+
+class SimGame(Game):#simultaneous
+    template_name = 'threshold_public_goods_game/Game.html'
+    def vars_for_template(self):
+        return dict(
+            super().vars_for_template(),
+            after="",
+            group_a_con="",
+            group_b_con="",
+            display_contributions = 0,
+            )
+    def is_displayed(self):
+        return self.session.config['simultaneous']
 
 class ResWait(WaitPage):
     title_text = "Please wait until everyone finishes. This should not take long."
@@ -115,7 +163,9 @@ class Results(Page):
         # set up the return vars
         for pl in players:
             pl.acc_a_total=int(groupConA)
+            pl.thresh_a_met = bool(groupConA>=d['threshold_high'])
             pl.acc_b_total=int(groupConB)
+            pl.thresh_b_met = bool(groupConB>=d['threshold_low'])
 
         if(groupConA>=d['threshold_high']):
             ht = w
@@ -161,4 +211,4 @@ class Results(Page):
             self.participant.vars['b_total']=[pl.acc_b_total for pl in self.player.in_all_rounds()]
 
 
-page_sequence = [GroupWaitAsyncGame, GroupWaitSyncGame, Game, ResWait, Results]
+page_sequence = [GroupWaitAsyncGame, GroupWaitSyncGame, p1Game, SeqWait, p2Game, SimGame, ResWait, Results]
