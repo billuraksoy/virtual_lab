@@ -85,7 +85,9 @@ class p2Game(Game):
 
         return dict(
             super().vars_for_template(),
-            after="Your group member’s contributions to Group Accounts A and B (if any) are presented below.",
+            after1="",
+            afterb="Your group member’s contributions to Group Accounts A and B (if any) are presented below.",
+            after2="",
             group_a_con=group_a_con,
             group_b_con=group_b_con,
             display_contributions = 1,
@@ -102,7 +104,9 @@ class SimGame(Game):#simultaneous
     def vars_for_template(self):
         return dict(
             super().vars_for_template(),
-            after="",
+            after1="",
+            afterb="",
+            after2="",
             group_a_con="",
             group_b_con="",
             display_contributions = 0,
