@@ -63,7 +63,9 @@ class p1Game(Game):
     def vars_for_template(self):
         return dict(
             super().vars_for_template(),
-            after="Your contributions to Group Accounts A and B (if any) will be presented to your group member. Your group member will observe your contribution behavior and then make their own contribution decision.",
+            after1="Your contributions to Group Accounts A and B (if any) will be presented to your group member. Your group member will ",
+            afterb="observe your contribution behavior",
+            after2=" and then make their own contribution decision.",
             group_a_con="",
             group_b_con="",
             display_contributions = 0,
