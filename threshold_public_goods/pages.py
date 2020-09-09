@@ -76,7 +76,7 @@ class Warning(Page):
         bold = ""
         pt2 = ""
         if not d['simultaneous']:
-            mover_pt1 = "You are the "
+            pt1 = "You are the "
             if self.player.id_in_group%2 == 1:
                 self.player.participant.vars["id"]=1
                 mover_title = "You Have Been Randomly Selected to be the First Mover"
