@@ -9,7 +9,7 @@ from otree.api import (
     currency_range,
 )
 from otree import common 
-
+from custom_templates.custom_funcs import *
 
 author = 'Your name here'
 
@@ -68,10 +68,6 @@ class Subsession(BaseSubsession):
 
 class Group(BaseGroup):
     pass
-
-class fu(BasePlayer):
-    def twoPlusTwo():
-        return 4
 
 class Player(BasePlayer):
     timed_out_round = models.IntegerField()

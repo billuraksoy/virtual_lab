@@ -1,7 +1,7 @@
 from otree.api import Currency as c, currency_range 
 from ._builtin import Page, WaitPage
 from .models import Constants
-
+from custom_templates.custom_funcs import *
 
 class Survey(Page):
 	form_model = 'player'

@@ -8,7 +8,7 @@ from otree.api import (
     Currency as c,
     currency_range,
 )
-from django import forms
+from custom_templates.custom_funcs import *
 
 author = 'Your name here'
 
