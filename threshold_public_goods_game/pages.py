@@ -96,6 +96,13 @@ class p2Game(Game):
         return not self.session.config['simultaneous'] and self.player.id_in_group==2
 
 class SeqWait(WaitPage):
+    template_name="threshold_public_goods_game/CustWaitPage.html"
+    def vars_for_template(self):
+        if self.player.id_in_group==1:
+            return dict(title="Please Wait.",text="Please wait for the second mover to make their contribution decision.")
+        else:
+            return dict(title="Please Wait.",text="Please wait for the first mover to make their contribution decision. Once they are done, you will see their contribution decision. Then, you will be asked to make your own contribution decision.")
+
     def is_displayed(self):
         return not self.session.config['simultaneous']
 
