@@ -58,7 +58,7 @@ class Summary(Page):
 				PayingRound+=str(payRound+1)
 				TokensEarned+=str(rounds[payRound])
 				ME=rounds[payRound]
-				self.player.round_chosen_for_payment=payRound
+				self.player.round_chosen_for_payment=payRound+1
 				self.player.groupAThresholdMet = (a_totals[payRound]>=d['threshold_high'])
 				self.player.groupBThresholdMet = (b_totals[payRound]>=d['threshold_low'])
 				self.player.groupATotalContribution = a_totals[payRound]

@@ -134,6 +134,8 @@ class Results(Page):
     def app_after_this_page(self,upcoming_apps):
         if self.participant.vars.get('groupmate_timed_out', None)==True:
             return upcoming_apps[0]
+        if self.player.round_number==self.session.config['total_rounds']:
+            return upcoming_apps[0]
     def vars_for_template(self):
         d=self.player.TreatmentVars()
         #handle dropping groupmates
