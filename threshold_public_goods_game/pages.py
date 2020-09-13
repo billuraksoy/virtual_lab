@@ -63,7 +63,9 @@ class p1Game(Game):
     def vars_for_template(self):
         return dict(
             super().vars_for_template(),
-            after="Your contributions to Group Accounts A and B (if any) will be presented to your group member. Your group member will observe your contribution behavior and then make their own contribution decision.",
+            after1="Your contributions to Group Accounts A and B (if any) will be presented to your group member. Your group member will ",
+            afterb="observe your contribution behavior",
+            after2=" and then make their own contribution decision.",
             group_a_con="",
             group_b_con="",
             display_contributions = 0,
@@ -83,7 +85,9 @@ class p2Game(Game):
 
         return dict(
             super().vars_for_template(),
-            after="Your group member’s contributions to Group Accounts A and B (if any) are presented below.",
+            after1="",
+            afterb="Your group member’s contributions to Group Accounts A and B (if any) are presented below.",
+            after2="",
             group_a_con=group_a_con,
             group_b_con=group_b_con,
             display_contributions = 1,
@@ -92,6 +96,13 @@ class p2Game(Game):
         return not self.session.config['simultaneous'] and self.player.id_in_group==2
 
 class SeqWait(WaitPage):
+    template_name="threshold_public_goods_game/CustWaitPage.html"
+    def vars_for_template(self):
+        if self.player.id_in_group==1:
+            return dict(title="Please Wait.",text="Please wait for the second mover to make their contribution decision.")
+        else:
+            return dict(title="Please Wait.",text="Please wait for the first mover to make their contribution decision. Once they are done, you will see their contribution decision. Then, you will be asked to make your own contribution decision.")
+
     def is_displayed(self):
         return not self.session.config['simultaneous']
 
@@ -100,7 +111,9 @@ class SimGame(Game):#simultaneous
     def vars_for_template(self):
         return dict(
             super().vars_for_template(),
-            after="",
+            after1="",
+            afterb="",
+            after2="",
             group_a_con="",
             group_b_con="",
             display_contributions = 0,
@@ -135,7 +148,7 @@ class Results(Page):
             part2 = "different"
             part3 = " participant in the next round. Please click next when you are ready to start the next round."
         if self.participant.vars.get('groupmate_timed_out', None)==True:
-            dropText="Your group member has timed out. Thus, the computer randomly made a decision on their behalf. Since we need an even number of subjects for this study, you will not be able to move forward. However, we will enter you to win a total of $14 for your participation today."
+            dropText="Your group member has timed out. Thus, the computer randomly made a decision on their behalf. Since we need an even number of subjects for this study, you will not be able to move forward. However, if your Participant ID is randomly drawn, you will receive $10 for your participation."
             part1="We are sorry for this inconvenience. Please click next to participate in our short survey and also to provide your paypal/venmo information."
             part2=""
             part3=""

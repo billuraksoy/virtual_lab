@@ -1,6 +1,7 @@
 from otree.api import Currency as c, currency_range
 from ._builtin import Page, WaitPage
 from .models import Constants
+from custom_templates.custom_funcs import *
 
 
 class PID_Begin(Page):
@@ -56,6 +57,10 @@ class TotalEarnings(Page):
     def vars_for_template(self):
         return self.player.TreatmentVars()
 
+class ContributionDecisions(Page):
+    def vars_for_template(self):
+        return self.player.TreatmentVars()
+
 class Question(Page):
     form_model='player'
     form_fields=['question1','question2','question3']
@@ -76,7 +81,7 @@ class Warning(Page):
         bold = ""
         pt2 = ""
         if not d['simultaneous']:
-            mover_pt1 = "You are the "
+            pt1 = "You are the "
             if self.player.id_in_group%2 == 1:
                 self.player.participant.vars["id"]=1
                 mover_title = "You Have Been Randomly Selected to be the First Mover"
@@ -88,9 +93,7 @@ class Warning(Page):
                 italics = "second mover"
                 pt2 = ". This means you will always make your decision after finding out about your group member’s contribution decisions. Your group member goes first and makes their own contribution decisions. And then, you see their decisions and make your own decision. At the end of each round, everyone will be informed about contributions to the group accounts and you will learn your earnings in that round. After reading information provided in these summary screens, do not forget to click next in a timely manner. This will prevent delays in the experiment."
         else:
-            pt1="You and your group member will make contribution decisions simultaneously. At the end of each round, you will be provided a round "
-            bold="summary screen"
-            pt2=" where we provide information about contributions to the group accounts and your earnings in that round. After reading the information provided on these summary screens, do not forget to click next in a timely manner. This will prevent delays in the experiment."
+            pt1="You and your group member will make contribution decisions simultaneously."
         return dict(
             self.player.TreatmentVars(),
             mover_title = mover_title,
@@ -112,6 +115,7 @@ page_sequence = [
     GameOverview,
     GameOverview2,
     TotalEarnings,
+    ContributionDecisions,
     Question,
     Message,
     Warning,

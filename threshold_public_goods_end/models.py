@@ -8,7 +8,7 @@ from otree.api import (
     Currency as c,
     currency_range,
 )
-from django import forms
+from custom_templates.custom_funcs import *
 
 author = 'Your name here'
 
@@ -42,25 +42,6 @@ class Group(BaseGroup):
 
 
 class Player(BasePlayer):
-    def TreatmentVars(self):
-        if(self.session.config['synchronous_game']):
-            wrll=len(self.get_others_in_subsession())#in this case the min in waiting room is the number in session
-        else:
-            wrll=self.session.config['waiting_room_lowerlimit']
-        return dict(
-            threshold_high = self.session.config['threshold_high'],
-            threshold_low = self.session.config['threshold_low'],
-            value_high = self.session.config['value_high'],
-            value_low = self.session.config['value_low'],
-            total_rounds = self.session.config['total_rounds'],
-            group_size = self.session.config['group_size'],
-            waiting_room_lowerlimit=wrll,
-            simultaneous = self.session.config['simultaneous'],
-            base_tokens = self.session.config['base_tokens'],
-            increment = self.session.config['increment'],
-            decision_timer = self.session.config['decision_timer'],
-            participation_payment = self.session.config['participation_payment']
-            );
     birth_year = models.IntegerField(
         min=1900,
         max=2020,
