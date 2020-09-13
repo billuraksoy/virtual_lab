@@ -26,13 +26,25 @@ class Constants(BaseConstants):
 
 class Subsession(BaseSubsession):
     def after_arrive(self):
-        players=self.get_players()
-        d=players[0].TreatmentVars()
+        mixedPlayers=self.get_players()#mix of both active and inactive player objects
+        d=mixedPlayers[0].TreatmentVars()
         matrix=[]#fill up a matrix in numerical id order (note, we don't use self.get_matrix here because we want to control group size)
+        players=[]
+        timed_out=[]#separate matrix for players that timed out
+        for pl in mixedPlayers:
+            if pl.participant.vars.get('timed_out_round',0)==0 and not pl.participant.vars.get('groupmate_timed_out', None)==True:
+                players.append(pl)
+            else:
+                timed_out.append(pl)
+        #add the players who are still in to the matrix
         for a in range(0, len(players), d['group_size']):
             matrix.append(players[a:a+d['group_size']])
-        print(matrix)
-        self.set_group_matrix(common._group_randomly(matrix, fixed_id_in_group = not d['simultaneous']))
+        #shuffle the matrix
+        finalMatrix=common._group_randomly(matrix, fixed_id_in_group = not d['simultaneous'])
+        #add the players who aren't still in in their own separate groups
+        for a in range(0, len(timed_out), d['group_size']):
+            finalMatrix.append(timed_out[a:a+d['group_size']])
+        self.set_group_matrix(finalMatrix)
 
     def group_by_arrival_time_method(self,waiting_players):
         import random
