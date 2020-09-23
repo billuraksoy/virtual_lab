@@ -23,7 +23,7 @@ SESSION_CONFIGS = [
     #     app_sequence=['my_trust']
     # ),
     dict(
-        name='mtpgT0',#Sim=1, ld=1
+        name='mtpg_sim_large',#Sim=1, ld=1
         num_demo_participants=6,
         app_sequence=['threshold_public_goods','threshold_public_goods_game','threshold_public_goods_end','timeout'],
         consent='global/ConsentForm.pdf',#path to pdf
@@ -34,10 +34,11 @@ SESSION_CONFIGS = [
         base_tokens = 5,
         increment = 1,
         waiting_room_lowerlimit=2,
-        group_size=2
+        group_size=2,
+        simultaneous=1
         ),
     dict(
-        name='mtpgT1',#Sim=1, ld=0
+        name='mtpg_sim_small',#Sim=1, ld=0
         num_demo_participants=6,
         app_sequence=['threshold_public_goods','threshold_public_goods_game','threshold_public_goods_end','timeout'],
         consent='global/ConsentForm.pdf',#path to pdf
@@ -48,7 +49,38 @@ SESSION_CONFIGS = [
         base_tokens = 5,
         increment = 1,
         waiting_room_lowerlimit=2,
-        group_size=2
+        group_size=2,
+        simultaneous=1
+        ),
+    dict(
+        name='mtpg_seq_large',#Sim=1, ld=1
+        num_demo_participants=6,
+        app_sequence=['threshold_public_goods','threshold_public_goods_game','threshold_public_goods_end','timeout'],
+        consent='global/ConsentForm.pdf',#path to pdf
+        threshold_high = 10,
+        threshold_low = 6,
+        value_high = 10,
+        value_low = 7,
+        base_tokens = 5,
+        increment = 1,
+        waiting_room_lowerlimit=2,
+        group_size=2,
+        simultaneous=0
+        ),
+    dict(
+        name='mtpg_seq_small',#Sim=1, ld=0
+        num_demo_participants=6,
+        app_sequence=['threshold_public_goods','threshold_public_goods_game','threshold_public_goods_end','timeout'],
+        consent='global/ConsentForm.pdf',#path to pdf
+        threshold_high=8,
+        value_high=10,
+        threshold_low=6,
+        value_low=7,
+        base_tokens = 5,
+        increment = 1,
+        waiting_room_lowerlimit=2,
+        group_size=2,
+        simultaneous=0
         )
 ]
 
@@ -61,8 +93,6 @@ SESSION_CONFIG_DEFAULTS = dict(
     real_world_currency_per_point=1.00, 
     participation_fee=0.00, 
     participation_payment=4,
-    large_difference_treatment=1,
-    simultaneous=1,
     decision_timer=30,
     total_rounds=10,#Otree doesn't natively support variable round numbers, there's a number of work arounds but they're all huristics
     synchronous_game=1,
