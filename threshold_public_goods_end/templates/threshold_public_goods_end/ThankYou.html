@@ -1,0 +1,16 @@
+{% extends "global/Page.html" %}
+{% load otree static %}
+<!-- {% load custom_tags %} -->
+
+{% block title %}
+    Thank you!
+{% endblock %}
+{% block content %}
+	<style>
+		.otree-title{
+			text-align:center;
+		}
+	</style>
+	Thank you for completing the study. Now, we ask you to participate in our short survey where we collect some demographics information about yourself as well as your preferred payment method.
+	{% next_button %}
+{% endblock %}

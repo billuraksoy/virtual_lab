@@ -3,6 +3,8 @@ from ._builtin import Page, WaitPage
 from .models import Constants
 from custom_templates.custom_funcs import *
 
+class ThankYou(Page):
+	pass
 class Survey(Page):
 	form_model = 'player'
 	form_fields=['birth_year','gender','income','Wh','Bl','Na','As','Nh','Hi','Me','OtherBool','other','major']
@@ -74,4 +76,4 @@ class Summary(Page):
 			)
 
 
-page_sequence = [Survey, Paypal, Survey2, Summary]
+page_sequence = [ThankYou, Survey, Paypal, Survey2, Summary]
