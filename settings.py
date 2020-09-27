@@ -94,7 +94,7 @@ SESSION_CONFIG_DEFAULTS = dict(
     participation_fee=0.00, 
     participation_payment=4,
     decision_timer=30,
-    total_rounds=10,#Otree doesn't natively support variable round numbers, there's a number of work arounds but they're all huristics
+    total_rounds=15,#Otree doesn't natively support variable round numbers, there's a number of work arounds but they're all huristics
     synchronous_game=1,
     doc=""
 )

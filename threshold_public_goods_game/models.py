@@ -21,7 +21,7 @@ Your app description
 class Constants(BaseConstants):
     name_in_url = 'mtpgg'
     players_per_group=None
-    num_rounds = 10
+    num_rounds = 15
 
 
 class Subsession(BaseSubsession):
