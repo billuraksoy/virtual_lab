@@ -18,6 +18,6 @@
 	<p>Your group will be randomly <b>re-constructed</b> at the end of <b>each round.</b></p><br>
 
 	<p>Remember, once you click START, you will have {{ decision_timer }} seconds to make your decisions. <b>If you do not make your decision within {{ decision_timer }} seconds, you will be removed from the study.</b></p>
-	{% delayed_next label='START' %}
+	{% delayed_next wait=20000 label='START' %}
 
 {% endblock %}
