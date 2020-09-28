@@ -54,6 +54,15 @@ class Player(BasePlayer):
             [1,'hello'],
             [0,'good']
         ])
+    #Questions Page (entirely hypothetical, not actual game data)
+    oConA = models.IntegerField()#other person's contribution to group A
+    oConB = models.IntegerField()#other person's contribution to group B
+    yConA = models.IntegerField()#your contribution to group A
+    yConB = models.IntegerField()#your contribution to group B
+    yRem = models.IntegerField()#your remaining tokens
+    yPay = models.IntegerField()#your total payout
+    payOutB = models.IntegerField()# your payout from group B
+    #Note: Group A will never pay out, group B will always payout, and you will always have at least one remaining token.
     question1 = models.IntegerField(
         label="Is the threshold for Group Account A met?",
         initial=-1,
@@ -79,10 +88,13 @@ class Player(BasePlayer):
         if(value==-1):
             return "Please make sure to answer all questions. You cannot move forward without answering all of the questions correctly"
         if(value==0):
-            return 'Since the total tokens contributed to Group Account B is more than or equal to its threshold, the threshold is met. Thus, you will receive 7 tokens from this account'
+            return 'Since the total tokens contributed to Group Account B is more than or equal to its threshold, the threshold is met. Thus, you will receive '+str(self.payOutB)+' tokens from this account'
     question3 = models.IntegerField(
         label="What are your total earnings in this hypothetical situation?"
         )
     def question3_error_message(self,value):
-        if(int(value)!=8):
-            return "You have 1 token remaining from your endowment. You did not receive any tokens from Group Account A since the threshold was not met. You received 7 tokens from Group Account B since the threshold was met. Thus your earnings in this game is 1+7=8 tokens."
+        if(int(value)!=self.yPay):
+            sR=""
+            if self.yRem>1:#pluralize tokens if you've got multiple remaining
+                sR="s"
+            return "You have "+str(self.yRem)+" token"+str(sR)+" remaining from your endowment. You did not receive any tokens from Group Account A since the threshold was not met. You received "+str(self.payOutB)+" tokens from Group Account B since the threshold was met. Thus your earnings in this game is "+str(self.yRem)+"+"+str(self.payOutB)+"="+str(self.yPay)+" tokens."

@@ -61,11 +61,37 @@ class ContributionDecisions(Page):
     def vars_for_template(self):
         return self.player.TreatmentVars()
 
+def tokenSFormat(con):#format contribution as "token" if 1, "tokens" otherwise
+    ret=""+str(con)
+    ret+=" token"
+    if not con==1:
+        ret+="s"
+    return ret
+
 class Question(Page):
     form_model='player'
     form_fields=['question1','question2','question3']
     def vars_for_template(self):
-        return self.player.TreatmentVars()
+        d=self.player.TreatmentVars()
+        self.player.oConA = 0#other person's contribution to group A
+        self.player.oConB = d['base_tokens'] #other person's contribution to group B (always contributes all their tokens to B)
+        self.player.yConB = d['threshold_low'] - self.player.oConB #you contribute the bare minimum
+        self.player.yConA = (d['base_tokens'] - self.player.yConB)//2#your contribution to group A (give about half (integer division))
+        self.player.yRem = d['base_tokens'] - self.player.yConB - self.player.yConA#your remaining tokens
+        self.player.payOutB = d['value_low']# your payout from group B
+        self.player.yPay = self.player.yRem+self.player.payOutB#your total payout
+
+        oConAt = tokenSFormat(self.player.oConA)
+        oConBt = tokenSFormat(self.player.oConB)
+        yConAt = tokenSFormat(self.player.yConA)
+        yConBt = tokenSFormat(self.player.yConB)
+        return dict(
+            self.player.TreatmentVars(),
+            oConAt = oConAt,
+            oConBt = oConBt,
+            yConAt = yConAt,
+            yConBt = yConBt,
+            )
 
 class Message(Page):
     def vars_for_template(self):
