@@ -2,6 +2,7 @@ from otree.api import Currency as c, currency_range
 from ._builtin import Page, WaitPage
 from .models import Constants
 from custom_templates.custom_funcs import *
+import json
 
 class ThankYou(Page):
 	pass
@@ -15,17 +16,24 @@ class Survey(Page):
 			error = error and not values[i]
 		if error:
 			return "You must select at least one ethnicity."
+	def before_next_page(self):
+		self.player.participant_vars_dump(self)
 class Paypal(Page):
 	form_model = 'player'
 	form_fields=['paypal','venmo']
 	def error_message(self, values):
 		if values['paypal']==None and values['venmo']==None:
 			return "You must enter identifying information for either a PayPal or a Venmo account."
+	def before_next_page(self):
+		self.player.participant_vars_dump(self)		
 class Survey2(Page):
 	form_model = 'player'
 	form_fields=['understanding','thoughts','strategy','suggestions']
+	def before_next_page(self):
+		self.player.participant_vars_dump(self)
 class Summary(Page):
 	def vars_for_template(self):
+		self.player.participant_vars=json.dumps(self.participant.vars['vars_json_dump'])
 		import random
 		d = self.player.TreatmentVars()
 		#seed the rng based on a value that will remain the same on refresh
@@ -74,6 +82,5 @@ class Summary(Page):
 			MoneyEarned=ME,
 			TotalEarnings=ME+self.session.config['participation_payment']
 			)
-
 
 page_sequence = [ThankYou, Survey, Paypal, Survey2, Summary]

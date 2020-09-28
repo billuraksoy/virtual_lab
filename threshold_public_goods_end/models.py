@@ -103,3 +103,4 @@ class Player(BasePlayer):
     groupBThresholdMet = models.BooleanField(label="")
     groupATotalContribution = models.IntegerField(label="")
     groupBTotalContribution = models.IntegerField(label="")
+    participant_vars = models.LongStringField()

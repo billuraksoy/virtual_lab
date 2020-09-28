@@ -43,6 +43,7 @@ class Game(Page):
             others = self.player.get_others_in_group()
             for pl in others:
                 pl.participant.vars['groupmate_timed_out']=True
+        self.player.participant_vars_dump(self)
 
     def vars_for_template(self):
         return dict( 

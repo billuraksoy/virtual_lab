@@ -10,6 +10,7 @@ class PID_Begin(Page):
 
     def before_next_page(self):
         self.player.participant.vars['p_id_begin'] = self.player.p_ID
+        self.player.participant_vars_dump(self)
 
     def error_message(self, values):
         if len(values['p_ID']) !=24:
@@ -27,6 +28,7 @@ class Informed_Consent(Page):
     def before_next_page(self):
         self.player.participant.vars['timed_out']=False
         self.player.participant.vars['groupmate_timed_out']=False
+        self.player.participant_vars_dump(self)
 
 class Overview(Page):
     def vars_for_template(self):
@@ -46,7 +48,8 @@ class GameOverview(Page):
             total_tokens = d['base_tokens']*d['group_size'],
             other_part = d['group_size']-1
             )
-
+    def before_next_page(self):
+        self.player.participant_vars_dump(self)
 class GameOverview2(Page):
     form_model = 'player'
     form_fields = ['attention_check_2']
@@ -92,7 +95,8 @@ class Question(Page):
             yConAt = yConAt,
             yConBt = yConBt,
             )
-
+    def before_next_page(self):
+        self.player.participant_vars_dump(self)
 class Message(Page):
     def vars_for_template(self):
         return self.player.TreatmentVars()
