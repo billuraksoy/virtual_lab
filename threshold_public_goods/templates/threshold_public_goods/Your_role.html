@@ -1,0 +1,22 @@
+{% extends "global/Page.html" %}
+{% load otree static %}
+<!-- {% load custom_tags %} -->
+
+{% block title %}
+    Your Role
+{% endblock %}
+
+{% block content %}
+	<style>
+		.otree-title{
+			text-align:center;
+		}
+	</style>
+	<h5>{{mover_title}}</h5>
+	<p>{{pt1}}<em>{{italics}}</em><b>{{bold}}</b>{{pt2}}</p><br>
+
+	<p>Your group will be randomly <b>re-constructed</b> at the end of <b>each round.</b></p><br>
+
+  {% delayed_next wait=20000 %}
+
+{% endblock %}

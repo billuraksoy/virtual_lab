@@ -7,6 +7,13 @@
 {% endblock %}
 
 {% block content %}
-	Thanks for completing the practice round. Now the actual Contribution Game will start and you will be matched with a different participant in each round. Please click "Start" whenever you are ready. Remember, you will have  seconds to submit your decisions.<br><br>
-	{% delayed_next label='START' wait=10 %}
+	Thanks for completing the practice round. Now the actual Contribution Game will start and you will be matched with a different participant in each round.
+
+  <p>You will have to submit your decisions within {{decision_timer}} seconds.  This is to ensure that this online study proceeds smoothly. If you fail to make your decision on time, the computer will make a random decision on your behalf and you will be removed from the study. If this happens, you will <u>not</u> receive payment from this study.</p><br>
+	<p>It is <u>highly unlikely</u> that your group member times out and gets removed from the study. However, if this rare situation occurs, we will inform you on the round summary page. </p><br>
+
+
+  Please click "Start" whenever you are ready. Remember, you will have  seconds to submit your decisions.<br><br>
+
+	{% delayed_next label='START' wait=20000 %}
 {% endblock %}
