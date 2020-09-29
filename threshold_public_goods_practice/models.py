@@ -20,7 +20,7 @@ Your app description
 
 class Constants(BaseConstants):
     name_in_url = 'mtpgg_practice'
-    players_per_group=1
+    players_per_group=None
     num_rounds = 1
 
 
