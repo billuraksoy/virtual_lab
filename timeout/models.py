@@ -8,7 +8,8 @@ from otree.api import (
     Currency as c,
     currency_range,
 )
-
+from otree import common 
+from custom_templates.custom_funcs import *
 
 author = 'Your name here'
 

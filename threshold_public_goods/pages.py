@@ -148,6 +148,6 @@ page_sequence = [
     ContributionDecisions,
     Question,
     Message,
-    Warning,
-    Wait
+    #Warning,
+    #Wait
 ]

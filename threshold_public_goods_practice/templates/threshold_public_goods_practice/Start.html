@@ -1,0 +1,12 @@
+{% extends "global/Page.html" %}
+{% load otree static %}
+<!-- {% load custom_tags %} -->
+
+{% block title %}
+    You are now ready to start the game
+{% endblock %}
+
+{% block content %}
+	You completed the practice round. Now the game will start. Please click "Start" whenever you are ready. Remember, you will have  seconds to submit your decisions.
+	{% delayed_next label='START' wait=10 %}
+{% endblock %}

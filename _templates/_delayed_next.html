@@ -13,7 +13,7 @@
 {% elif label == "START" %}
 <p><b>Please click {{label}} when you are ready to start round 1.</b></p>
 {% endif %}
-{% if label == "SUBMIT" or label == "START"  %}
+{% if label == "SUBMIT" or label == "START" or label == "Start Practice Round" %}
 <div class="row">
     <div class="col-4"></div>
     <button id="delayed-next-button" class="col-4 next_button btn btn-outline-dark">{{label}}</button>
