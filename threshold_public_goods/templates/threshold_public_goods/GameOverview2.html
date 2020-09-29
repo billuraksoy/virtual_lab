@@ -7,20 +7,24 @@
 {% endblock %}
 
 {% block content %}
-	Each group member can contribute any of their endowment of {{base_tokens}} tokens to one or both of the group accounts. Each group account will generate a return for the group members <u>if and only if</u> the number of tokens allocated to each group account is greater than or equal to its pre-specified number that is called “threshold”.<br><br> 
+	Each group member can contribute any of their endowment of {{base_tokens}} tokens to one or both of the group accounts. Each group account will generate a return for the group members <u>if and only if</u> the number of tokens allocated to each group account is greater than or equal to its pre-specified number that is called “threshold”.<br><br>
 
 	<h5>Group Account A:</h5>
 
-	The threshold for Group Account A is {{threshold_high}} tokens. <br> <br> 
+	The threshold for Group Account A is <b>{{threshold_high}} tokens</b>. <br> <br>
 
-	If the total amount contributed by your group to Group Account A is {{threshold_high}} tokens, you and your group member will <u>each</u> earn {{value_high}} tokens from this account. Otherwise, nobody earns any tokens from this account.<br> <br> 
+	{% if threshold_high == 10 %}
+	If the total amount contributed by your group to Group Account A is {{threshold_high}} tokens, <u>each</u> group member will earn <b>{{value_high}} tokens</b> from this account. Otherwise, nobody earns any tokens from this account.<br> <br>
+	{% else %}
+	If the total amount contributed by your group to Group Account A is at least {{threshold_high}} tokens, <u>each</u> group member will earn <b>{{value_high}} tokens</b> from this account. Otherwise, nobody earns any tokens from this account.<br> <br>
+	{% endif %}
 
 
 	<br><h5>Group Account B: </h5>
 
-	The threshold for Group Account B is {{threshold_low}} tokens. <br><br> 
+	The threshold for Group Account B is <b>{{threshold_low}} tokens</b>. <br><br>
 
-	If the total amount contributed by your group to Group Account B is at least {{threshold_low}} tokens, you and your group member will <u>each</u> earn {{value_low}} tokens from this account. Otherwise, nobody earns any tokens from this account.<br><br> 
+	If the total amount contributed by your group to Group Account B is at least {{threshold_low}} tokens, <u>each</u> group member will earn <b>{{value_low}} tokens</b> from this account. Otherwise, nobody earns any tokens from this account.<br><br>
 
 	{% formfields %}
 	{% delayed_next wait=35000 %}

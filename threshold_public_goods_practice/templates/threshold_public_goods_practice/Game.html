@@ -7,10 +7,10 @@
 {% endblock %}
 
 {% block content %}
-	<b>This is just a practice round, and will not be entered for payment.</b><br><br>
+	<b>This is just a practice round, and will not impact impact your earnings.</b><br><br>
 
 	You have {{base_tokens|c}} as your endowment. Please make your contribution decisions below. Remember, you can only contribute in increments of {{increment|c}}. Any tokens you do not contribute will be yours to keep.<br><br>
-	{{after1}}<b>{{afterb}}</b>{{after2}} 
+	{{after1}}<b>{{afterb}}</b>{{after2}}
 	<style>
 		.otree-title{
 			text-align:center;
@@ -28,7 +28,7 @@
 			margin:20px;
 			padding:10px;
 		}
-		
+
 	</style>
 	<div class = "grid2">
 		<div class = "left wrapper">
@@ -60,7 +60,7 @@
 			{% formfield player.contribution_acc_b %}
 		</div>
 	</div>
-	Please submit your answers when you are ready. 
+	Please submit your answers when you are ready.
 	{% next_button %}
-	
+
 {% endblock %}
