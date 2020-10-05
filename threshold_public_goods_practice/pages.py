@@ -88,13 +88,13 @@ class Results(Page):
         # Simulate the total contributions
         groupConA = 0
         groupConB = 0
-        if not self.session.config['simultaneous'] and self.player.participant.vars["id"]==2:
+        if (not self.session.config['simultaneous']) and self.player.participant.vars["id"]==2:
         #in this case we've already shown them what their group contributed, so we need to be consistent.
-            group_a_con = self.participant.vars['practiceA']
-            group_b_con = self.participant.vars['practiceB']
+            groupConA = self.participant.vars['practiceA']
+            groupConB = self.participant.vars['practiceB']
         else:
-            group_a_con = random.choice(range(0,d['base_tokens']+1,d['increment']))
-            group_b_con = random.choice(range(0,d['base_tokens']+1-group_a_con,d['increment']))
+            groupConA = random.choice(range(0,d['base_tokens']+1,d['increment']))
+            groupConB = random.choice(range(0,d['base_tokens']+1-group_a_con,d['increment']))
         
         w = ""
         l = "not"
