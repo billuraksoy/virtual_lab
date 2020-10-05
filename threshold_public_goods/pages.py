@@ -23,7 +23,8 @@ class Informed_Consent(Page):
     def vars_for_template(self):
         return dict(
             self.player.TreatmentVars(),
-            informed_consent = self.session.config['consent']
+            informed_consent = self.session.config['consent'],
+            consent_link = self.session.config['consent_link']
             )
     def before_next_page(self):
         self.player.participant.vars['timed_out']=False
