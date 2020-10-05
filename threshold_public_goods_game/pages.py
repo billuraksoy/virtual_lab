@@ -184,9 +184,9 @@ class Results(Page):
             pl.thresh_b_met = bool(groupConB>=d['threshold_low'])
 
         ht = w if groupConA>=d['threshold_high'] else l
-        AEarn = d['value_high'] if groupConA>=d['threshold_high'] else 0
+        AEarn = d['value_high'] if self.player.thresh_a_met else 0
         lt = w if groupConB>=d['threshold_low'] else l
-        BEarn = d['value_low'] if groupConB>=d['threshold_high'] else 0
+        BEarn = d['value_low'] if self.player.thresh_b_met else 0
         
         # save the payoff to the datasheet otherwise it's lost to the void
         self.player.payoff = kept+AEarn+BEarn
