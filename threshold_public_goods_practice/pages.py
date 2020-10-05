@@ -29,7 +29,7 @@ class Game(Page):
 
 #Use what we've coded so far for the game as a parent class and create childclasses for it.
 class p1Game(Game):
-    template_name = 'threshold_public_goods_game/Game.html'
+    template_name = 'threshold_public_goods_practice/Game.html'
     def vars_for_template(self):
         return dict(
             super().vars_for_template(),
@@ -44,7 +44,7 @@ class p1Game(Game):
         return not self.session.config['simultaneous'] and self.player.participant.vars["id"]==1
 
 class p2Game(Game):
-    template_name = 'threshold_public_goods_game/Game.html'
+    template_name = 'threshold_public_goods_practice/Game.html'
     def vars_for_template(self):
         d=self.player.TreatmentVars()
         group_a_con = random.choice(range(0,d['base_tokens']+1,d['increment']))
@@ -64,7 +64,7 @@ class p2Game(Game):
         return not self.session.config['simultaneous'] and self.player.participant.vars["id"]==2
 
 class SimGame(Game):#simultaneous
-    template_name = 'threshold_public_goods_game/Game.html'
+    template_name = 'threshold_public_goods_practice/Game.html'
     def vars_for_template(self):
         return dict(
             super().vars_for_template(),
