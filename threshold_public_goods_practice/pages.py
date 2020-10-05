@@ -90,11 +90,11 @@ class Results(Page):
         groupConB = 0
         if (not self.session.config['simultaneous']) and self.player.participant.vars["id"]==2:
         #in this case we've already shown them what their group contributed, so we need to be consistent.
-            groupConA = self.participant.vars['practiceA']
-            groupConB = self.participant.vars['practiceB']
+            groupConA = self.participant.vars['practiceA'] + self.player.contribution_acc_a
+            groupConB = self.participant.vars['practiceB'] + self.player.contribution_acc_b
         else:
-            groupConA = random.choice(range(0,d['base_tokens']+1,d['increment']))
-            groupConB = random.choice(range(0,d['base_tokens']+1-group_a_con,d['increment']))
+            groupConA = random.choice(range(0,d['base_tokens']+1,d['increment'])) + self.player.contribution_acc_a
+            groupConB = random.choice(range(0,d['base_tokens']+1-group_a_con,d['increment'])) + self.player.contribution_acc_b
         
         w = ""
         l = "not"
