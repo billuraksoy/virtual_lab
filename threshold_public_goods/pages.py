@@ -28,6 +28,8 @@ class Informed_Consent(Page):
     def before_next_page(self):
         self.player.participant.vars['timed_out']=False
         self.player.participant.vars['groupmate_timed_out']=False
+        if not d['simultaneous']:
+            self.player.participant.vars["id"]=self.player.id_in_group%self.player.TreatmentVars()['group_size']
         self.player.participant_vars_dump(self)
 
 class Overview(Page):
@@ -147,7 +149,7 @@ page_sequence = [
     TotalEarnings,
     ContributionDecisions,
     Question,
-    Message,
+    #Message,
     #Warning,
     #Wait
 ]
