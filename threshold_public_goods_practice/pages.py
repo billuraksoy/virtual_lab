@@ -94,7 +94,7 @@ class Results(Page):
             groupConB = self.participant.vars['practiceB'] + self.player.contribution_acc_b
         else:
             groupConA = random.choice(range(0,d['base_tokens']+1,d['increment'])) + self.player.contribution_acc_a
-            groupConB = random.choice(range(0,d['base_tokens']+1-groupConA,d['increment'])) + self.player.contribution_acc_b
+            groupConB = random.choice(range(0,d['base_tokens']+1-int(groupConA),d['increment'])) + self.player.contribution_acc_b
         
         w = ""
         l = "not"
