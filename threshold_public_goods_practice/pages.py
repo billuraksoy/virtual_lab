@@ -134,6 +134,9 @@ class Results(Page):
             part3=part3 
             )
 class Start(Page):
-    pass
+    def vars_for_template(self):
+        return dict( 
+            self.player.TreatmentVars()
+            )
 
 page_sequence = [Practice, p1Game, p2Game, SimGame, Results, Start]
