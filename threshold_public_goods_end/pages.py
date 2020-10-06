@@ -5,7 +5,8 @@ from custom_templates.custom_funcs import *
 import json
 
 class ThankYou(Page):
-	pass
+	def vars_for_template(self):
+		return dict(all_vars = self.participant.vars)
 class Survey(Page):
 	form_model = 'player'
 	form_fields=['birth_year','gender','income','Wh','Bl','Na','As','Nh','Hi','Me','OtherBool','other']
@@ -16,6 +17,8 @@ class Survey(Page):
 			error = error and not values[i]
 		if error:
 			return "You must select at least one ethnicity."
+	def vars_for_template(self):
+		return dict(all_vars = self.participant.vars)
 	def before_next_page(self):
 		self.player.participant_vars_dump(self)
 class Paypal(Page):
@@ -24,11 +27,15 @@ class Paypal(Page):
 	def error_message(self, values):
 		if values['paypal']==None and values['venmo']==None:
 			return "You must enter identifying information for either a PayPal or a Venmo account."
+	def vars_for_template(self):
+		return dict(all_vars = self.participant.vars)
 	def before_next_page(self):
 		self.player.participant_vars_dump(self)		
 class Survey2(Page):
 	form_model = 'player'
 	form_fields=['new_understanding','strategy','anything_else']
+	def vars_for_template(self):
+		return dict(all_vars = self.participant.vars)
 	def before_next_page(self):
 		self.player.participant_vars_dump(self)
 class Summary(Page):
@@ -77,6 +84,7 @@ class Summary(Page):
 		self.player.payoff=ME+self.session.config['participation_payment']
 		return dict(
 			d,
+			all_vars = self.participant.vars,
 			PayingRound=PayingRound,
 			TokensEarned=TokensEarned,
 			MoneyEarned=ME,

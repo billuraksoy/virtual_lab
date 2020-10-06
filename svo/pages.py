@@ -44,7 +44,8 @@ class Play(Page):
 						'precision': self.subsession.precision,
 						'select_items': self.subsession.select_items,
 						'item_order': item_order,
-						'slider_init': self.subsession.slider_init
+						'slider_init': self.subsession.slider_init,
+						'all_vars' : self.participant.vars,
 						}
 
 class ResultsWaitPage(WaitPage):
@@ -58,7 +59,8 @@ class ResultsWaitPage(WaitPage):
 
 
 class Results(Page):
-  pass
+  def vars_for_template(self):
+  	return dict(all_vars = self.participant.vars)
 
 
 page_sequence = [

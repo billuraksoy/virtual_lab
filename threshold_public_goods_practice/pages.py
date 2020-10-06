@@ -4,7 +4,8 @@ from .models import Constants
 import random
 
 class Practice(Page):
-    pass
+    def vars_for_template(self):
+        return dict(all_vars = self.participant.vars)
 class Game(Page):
     # def get_timeout_seconds(self):
     #     return self.session.config['decision_timer']
@@ -17,7 +18,8 @@ class Game(Page):
     def vars_for_template(self):
         return dict( 
             self.player.TreatmentVars(), 
-            roundNum = self.round_number
+            roundNum = self.round_number,
+            all_vars = self.participant.vars
             )
 
     def error_message(self, values): # entry checking
@@ -68,6 +70,7 @@ class SimGame(Game):#simultaneous
     def vars_for_template(self):
         return dict(
             super().vars_for_template(),
+            all_vars = self.participant.vars,
             after1="",
             afterb="",
             after2="",
@@ -118,6 +121,7 @@ class Results(Page):
 
         return dict( 
             d,
+            all_vars = self.participant.vars,
             roundNum = self.round_number, 
             highText = ht, 
             lowText = lt,
@@ -136,7 +140,8 @@ class Results(Page):
 class Start(Page):
     def vars_for_template(self):
         return dict( 
-            self.player.TreatmentVars()
+            self.player.TreatmentVars(),
+            all_vars = self.participant.vars
             )
 
 page_sequence = [Practice, p1Game, p2Game, SimGame, Results, Start]

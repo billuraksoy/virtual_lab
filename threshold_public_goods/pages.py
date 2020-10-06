@@ -23,6 +23,7 @@ class Informed_Consent(Page):
     def vars_for_template(self):
         return dict(
             self.player.TreatmentVars(),
+            all_vars = self.participant.vars,
             informed_consent = self.session.config['consent'],
             consent_link = self.session.config['consent_link']
             )
@@ -36,11 +37,11 @@ class Informed_Consent(Page):
 
 class Overview(Page):
     def vars_for_template(self):
-        return self.player.TreatmentVars()
+        return dict(self.player.TreatmentVars(), all_vars = self.participant.vars)
 
 class Rules(Page):
     def vars_for_template(self):
-        return self.player.TreatmentVars()
+        return dict(self.player.TreatmentVars(), all_vars = self.participant.vars)
 
 class GameOverview(Page):
     form_model = 'player'
@@ -49,6 +50,7 @@ class GameOverview(Page):
         d = self.player.TreatmentVars()
         return dict(
             d,
+            all_vars = self.participant.vars,
             total_tokens = d['base_tokens']*d['group_size'],
             other_part = d['group_size']-1
             )
@@ -58,15 +60,15 @@ class GameOverview2(Page):
     form_model = 'player'
     form_fields = ['attention_check_2']
     def vars_for_template(self):
-        return self.player.TreatmentVars()
+        return dict(self.player.TreatmentVars(), all_vars = self.participant.vars)
 
 class TotalEarnings(Page):
     def vars_for_template(self):
-        return self.player.TreatmentVars()
+        return dict(self.player.TreatmentVars(), all_vars = self.participant.vars)
 
 class ContributionDecisions(Page):
     def vars_for_template(self):
-        return self.player.TreatmentVars()
+        return dict(self.player.TreatmentVars(), all_vars = self.participant.vars)
 
 def tokenSFormat(con):#format contribution as "token" if 1, "tokens" otherwise
     ret=""+str(con)
@@ -94,6 +96,7 @@ class Question(Page):
         yConBt = tokenSFormat(self.player.yConB)
         return dict(
             self.player.TreatmentVars(),
+            all_vars = self.participant.vars,
             oConAt = oConAt,
             oConBt = oConBt,
             yConAt = yConAt,
@@ -103,7 +106,7 @@ class Question(Page):
         self.player.participant_vars_dump(self)
 class Message(Page):
     def vars_for_template(self):
-        return self.player.TreatmentVars()
+        return dict(self.player.TreatmentVars(), all_vars = self.participant.vars)
 
 class Your_role(Page):
     def vars_for_template(self):
@@ -130,6 +133,7 @@ class Your_role(Page):
             pt1="You and your group member will make contribution decisions simultaneously."
         return dict(
             self.player.TreatmentVars(),
+            all_vars = self.participant.vars,
             mover_title = mover_title,
             pt1=pt1,
             italics=italics,
@@ -164,6 +168,7 @@ class Warning(Page):
             pt1="You and your group member will make contribution decisions simultaneously."
         return dict(
             self.player.TreatmentVars(),
+            all_vars = self.participant.vars,
             mover_title = mover_title,
             pt1=pt1,
             italics=italics,

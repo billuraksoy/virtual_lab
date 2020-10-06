@@ -47,7 +47,8 @@ class Game(Page):
 
     def vars_for_template(self):
         return dict( 
-            self.player.TreatmentVars(), 
+            self.player.TreatmentVars(),
+            all_vars = self.participant.vars,
             roundNum = self.round_number
             )
 
@@ -191,8 +192,9 @@ class Results(Page):
         # save the payoff to the datasheet otherwise it's lost to the void
         self.player.payoff = kept+AEarn+BEarn
 
-        return dict( 
+        return dict(
             d,
+            all_vars = self.participant.vars,
             gDropText=dropText,
             roundNum = self.round_number, 
             highText = ht, 
