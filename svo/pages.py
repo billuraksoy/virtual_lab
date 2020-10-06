@@ -7,7 +7,8 @@ from django.utils import translation
 from django import http
 from django.conf import settings
 
-
+class Intro(Page):
+	pass
 class Play(Page):
 	form_model = 'player'
 	form_fields = [
@@ -47,6 +48,8 @@ class Play(Page):
 						'slider_init': self.subsession.slider_init,
 						'all_vars' : self.participant.vars,
 						}
+	def before_next_page(self):
+		self.player.participant_vars_dump(self)
 
 class ResultsWaitPage(WaitPage):
 
@@ -56,7 +59,10 @@ class ResultsWaitPage(WaitPage):
 
 	def after_all_players_arrive(self):
 		self.group.set_payoffs()
+		self.player.participant_vars_dump(self)
 
+	def vars_for_template(self):
+  			return dict(all_vars = self.participant.vars)
 
 class Results(Page):
   def vars_for_template(self):
@@ -64,7 +70,8 @@ class Results(Page):
 
 
 page_sequence = [
+	Intro,
     Play,
     ResultsWaitPage,
-    Results
+    #Results
 ]

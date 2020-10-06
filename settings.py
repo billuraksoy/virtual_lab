@@ -25,7 +25,7 @@ SESSION_CONFIGS = [
     dict(
         name='mtpg_sim_large',#Sim=1, ld=1
         num_demo_participants=6,
-        app_sequence=['threshold_public_goods','threshold_public_goods_practice','threshold_public_goods_game','threshold_public_goods_end','timeout'],
+        app_sequence=['threshold_public_goods','threshold_public_goods_practice','threshold_public_goods_game','svo','threshold_public_goods_end','timeout'],
         consent='global/ConsentForm.pdf',#path to pdf
         threshold_high = 10,
         threshold_low = 6,
@@ -40,7 +40,7 @@ SESSION_CONFIGS = [
     dict(
         name='mtpg_sim_small',#Sim=1, ld=0
         num_demo_participants=6,
-        app_sequence=['threshold_public_goods','threshold_public_goods_practice','threshold_public_goods_game','threshold_public_goods_end','timeout'],
+        app_sequence=['threshold_public_goods','threshold_public_goods_practice','threshold_public_goods_game','svo','threshold_public_goods_end','timeout'],
         consent='global/ConsentForm.pdf',#path to pdf
         threshold_high=8,
         value_high=10,
@@ -55,7 +55,7 @@ SESSION_CONFIGS = [
     dict(
         name='mtpg_seq_large',#Sim=1, ld=1
         num_demo_participants=6,
-        app_sequence=['threshold_public_goods','threshold_public_goods_practice','threshold_public_goods_game','threshold_public_goods_end','timeout'],
+        app_sequence=['threshold_public_goods','threshold_public_goods_practice','threshold_public_goods_game','svo','threshold_public_goods_end','timeout'],
         consent='global/ConsentForm.pdf',#path to pdf
         threshold_high = 10,
         threshold_low = 6,
@@ -70,7 +70,7 @@ SESSION_CONFIGS = [
     dict(
         name='mtpg_seq_small',#Sim=1, ld=0
         num_demo_participants=6,
-        app_sequence=['threshold_public_goods','threshold_public_goods_practice','threshold_public_goods_game','threshold_public_goods_end','timeout'],
+        app_sequence=['threshold_public_goods','threshold_public_goods_practice','threshold_public_goods_game','svo','threshold_public_goods_end','timeout'],
         consent='global/ConsentForm.pdf',#path to pdf
         threshold_high=8,
         value_high=10,
@@ -114,6 +114,14 @@ SESSION_CONFIGS = [
 # e.g. self.session.config['participation_fee']
 
 SESSION_CONFIG_DEFAULTS = dict(
+    matching='RING',
+    select_items='FULL',
+    items_in_random_order=False,
+    scale=0.1 ,
+    slider_init='LEFT',
+    random_payoff='RAND',
+    precision='INTEGERS',
+    language='en',
     real_world_currency_per_point=1.00, 
     participation_fee=0.00, 
     participation_payment=5,
