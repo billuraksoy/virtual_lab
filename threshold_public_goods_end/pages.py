@@ -8,7 +8,7 @@ class ThankYou(Page):
 	pass
 class Survey(Page):
 	form_model = 'player'
-	form_fields=['birth_year','gender','income','Wh','Bl','Na','As','Nh','Hi','Me','OtherBool','other','major']
+	form_fields=['birth_year','gender','income','Wh','Bl','Na','As','Nh','Hi','Me','OtherBool','other']
 	def error_message(self,values):
 		lst=['Wh','Bl','Na','As','Nh','Hi','Me','OtherBool']
 		error=True
