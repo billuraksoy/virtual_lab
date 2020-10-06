@@ -575,7 +575,11 @@ class Group(BaseGroup):
 
     # A function to calculate the payoff for the players
     def set_payoffs(self):
-        players = self.get_players()                                        # Get all the players for this game
+        all_players = self.get_players()                                        # Get all the players for this game
+        players = []
+        for pl in all_players:
+            if pl.participant.vars.get('timed_out_round',0)==0 and not pl.participant.vars.get('groupmate_timed_out', None)==True:
+                players.append(pl)
         for p in players:
             p.svo_angle = self.svo_angle(p)                                 # Calculate the SVO angle
             p.alpha = tan(2*pi*p.svo_angle/360)                                # calculate the alpha value
