@@ -28,7 +28,7 @@ class Paypal(Page):
 		self.player.participant_vars_dump(self)		
 class Survey2(Page):
 	form_model = 'player'
-	form_fields=['understanding','thoughts','strategy','suggestions']
+	form_fields=['new_understanding','strategy','anything_else']
 	def before_next_page(self):
 		self.player.participant_vars_dump(self)
 class Summary(Page):

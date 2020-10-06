@@ -94,10 +94,21 @@ class Player(BasePlayer):
     #major = models.StringField(label="Please enter your full name as it appears on Howdy to receive your bonus grade.")
     paypal = models.StringField(label="PayPal:", blank=True)
     venmo = models.StringField(label="Venmo:", blank=True)
-    understanding = models.LongStringField(label="Were the instructions easy to understand?")
-    thoughts = models.LongStringField(label="What did you think about the experiment?")
+    #understanding = models.LongStringField(label="Were the instructions easy to understand?")
+    #thoughts = models.LongStringField(label="What did you think about the experiment?")
     strategy = models.LongStringField(label="Did you use a particular strategy when making your decisions?")
-    suggestions = models.LongStringField(label="Do you have any suggestions for us to improve the study?")
+    #suggestions = models.LongStringField(label="Do you have any suggestions for us to improve the study?")
+    anything_else = models.LongStringField(label="Is there anything else you would like to share with us?")
+    new_understanding = models.IntegerField(
+        label="To what extent do you agree with the following statement: \"The instructions were easy to understand\"",
+        choices=[
+            [0,'Strongly Agree'],
+            [1,'Agree'],
+            [2,'Undecided'],
+            [3,'Disagree'],
+            [4,'Strongly Disagree']
+        ] 
+        )
     round_chosen_for_payment=models.IntegerField(label="")
     groupAThresholdMet = models.BooleanField(label="")
     groupBThresholdMet = models.BooleanField(label="")
