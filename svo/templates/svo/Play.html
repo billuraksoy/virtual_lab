@@ -52,7 +52,7 @@
         {% blocktrans trimmed %} Decision {% endblocktrans %}
         <span id="taskNumber"></span>
     </h2>
-
+    <h5>Please make your allocation decision between yourself and the other person by moving the slider. You will be able to submit your decision after 15 seconds.</h5>
     <div class="container-fluid">
 
         <div class="row top-buffer">
@@ -153,7 +153,9 @@
 
 {% block styles %}
     <style>
-
+        h5{
+            margin:2vh 0vh;
+        }
         .labels{
             text-align:right;
             font-size: 1.6vmin;
