@@ -38,17 +38,17 @@ class Player(BasePlayer):
     #to the other group then that max value is only updated when
     #a submission attempt is made on the form, which leaves you able
     #to softlock yourself out of certain contribution combinations.
-    contribution_acc_a = models.CurrencyField(
+    pr_contribution_acc_a = models.CurrencyField(
         min=0,
         initial=0,
         label = "Your Contribution"
         )
-    contribution_acc_b = models.CurrencyField(
+    pr_contribution_acc_b = models.CurrencyField(
         min=0,
         initial=0,
         label = "Your Contribution"
         )
-    acc_a_total=models.IntegerField(label="")
-    acc_b_total=models.IntegerField(label="")
-    thresh_a_met = models.BooleanField(label="")
-    thresh_b_met = models.BooleanField(label="")
+    pr_acc_a_total=models.IntegerField(label="")
+    pr_acc_b_total=models.IntegerField(label="")
+    pr_thresh_a_met = models.BooleanField(label="")
+    pr_thresh_b_met = models.BooleanField(label="")
