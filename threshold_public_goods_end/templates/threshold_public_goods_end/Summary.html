@@ -15,16 +15,23 @@
 <p>
 	Thank you for your participation. Here is the summary of your earnings in this study.
 	<br><br><br>
-
-	{{PayingRound}}<br><br>
-
-	Tokens Earned {{TokensEarned}} (1 token = $1)<br><br>
+	Participation Payment: $ {{ participation_payment }}<br>
+	Part 1 Earnings: $ {{ Part1Earnings }}<br>
+	Part 2 Earnings: $ {{ Part2Earnings }}<br>
+	<b>Total Earnings: $ {{ TotalEarnings }}</b><br><br><br>
+	
+	{{PayingRoundP1}}<br>
+	Tokens Earned {{TokensEarnedP1}} (1 token = $1)<br>
+	Part 1 Earnings: $ {{ Part1Earnings }}<br><br><br>
 	
 	<!-- Game earnings: ${{MoneyEarned}}<br><br> -->
 
-	Participation Payment: ${{participation_payment}}<br><br>
+	<!-- Participation Payment: ${{participation_payment}}<br><br> -->
 
-	<b>Total Earnings: ${{TotalEarnings}}</b><br><br>
+	Decision Chosen for Payment: {{ PayingRoundP2 }}<br>
+	As a Receiver, you received {{ TokensEarnedP2 }} tokens (1 token = $0.30)<br>
+	As a Sender, you kept {{ TokensKeptP2 }} tokens (1 token = $0.30)<br>
+	Part 2 Earnings : $ {{ Part2Earnings }}<br><br>
 
 	If your ID is drawn by the computer, your earnings will be paid to you via PayPal or Venmo.<br><br>
 </p>

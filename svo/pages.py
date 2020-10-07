@@ -65,6 +65,11 @@ class ResultsWaitPage(WaitPage):
 	
 	def before_next_page(self):
 		for pl in self.group.get_players():
+			pl.participant.vars['keptArr'] = []
+			pl.participant.vars['recArr'] = []
+			for a in range(15):
+				pl.participant.vars['keptArr'].append(pl.kept_of_sender)
+				pl.participant.vars['recArr'].append(pl.received_from_sender)
 			pl.participant.vars['svo_angle']=pl.svo_angle
 			pl.participant.vars['alpha']=pl.alpha
 			pl.participant.vars['svo_type']=pl.svo_type

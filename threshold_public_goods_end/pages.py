@@ -46,11 +46,11 @@ class Summary(Page):
 		#seed the rng based on a value that will remain the same on refresh
 		TokensEarned=""
 		PayingRound=""
-		ME=0
+		ME1=0
 		if self.participant.vars.get('groupmate_timed_out', None)==True:
 			PayingRound="Because your partner disconnected and since we need an even number of subjects for this study, you have been removed from the study pool but will be entered as if you achieved the maximum score."
 			TokensEarned="10"
-			ME=10
+			ME1=10
 		else:
 			random.seed(self.player.birth_year*(1+self.player.gender)*(1+self.player.income))
 			num_paying_rounds=1
@@ -59,36 +59,50 @@ class Summary(Page):
 			b_totals = self.participant.vars['b_total']
 			#print(rounds)
 			if(num_paying_rounds>1):
-				PayingRound="Rounds chosen for payment:"
-				TokensEarned="in these rounds: "
+				TokensEarnedP1="Rounds chosen for payment:"
+				TokensEarnedP1="in these rounds: "
 				payRounds = random.sample(range(0,d['total_rounds']),num_paying_rounds)
-				ME=0
+				ME1=0
 				for pRound in payRounds:
-					ME+=rounds[pRound]
-					PayingRound+=" "+str(pRound+1 )
-					TokensEarned+=" "+str(rounds[pRound])
-					self.player.round_chosen_for_payment=pRound
+					ME1+=rounds[pRound]
+					PayingRoundP1+=" "+str(pRound+1 )
+					TokensEarnedP1+=" "+str(rounds[pRound])
+					self.player.round_chosen_for_payment_P1=pRound
+				TokensKeptP2 = 0
+				ME2 = 0
+				TokensEarnedP2 = 0
+				PayingRoundP2 = "N/a"
 			else:
-				PayingRound="Round chosen for payment: "
-				TokensEarned="in this round: "
-				payRound = random.choice(range(0,d['total_rounds']))
-				PayingRound+=str(payRound+1)
-				TokensEarned+=str(rounds[payRound])
-				ME=rounds[payRound]
-				self.player.round_chosen_for_payment=payRound+1
-				self.player.groupAThresholdMet = (a_totals[payRound]>=d['threshold_high'])
-				self.player.groupBThresholdMet = (b_totals[payRound]>=d['threshold_low'])
-				self.player.groupATotalContribution = a_totals[payRound]
-				self.player.groupBTotalContribution = b_totals[payRound]
-
-		self.player.payoff=ME+self.session.config['participation_payment']
+				PayingRoundP1="Round chosen for payment: "
+				TokensEarnedP1="in this round: "
+				payRound1 = random.choice(range(0,d['total_rounds']))
+				PayingRoundP1+=str(payRound1+1)
+				TokensEarnedP1+=str(rounds[payRound1])
+				ME1=rounds[payRound1]
+				self.player.round_chosen_for_payment=payRound1+1
+				self.player.groupAThresholdMet = (a_totals[payRound1]>=d['threshold_high'])
+				self.player.groupBThresholdMet = (b_totals[payRound1]>=d['threshold_low'])
+				self.player.groupATotalContribution = a_totals[payRound1]
+				self.player.groupBTotalContribution = b_totals[payRound1]
+				PayingRoundP2 = "Round chosen for payment"
+				TokensEarnedP2 = "in this round: "
+				payRound2 = random.choice(range(0,15))
+				PayingRoundP2 = str(payRound2+1)
+				TokensKeptP2 = str(self.player.participant.vars['keptArr'][payRound2])
+				TokensEarnedP2 = str(self.player.participant.vars['recArr'][payRound2])
+				ME2 = TokensKeptP2+TokensEarnedP2
+		self.player.payoff=ME1+ME2+self.session.config['participation_payment']
 		return dict(
 			d,
 			all_vars = self.participant.vars,
-			PayingRound=PayingRound,
-			TokensEarned=TokensEarned,
-			MoneyEarned=ME,
-			TotalEarnings=ME+self.session.config['participation_payment']
+			PayingRoundP1=PayingRoundP1,
+			PayingRoundP2=PayingRoundP2,
+			TokensEarnedP1=TokensEarnedP1,
+			TokensEarnedP2=TokensEarnedP2,
+			TokensKeptP2=TokensKeptP2,
+			Part1Earnings=ME1,
+			Part2Earnings=ME2,
+			TotalEarnings=self.player.payoff
 			)
 
 page_sequence = [ThankYou, Survey, Paypal, Survey2, Summary]
