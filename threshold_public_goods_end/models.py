@@ -91,6 +91,11 @@ class Player(BasePlayer):
     def other_error_message(self,value):
         if self.OtherBool and value == None:
             return 'If you select Other, you must specify in the provided field.'
+    risk = models.IntegerField(
+        label = 'Please answer the following question using a 1–10 scale, where 1 = completely unwilling and 10 = completely willing: Rate your willingness to take risks in general.',
+        choices = [1,2,3,4,5,6,7,8,9,10],
+        widget = widgets.RadioSelectHorizontal
+        )
     #major = models.StringField(label="Please enter your full name as it appears on Howdy to receive your bonus grade.")
     paypal = models.StringField(label="PayPal:", blank=True)
     venmo = models.StringField(label="Venmo:", blank=True)
