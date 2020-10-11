@@ -95,7 +95,7 @@ class Summary(Page):
 				#The round where you recieve is stored here and may be diff to the round you kept: pl.participant.vars['recR']
 				TokensKeptP2 = str(self.player.participant.vars['kept'])
 				TokensEarnedP2 = str(self.player.participant.vars['rec'])
-				self.player.round_chosen_for_payment_P1=PayingRoundP2
+				self.player.round_chosen_for_payment_P2=self.player.participant.vars['keptR']
 				self.player.Part2Earnings=ME2
 				ME2 = TokensKeptP2+TokensEarnedP2
 		self.player.payoff=ME1+ME2+self.session.config['participation_payment']
