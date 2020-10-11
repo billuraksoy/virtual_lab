@@ -214,5 +214,6 @@ class Results(Page):
             self.participant.vars['GameRounds']=[pl.payoff for pl in self.player.in_all_rounds()]
             self.participant.vars['a_total']=[pl.acc_a_total for pl in self.player.in_all_rounds()]
             self.participant.vars['b_total']=[pl.acc_b_total for pl in self.player.in_all_rounds()]
+            return upcoming_apps[0]
 
 page_sequence = [GroupWaitAsyncGame, GroupWaitSyncGame, p1Game, SeqWait, p2Game, SimGame, ResWait, Results]
