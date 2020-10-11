@@ -1,0 +1,24 @@
+{% extends "global/Page.html" %}
+{% load otree static %}
+<!-- {% load custom_tags %} -->
+
+{% block title %}
+    PART 2
+{% endblock %}
+
+{% block content %}
+
+Thanks for completing Part 1 of this study.
+
+ In Part 2, we will again be trading in tokens. However, we will use the following conversion rate for Part 2: <b>1 token = 0.5 USD.</b> <br><br>
+
+ In this part of the study, you have been randomly paired with another participant whom we will refer to as "Other person". <br><br>
+
+ You will be asked to make 15 decision about allocating tokens between yourself and this other person. For each of the following decisions, please indicate which allocation you prefer the most. <br><br>
+
+At the end, one of these allocation decisions will be randomly selected to be payoff relevant. Other person will also make 15 allocation decisions. We will randomly determine whether we will implement your or the other person's allocation decision. This random selection will determine your and the other person's earnings from Part 2. <br><br>
+
+ 
+	{% delayed_next wait=22000 %}
+
+{% endblock %}
