@@ -98,7 +98,7 @@ class Summary(Page):
 				self.player.round_chosen_for_payment_P2=self.player.participant.vars['keptR']
 				self.player.Part2Earnings=ME2
 				ME2 = TokensKeptP2+TokensEarnedP2
-		self.player.payoff=ME1+ME2+self.session.config['participation_payment']
+		self.player.payoff=int(ME1)+int(ME2)+int(self.session.config['participation_payment'])
 		return dict(
 			d,
 			all_vars = self.participant.vars,
