@@ -59,20 +59,18 @@ class ResultsWaitPage(WaitPage):
 
 	def after_all_players_arrive(self):
 		self.group.set_payoffs()
-
-	def vars_for_template(self):
-	  		return dict(all_vars = self.participant.vars)
-	
-	def before_next_page(self):
 		for pl in self.group.get_players():
 			pl.participant.vars['kept'] = pl.kept_of_sender
 			pl.participant.vars['rec'] = pl.received_from_sender
-			pl.participant.vars['keptR']=pl.paid_slider
-			pl.participant.vars['recR']=pl.slider_as_receiver
-			pl.participant.vars['svo_angle']=pl.svo_angle
-			pl.participant.vars['alpha']=pl.alpha
-			pl.participant.vars['svo_type']=pl.svo_type
-			pl.participant.vars['inequality_aversion_score']=pl.inequality_aversion_score
+			pl.participant.vars['keptR'] = pl.paid_slider
+			pl.participant.vars['recR'] = pl.slider_as_receiver
+			pl.participant.vars['svo_angle'] = pl.svo_angle
+			pl.participant.vars['alpha'] = pl.alpha
+			pl.participant.vars['svo_type'] = pl.svo_type
+			pl.participant.vars['inequality_aversion_score'] = pl.inequality_aversion_score
+
+	def vars_for_template(self):
+	  		return dict(all_vars = self.participant.vars)	
 
 class Results(Page):
   def vars_for_template(self):
