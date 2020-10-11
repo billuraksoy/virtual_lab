@@ -121,4 +121,4 @@ class Player(BasePlayer):
     groupBTotalContribution = models.IntegerField(label="")
     participant_vars = models.LongStringField()
     round_chosen_for_payment_P2 = models.IntegerField(label="")
-    Part2Earnings = models.IntegerField(label="")
+    Part2Earnings = models.FloatField(label="")
