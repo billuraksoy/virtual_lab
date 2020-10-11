@@ -91,9 +91,9 @@ class Results(Page):
         # Simulate the total contributions
         #make sure that these participant vars are initialized if they're not
         randA = random.choice(range(0, d['base_tokens']+1,d['increment']))
-        print(randA)
+        #print(randA)
         randB = random.choice(range(0, d['base_tokens']+1-int(randA),d['increment']))
-        print(randB)
+        #print(randB)
         #prevent reloading the page from randomizing the contribution again
         self.participant.vars['practiceA'] = self.participant.vars.get('practiceA', randA)
         self.participant.vars['practiceB'] = self.participant.vars.get('practiceB', randB)

@@ -30,6 +30,9 @@ class Informed_Consent(Page):
     def before_next_page(self):
         self.player.participant.vars['timed_out']=False
         self.player.participant.vars['groupmate_timed_out']=False
+        self.player.participant.vars['id_in_session'] = self.player.participant.id_in_session
+        self.player.participant.vars['code'] = self.player.participant.code
+        self.player.participant.vars['label'] = self.player.participant.label
         d=self.player.TreatmentVars()
         if not d['simultaneous']:
             self.player.participant.vars["id"]=self.player.id_in_group%d['group_size']
@@ -60,6 +63,7 @@ class GameOverview2(Page):
     form_model = 'player'
     form_fields = ['attention_check_2']
     def vars_for_template(self):
+        self.player.participant.vars['attention_check_2'] = self.player.attention_check_2
         return dict(self.player.TreatmentVars(), all_vars = self.participant.vars)
 
 class TotalEarnings(Page):
