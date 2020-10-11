@@ -96,8 +96,9 @@ class Summary(Page):
 				TokensKeptP2 = str(self.player.participant.vars['kept'])
 				TokensEarnedP2 = str(self.player.participant.vars['rec'])
 				self.player.round_chosen_for_payment_P2=self.player.participant.vars['keptR']
+				ME2 = float(TokensKeptP2)*.5+float(TokensEarnedP2)*.5
 				self.player.Part2Earnings=ME2
-				ME2 = float(TokensKeptP2)+float(TokensEarnedP2)
+				
 		self.player.payoff=float(ME1)+float(ME2)+float(self.session.config['participation_payment'])
 		return dict(
 			d,
