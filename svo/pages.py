@@ -79,8 +79,15 @@ class Results(Page):
   def vars_for_template(self):
   	return dict(all_vars = self.participant.vars)
 
+class EndingWait(WaitPage):
+    wait_for_all_groups = True
+    title_text="Please wait for the other participants."
+    body_text="Please wait for other participants to complete Part 1. Once all participants complete Part 1, you will start Part 2 of the study."
 
+    def is_displayed(self):
+        return self.player.participant.vars.get('groupmate_timed_out', None)==True
 page_sequence = [
+	EndingWait,
 	Intro,
     Play,
     ResultsWaitPage,

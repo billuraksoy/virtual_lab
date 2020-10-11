@@ -578,7 +578,7 @@ class Group(BaseGroup):
         all_players = self.get_players()                                        # Get all the players for this game
         players = []
         for pl in all_players:
-            if pl.participant.vars.get('timed_out_round',0)==0 and not pl.participant.vars.get('groupmate_timed_out', None)==True:
+            if pl.participant.vars.get('timed_out_round',0)==0:
                 players.append(pl)
         for p in players:
             p.svo_angle = self.svo_angle(p)                                 # Calculate the SVO angle

@@ -130,14 +130,10 @@ class ResWait(WaitPage):
         if self.participant.vars.get('timed_out', None)==True: # if you've timed out, go to the timeout app and stop being here.
             self.participant.vars['timed_out_round']=self.round_number
             return upcoming_apps[-1]
-
+        if self.participant.vars.get('groupmate_timed_out', None)==True:
+            return upcoming_apps[0]
 
 class Results(Page):
-    def app_after_this_page(self,upcoming_apps):
-        if self.participant.vars.get('groupmate_timed_out', None)==True:
-            return upcoming_apps[-2]
-        if self.player.round_number==self.session.config['total_rounds']:
-            return upcoming_apps[0]
     def vars_for_template(self):
         d=self.player.TreatmentVars()
         #handle dropping groupmates
@@ -218,6 +214,5 @@ class Results(Page):
             self.participant.vars['GameRounds']=[pl.payoff for pl in self.player.in_all_rounds()]
             self.participant.vars['a_total']=[pl.acc_a_total for pl in self.player.in_all_rounds()]
             self.participant.vars['b_total']=[pl.acc_b_total for pl in self.player.in_all_rounds()]
-
 
 page_sequence = [GroupWaitAsyncGame, GroupWaitSyncGame, p1Game, SeqWait, p2Game, SimGame, ResWait, Results]

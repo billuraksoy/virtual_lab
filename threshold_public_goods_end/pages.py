@@ -44,12 +44,16 @@ class Summary(Page):
 		import random
 		d = self.player.TreatmentVars()
 		#seed the rng based on a value that will remain the same on refresh
-		TokensEarned=""
-		PayingRound=""
+		PayingRoundP1=""
+		TokensEarnedP1=""
+		PayingRoundP2=""
+		TokensEarnedP2=""
+		TokensKeptP2=0
 		ME1=0
+		ME2=0
 		if self.participant.vars.get('groupmate_timed_out', None)==True:
-			PayingRound="Because your partner disconnected and since we need an even number of subjects for this study, you have been removed from the study pool but will be entered as if you achieved the maximum score."
-			TokensEarned="10"
+			PayingRoundP1="Because your partner disconnected and since we need an even number of subjects for this study, you have been removed from the study pool but will be entered as if you achieved the maximum score."
+			TokensEarnedP1="10"
 			ME1=10
 		else:
 			random.seed(self.player.birth_year*(1+self.player.gender)*(1+self.player.income))
@@ -79,7 +83,7 @@ class Summary(Page):
 				PayingRoundP1+=str(payRound1+1)
 				TokensEarnedP1+=str(rounds[payRound1])
 				ME1=rounds[payRound1]
-				self.player.round_chosen_for_payment=payRound1+1
+				self.player.round_chosen_for_payment_P1=payRound1+1
 				self.player.groupAThresholdMet = (a_totals[payRound1]>=d['threshold_high'])
 				self.player.groupBThresholdMet = (b_totals[payRound1]>=d['threshold_low'])
 				self.player.groupATotalContribution = a_totals[payRound1]
@@ -90,6 +94,8 @@ class Summary(Page):
 				PayingRoundP2 = str(payRound2+1)
 				TokensKeptP2 = str(self.player.participant.vars['keptArr'][payRound2])
 				TokensEarnedP2 = str(self.player.participant.vars['recArr'][payRound2])
+				self.player.round_chosen_for_payment_P1=PayingRoundP2
+				self.player.Part2Earnings=ME2
 				ME2 = TokensKeptP2+TokensEarnedP2
 		self.player.payoff=ME1+ME2+self.session.config['participation_payment']
 		return dict(
