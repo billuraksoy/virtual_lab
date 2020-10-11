@@ -101,7 +101,7 @@ class Player(BasePlayer):
     venmo = models.StringField(label="Venmo:", blank=True)
     #understanding = models.LongStringField(label="Were the instructions easy to understand?")
     #thoughts = models.LongStringField(label="What did you think about the experiment?")
-    strategy = models.LongStringField(label="Did you use a particular strategy when making your decisions?")
+    strategy = models.LongStringField(label="Did you use a particular strategy when making your decisions in Part 1 and/or Part 2?")
     #suggestions = models.LongStringField(label="Do you have any suggestions for us to improve the study?")
     anything_else = models.LongStringField(label="Is there anything else you would like to share with us?")
     new_understanding = models.IntegerField(
