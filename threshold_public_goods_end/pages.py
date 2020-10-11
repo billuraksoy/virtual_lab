@@ -52,7 +52,7 @@ class Summary(Page):
 		ME1=0
 		ME2=0
 		if self.participant.vars.get('groupmate_timed_out', None)==True:
-			PayingRoundP1="Because your partner disconnected and since we need an even number of subjects for this study, you have been removed from the study pool but will be entered as if you achieved the maximum score."
+			PayingRoundP1="Because your partner disconnected and since we need an even number of subjects for this study, you have been removed from Part 1. But you will still earn 10 tokens from Part 1."
 			TokensEarnedP1="10"
 			ME1=10
 		else:
