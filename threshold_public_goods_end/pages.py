@@ -91,7 +91,7 @@ class Summary(Page):
 				PayingRoundP2 = "Round chosen for payment: "
 				TokensEarnedP2 = "in this round: "
 				#payRound2 = random.choice(range(0,15))
-				PayingRoundP2 = str(pl.participant.vars['keptR'])
+				PayingRoundP2 = str(self.player.participant.vars['keptR'])
 				#The round where you recieve is stored here and may be diff to the round you kept: pl.participant.vars['recR']
 				TokensKeptP2 = str(self.player.participant.vars['kept'])
 				TokensEarnedP2 = str(self.player.participant.vars['rec'])
