@@ -88,12 +88,13 @@ class Summary(Page):
 				self.player.groupBThresholdMet = (b_totals[payRound1]>=d['threshold_low'])
 				self.player.groupATotalContribution = a_totals[payRound1]
 				self.player.groupBTotalContribution = b_totals[payRound1]
-				PayingRoundP2 = "Round chosen for payment"
+				PayingRoundP2 = "Round chosen for payment: "
 				TokensEarnedP2 = "in this round: "
-				payRound2 = random.choice(range(0,15))
-				PayingRoundP2 = str(payRound2+1)
-				TokensKeptP2 = str(self.player.participant.vars['keptArr'][payRound2])
-				TokensEarnedP2 = str(self.player.participant.vars['recArr'][payRound2])
+				#payRound2 = random.choice(range(0,15))
+				PayingRoundP2 = str(pl.participant.vars['keptR'])
+				#The round where you recieve is stored here and may be diff to the round you kept: pl.participant.vars['recR']
+				TokensKeptP2 = str(self.player.participant.vars['kept'])
+				TokensEarnedP2 = str(self.player.participant.vars['rec'])
 				self.player.round_chosen_for_payment_P1=PayingRoundP2
 				self.player.Part2Earnings=ME2
 				ME2 = TokensKeptP2+TokensEarnedP2
