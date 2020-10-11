@@ -146,8 +146,8 @@ class Results(Page):
             part2 = "different"
             part3 = " participant in the next round. Please click next when you are ready to start the next round."
         if self.participant.vars.get('groupmate_timed_out', None)==True:
-            dropText="Your group member has timed out. Thus, the computer randomly made a decision on their behalf. Since we need an even number of subjects for this study, you will not be able to move forward. However, if your Participant ID is randomly drawn, you will receive $10 for your participation."
-            part1="We are sorry for this inconvenience. Please click next to participate in our short survey and also to provide your paypal/venmo information."
+            dropText="Your group member has timed out. Thus, the computer randomly made a decision on their behalf. Since we need an even number of subjects for this study, you will not be able to move forward. However, you will receive $10 from Part 1."
+            part1="We are sorry for this inconvenience. Please click next to proceed."
             part2=""
             part3=""
                 
