@@ -188,7 +188,7 @@ class Results(Page):
 
         #save to participant vars
         self.player.participant.vars['P1_id_in_group_Round'+str(self.round_number)]=self.player.id_in_group
-        self.player.participant.vars['P1_id_in_subsesion_Round'+str(self.round_number)]=self.player.group.id_in_subsesion
+        self.player.participant.vars['P1_id_in_subsesion_Round'+str(self.round_number)]=self.player.group.id_in_subsession
         self.player.participant.vars['P1_acc_a_total_Round'+str(self.round_number)]=self.player.acc_a_total
         self.player.participant.vars['P1_acc_b_total_Round'+str(self.round_number)]=self.player.acc_b_total
         self.player.participant.vars['P1_thresh_a_met_Round'+str(self.round_number)]=self.player.thresh_a_met
