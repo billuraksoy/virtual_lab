@@ -40,7 +40,7 @@
 				<p>{{value_high}} tokens</p>
 				{% if display_contributions == 1 %}
 				<h6><b>Your Group Member's Contribution: </b></h6>
-				<h6><b>{{group_a_con|FloatFormat:0}} tokens</b></h6>
+				<h6><b>{{group_a_con|floatformat:0}} tokens</b></h6>
 				{% endif %}
 			</div>
 			{% formfield player.pr_contribution_acc_a %}
@@ -54,7 +54,7 @@
 				<p>{{value_low}} tokens</p>
 				{% if display_contributions == 1 %}
 				<h6><b>Your Group Member's Contribution: </b></h6>
-				<h6><b>{{group_b_con|FloatFormat:0}} tokens</b></h6>
+				<h6><b>{{group_b_con|floatformat:0}} tokens</b></h6>
 				{% endif %}
 			</div>
 			{% formfield player.pr_contribution_acc_b %}
