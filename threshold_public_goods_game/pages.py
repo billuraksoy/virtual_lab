@@ -189,11 +189,11 @@ class Results(Page):
         #save to participant vars
         self.player.participant.vars['vars_json_dump']['Game-id_in_group-'+str(self.round_number)]=self.player.id_in_group
         self.player.participant.vars['vars_json_dump']['Game-_id_in_subsesion-'+str(self.round_number)]=self.player.group.id_in_subsession
-        self.player.participant.vars['vars_json_dump']['Game-acc_a_total-'+str(self.round_number)]=self.player.acc_a_total
-        self.player.participant.vars['vars_json_dump']['Game-acc_b_total-'+str(self.round_number)]=self.player.acc_b_total
+        self.player.participant.vars['vars_json_dump']['Game-acc_a_total-'+str(self.round_number)]=int(self.player.acc_a_total)
+        self.player.participant.vars['vars_json_dump']['Game-acc_b_total-'+str(self.round_number)]=int(self.player.acc_b_total)
         self.player.participant.vars['vars_json_dump']['Game-thresh_a_met-'+str(self.round_number)]=self.player.thresh_a_met
         self.player.participant.vars['vars_json_dump']['Game-thresh_b_met-'+str(self.round_number)]=self.player.thresh_b_met
-        self.player.participant.vars['vars_json_dump']['Game-payoff-'+str(self.round_number)]=self.player.payoff
+        self.player.participant.vars['vars_json_dump']['Game-payoff-'+str(self.round_number)]=int(self.player.payoff)
         return dict(
             d,
             all_vars = self.participant.vars,

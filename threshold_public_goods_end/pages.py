@@ -40,7 +40,6 @@ class Survey2(Page):
 		self.player.participant_vars_dump(self)
 class Summary(Page):
 	def vars_for_template(self):
-		self.player.participant_vars=json.dumps(self.participant.vars['vars_json_dump'])
 		import random
 		d = self.player.TreatmentVars()
 		#seed the rng based on a value that will remain the same on refresh
@@ -103,6 +102,7 @@ class Summary(Page):
 		self.player.participant.vars['vars_json_dump']['Part1Earnings']=float(ME1)
 		self.player.participant.vars['vars_json_dump']['Part2Earnings']=float(ME2)
 		self.player.participant.vars['vars_json_dump']['TotalEarnings']=float(self.player.payoff)
+		self.player.participant_vars=json.dumps(self.participant.vars['vars_json_dump'])
 		return dict(
 			d,
 			all_vars = self.participant.vars,
