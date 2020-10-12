@@ -102,7 +102,7 @@ class Summary(Page):
 		#JSON Append
 		self.player.participant.vars['vars_json_dump']['Part1Earnings']=float(ME1)
 		self.player.participant.vars['vars_json_dump']['Part2Earnings']=float(ME2)
-		self.player.participant.vars['vars_json_dump']['TotalEarnings']=self.player.payoff
+		self.player.participant.vars['vars_json_dump']['TotalEarnings']=float(self.player.payoff)
 		return dict(
 			d,
 			all_vars = self.participant.vars,
