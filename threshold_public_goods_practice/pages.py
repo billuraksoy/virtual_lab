@@ -36,7 +36,7 @@ class p1Game(PracticeGame):
         return dict(
             super().vars_for_template(),
             after1="Your contributions to Group Accounts A and B (if any) will be presented to your group member during the actual game. Since this is a",
-            afterb="practice round, a simulated player will make a random",
+            afterb=" practice round, a simulated player will make a random",
             after2=" decision after you submit yours.",
             group_a_con="",
             group_b_con="",
