@@ -90,12 +90,12 @@ class Player(BasePlayer):
     #a submission attempt is made on the form, which leaves you able
     #to softlock yourself out of certain contribution combinations.
 
-    contribution_acc_a = models.CurrencyField(
+    contribution_acc_a = models.IntegerField(
         min=0,
         initial=0,
         label = "Your Contribution"
         )
-    contribution_acc_b = models.CurrencyField(
+    contribution_acc_b = models.IntegerField(
         min=0,
         initial=0,
         label = "Your Contribution"
