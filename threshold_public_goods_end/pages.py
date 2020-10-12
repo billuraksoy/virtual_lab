@@ -62,7 +62,7 @@ class Summary(Page):
 			a_totals = self.participant.vars['a_total']
 			b_totals = self.participant.vars['b_total']
 			#print(rounds)
-			if(num_paying_rounds>1):
+			if(num_paying_rounds>1):#as coded this only pays out based on the first part
 				TokensEarnedP1="Rounds chosen for payment:"
 				TokensEarnedP1="in these rounds: "
 				payRounds = random.sample(range(0,d['total_rounds']),num_paying_rounds)
@@ -98,8 +98,11 @@ class Summary(Page):
 				self.player.round_chosen_for_payment_P2=self.player.participant.vars['keptR']
 				ME2 = float(TokensKeptP2)*0.30+float(TokensEarnedP2)*0.30
 				self.player.Part2Earnings=ME2
-				
 		self.player.payoff=float(ME1)+float(ME2)+float(self.session.config['participation_payment'])
+		#JSON Append
+		self.player.participant.vars['vars_json_dump']['Part1Earnings']=float(ME1)
+		self.player.participant.vars['vars_json_dump']['Part2Earnings']=float(ME2)
+		self.player.participant.vars['vars_json_dump']['TotalEarnings']=self.player.payoff
 		return dict(
 			d,
 			all_vars = self.participant.vars,

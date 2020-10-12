@@ -68,7 +68,11 @@ class ResultsWaitPage(WaitPage):
 			pl.participant.vars['alpha'] = pl.alpha
 			pl.participant.vars['svo_type'] = pl.svo_type
 			pl.participant.vars['inequality_aversion_score'] = pl.inequality_aversion_score
-
+			#JSON dump
+			pl.participant.vars['vars_json_dump']['SVO-svo_angle'] = pl.svo_angle
+			pl.participant.vars['vars_json_dump']['SVO-alpha'] = pl.alpha
+			pl.participant.vars['vars_json_dump']['SVO-svo_type'] = pl.svo_type
+			pl.participant.vars['vars_json_dump']['SVO-inequality_aversion_score'] = pl.inequality_aversion_score
 	def vars_for_template(self):
 	  		return dict(all_vars = self.participant.vars)	
 

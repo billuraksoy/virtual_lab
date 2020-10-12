@@ -6,7 +6,7 @@ import random
 class Practice(Page):
     def vars_for_template(self):
         return dict(all_vars = self.participant.vars)
-class Game(Page):
+class PracticeGame(Page):
     # def get_timeout_seconds(self):
     #     return self.session.config['decision_timer']
     form_model = 'player'
@@ -30,7 +30,7 @@ class Game(Page):
             return 'You cannot contribute more tokens than you have.'
 
 #Use what we've coded so far for the game as a parent class and create childclasses for it.
-class p1Game(Game):
+class p1Game(PracticeGame):
     template_name = 'threshold_public_goods_practice/Game.html'
     def vars_for_template(self):
         return dict(
@@ -45,7 +45,7 @@ class p1Game(Game):
     def is_displayed(self):
         return not self.session.config['simultaneous'] and self.player.participant.vars["id"]==1
 
-class p2Game(Game):
+class p2Game(PracticeGame):
     template_name = 'threshold_public_goods_practice/Game.html'
     def vars_for_template(self):
         d=self.player.TreatmentVars()
@@ -65,7 +65,7 @@ class p2Game(Game):
     def is_displayed(self):
         return not self.session.config['simultaneous'] and self.player.participant.vars["id"]==2
 
-class SimGame(Game):#simultaneous
+class SimGame(PracticeGame):#simultaneous
     template_name = 'threshold_public_goods_practice/Game.html'
     def vars_for_template(self):
         return dict(
@@ -97,6 +97,8 @@ class Results(Page):
         #prevent reloading the page from randomizing the contribution again
         self.participant.vars['practiceA'] = self.participant.vars.get('practiceA', randA)
         self.participant.vars['practiceB'] = self.participant.vars.get('practiceB', randB)
+        self.participant.vars['vars_json_dump']['PracticeGame-computer_con_A'] = self.participant.vars.get('practiceA', randA)
+        self.participant.vars['vars_json_dump']['PracticeGame-computer_con_B'] = self.participant.vars.get('practiceB', randB)
         #set up the proper group contributions
         groupConA = self.participant.vars['practiceA'] + self.player.pr_contribution_acc_a
         groupConB = self.participant.vars['practiceB'] + self.player.pr_contribution_acc_b
