@@ -18,7 +18,7 @@
 	Participation Payment: $ {{ participation_payment|floatformat:2 }}<br>
 	Part 1 Earnings: $ {{ Part1Earnings|cut:" tokens"|floatformat:2 }}<br>
 	Part 2 Earnings: $ {{ Part2Earnings|floatformat:2 }}<br>
-	<b>Total Earnings: $ {{ TotalEarnings|floatformat:0 }}</b><br><br><br>
+	<b>Total Earnings: $ {{ TotalEarnings|floatformat:0|c}}</b><br><br><br>
 	
 	{{PayingRoundP1}}<br>
 	Tokens Earned {{TokensEarnedP1}} (1 token = $1)<br>
