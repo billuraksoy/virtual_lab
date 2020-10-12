@@ -9,7 +9,7 @@ class ThankYou(Page):
 		return dict(all_vars = self.participant.vars)
 class Survey(Page):
 	form_model = 'player'
-	form_fields=['birth_year','gender','income','Wh','Bl','Na','As','Nh','Hi','Me','OtherBool','other']
+	form_fields=['birth_year','gender','income','Wh','Bl','Na','As','Nh','Hi','Me','OtherBool','other','risk']
 	def error_message(self,values):
 		lst=['Wh','Bl','Na','As','Nh','Hi','Me','OtherBool']
 		error=True
@@ -33,7 +33,7 @@ class Paypal(Page):
 		self.player.participant_vars_dump(self)		
 class Survey2(Page):
 	form_model = 'player'
-	form_fields=['new_understanding','strategy','risk','anything_else']
+	form_fields=['new_understanding','strategy','anything_else']
 	def vars_for_template(self):
 		return dict(all_vars = self.participant.vars)
 	def before_next_page(self):
