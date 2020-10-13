@@ -61,7 +61,7 @@ class Summary(Page):
 			a_totals = self.participant.vars['a_total']
 			b_totals = self.participant.vars['b_total']
 			#print(rounds)
-			if(num_paying_rounds>1):#as coded this only pays out based on the first part
+			if(num_paying_rounds>1):#as coded this only pays out multiple rounds for the first part
 				TokensEarnedP1="Rounds chosen for payment:"
 				TokensEarnedP1="in these rounds: "
 				payRounds = random.sample(range(0,d['total_rounds']),num_paying_rounds)
@@ -71,10 +71,6 @@ class Summary(Page):
 					PayingRoundP1+=" "+str(pRound+1 )
 					TokensEarnedP1+=" "+str(rounds[pRound])
 					self.player.round_chosen_for_payment_P1=pRound
-				TokensKeptP2 = 0
-				ME2 = 0
-				TokensEarnedP2 = 0
-				PayingRoundP2 = "N/a"
 			else:
 				PayingRoundP1="Round chosen for payment: "
 				TokensEarnedP1="in this round: "
@@ -87,14 +83,15 @@ class Summary(Page):
 				self.player.groupBThresholdMet = (b_totals[payRound1]>=d['threshold_low'])
 				self.player.groupATotalContribution = a_totals[payRound1]
 				self.player.groupBTotalContribution = b_totals[payRound1]
-				#payRound2 = random.choice(range(0,15))
-				PayingRoundP2 = str(self.player.participant.vars['keptR'])
-				#The round where you recieve is stored here and may be diff to the round you kept: pl.participant.vars['recR']
-				TokensKeptP2 = str(self.player.participant.vars['kept'])
-				TokensEarnedP2 = str(self.player.participant.vars['rec'])
-				self.player.round_chosen_for_payment_P2=self.player.participant.vars['keptR']
-				ME2 = float(TokensKeptP2)*0.30+float(TokensEarnedP2)*0.30
-				self.player.Part2Earnings=ME2
+		#Part2
+		PayingRoundP2 = str(self.player.participant.vars['keptR'])
+		#The round where you recieve is stored here and may be diff to the round you kept: pl.participant.vars['recR']
+		TokensKeptP2 = str(self.player.participant.vars['kept'])
+		TokensEarnedP2 = str(self.player.participant.vars['rec'])
+		self.player.round_chosen_for_payment_P2=self.player.participant.vars['keptR']
+		ME2 = float(TokensKeptP2)*0.30+float(TokensEarnedP2)*0.30
+		self.player.Part2Earnings=ME2
+
 		self.player.payoff=float(ME1)+float(ME2)+float(self.session.config['participation_payment'])
 		#JSON Append
 		self.player.participant.vars['vars_json_dump']['Part1Earnings']=float(ME1)
