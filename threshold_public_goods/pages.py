@@ -128,14 +128,14 @@ class Your_role(Page):
             pt1 = "You are the "
             if self.player.id_in_group%2 == 1:
                 self.player.participant.vars["id"]=1
-                mover_title = "You Have Been Randomly Selected to be the First Mover"
+                mover_title = "You are Randomly Selected to be the First Mover"
                 italics = "first mover"
-                pt2 = ". This means you will always make your decision first. And then, you group member will observe your decisions and make their own decision. At the end of each round, you will be provided a round summary screen where we provide information about contributions to the group accounts and your earnings in that round. After reading information provided in these summary screens, do not forget to click next in a timely manner. This will prevent delays in the experiment."
+                pt2 = ". This means you will always make your decision first. And then, you group member will observe your decisions and make their own decision. At the end of each round, you will be presented a round summary screen where we provide information about the contributions to the group accounts and your earnings in that round. After reading the information provided in these summary screens, do not forget to click next in a timely manner. This will prevent delays in the experiment."
             elif self.player.id_in_group%2 == 0:
                 self.player.participant.vars["id"]=2
                 mover_title = "You are Randomly Selected to be the Second Mover"
                 italics = "second mover"
-                pt2 = ". This means you will always make your decision after finding out about your group member’s contribution decisions. Your group member goes first and makes their own contribution decisions. And then, you see their decisions and make your own decision. At the end of each round, everyone will be informed about contributions to the group accounts and you will learn your earnings in that round. After reading information provided in these summary screens, do not forget to click next in a timely manner. This will prevent delays in the experiment."
+                pt2 = ". This means you will always make your decision after finding out about your group member’s contribution decisions. Your group member goes first and makes their own contribution decisions. And then, you see their decisions and make your own decision. At the end of each round, everyone will be informed about the contributions to the group accounts and you will learn your earnings in that round. After reading the information provided in these summary screens, do not forget to click next in a timely manner. This will prevent delays in the experiment."
         else:
             pt1="You and your group member will make contribution decisions simultaneously."
         return dict(
@@ -163,14 +163,14 @@ class Warning(Page):
             pt1 = "You are the "
             if self.player.id_in_group%2 == 1:
                 self.player.participant.vars["id"]=1
-                mover_title = "You Have Been Randomly Selected to be the First Mover"
+                mover_title = "You are Randomly Selected to be the First Mover"
                 italics = "first mover"
-                pt2 = ". This means you will always make your decision first. And then, you group member will observe your decisions and make their own decision. At the end of each round, you will be provided a round summary screen where we provide information about contributions to the group accounts and your earnings in that round. After reading information provided in these summary screens, do not forget to click next in a timely manner. This will prevent delays in the experiment."
+                pt2 = ". This means you will always make your decision first. And then, you group member will observe your decisions and make their own decision. At the end of each round, you will be provided a round summary screen where we provide information about the contributions to the group accounts and your earnings in that round. After reading the information provided in these summary screens, do not forget to click next in a timely manner. This will prevent delays in the experiment."
             elif self.player.id_in_group%2 == 0:
                 self.player.participant.vars["id"]=2
                 mover_title = "You are Randomly Selected to be the Second Mover"
                 italics = "second mover"
-                pt2 = ". This means you will always make your decision after finding out about your group member’s contribution decisions. Your group member goes first and makes their own contribution decisions. And then, you see their decisions and make your own decision. At the end of each round, everyone will be informed about contributions to the group accounts and you will learn your earnings in that round. After reading information provided in these summary screens, do not forget to click next in a timely manner. This will prevent delays in the experiment."
+                pt2 = ". This means you will always make your decision after finding out about your group member’s contribution decisions. Your group member goes first and makes their own contribution decisions. And then, you see their decisions and make your own decision. At the end of each round, everyone will be informed about the contributions to the group accounts and you will learn your earnings in that round. After reading the information provided in these summary screens, do not forget to click next in a timely manner. This will prevent delays in the experiment."
         else:
             pt1="You and your group member will make contribution decisions simultaneously."
         return dict(
