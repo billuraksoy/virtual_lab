@@ -97,4 +97,4 @@ class Player(BasePlayer):
             sR=""
             if self.yRem>1:#pluralize tokens if you've got multiple remaining
                 sR="s"
-            return "You have "+str(self.yRem)+" token"+str(sR)+" remaining from your endowment. You did not receive any tokens from Group Account A since the threshold was not met. You received "+str(self.payOutB)+" tokens from Group Account B since the threshold was met. Thus your earnings in this game is "+str(self.yRem)+"+"+str(self.payOutB)+"="+str(self.yPay)+" tokens."
+            return "You have "+str(self.yRem)+" token"+str(sR)+" remaining from your endowment. You did not receive any tokens from Group Account A since the threshold was not met. You received "+str(self.payOutB)+" tokens from Group Account B since the threshold was met. Thus, your earnings in this game are "+str(self.yRem)+"+"+str(self.payOutB)+"="+str(self.yPay)+" tokens."
