@@ -51,15 +51,16 @@ class p2Game(PracticeGame):
         d=self.player.TreatmentVars()
         group_a_con = random.choice(range(0,d['base_tokens']+1,d['increment']))
         group_b_con = random.choice(range(0,d['base_tokens']+1-group_a_con,d['increment']))
-        self.participant.vars['practiceA'] = group_a_con
-        self.participant.vars['practiceB'] = group_b_con
+        #prevent reloading the page from randomizing the contribution again
+        self.participant.vars['practiceA'] = self.participant.vars.get('practiceA', group_a_con)
+        self.participant.vars['practiceB'] = self.participant.vars.get('practiceB', group_b_con)
         return dict(
             super().vars_for_template(),
             after1="",
             afterb="Since this is a practice round, the computer made random contribution decisions. They are presented below.",
             after2="",
-            group_a_con=group_a_con,
-            group_b_con=group_b_con,
+            group_a_con=self.participant.vars['practiceA'],
+            group_b_con=self.participant.vars['practiceB'],
             display_contributions = 1,
             )
     def is_displayed(self):
