@@ -82,8 +82,9 @@ class p2Game(Game):
         group_a_con = 0
         group_b_con = 0
         for pl in players:
-            group_a_con += pl.contribution_acc_a
-            group_b_con += pl.contribution_acc_b
+            if not pl==self.player:#this isn't the point for your contribution to show up
+                group_a_con += pl.contribution_acc_a
+                group_b_con += pl.contribution_acc_b
 
         return dict(
             super().vars_for_template(),
