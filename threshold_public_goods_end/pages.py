@@ -23,9 +23,9 @@ class Survey(Page):
 		self.player.participant_vars_dump(self)
 class Paypal(Page):
 	form_model = 'player'
-	form_fields=['paypal','venmo']
+	form_fields=['paypal','venmo','venmo_number']
 	def error_message(self, values):
-		if values['paypal']==None and values['venmo']==None:
+		if values['paypal']==None and (values['venmo']==None or values['venmo_number']==None):
 			return "You must enter identifying information for either a PayPal or a Venmo account."
 	def vars_for_template(self):
 		return dict(all_vars = self.participant.vars)
