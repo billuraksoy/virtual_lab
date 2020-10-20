@@ -147,7 +147,17 @@ ROOMS = [
         name='erl',
         display_name='ERL',
         participant_label_file='_rooms/erl.txt',
-        )
+        ),
+        dict(
+        name='erl2',
+        display_name='ERL-2',
+        participant_label_file='_rooms/erl2.txt',
+        ),
+        dict(
+        name='erl3',
+        display_name='ERL-3',
+        participant_label_file='_rooms/erl3.txt',
+        ),
     ]
 
 ADMIN_USERNAME = 'admin'
