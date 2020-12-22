@@ -35,9 +35,6 @@ class p1Game(PracticeGame):
     def vars_for_template(self):
         return dict(
             super().vars_for_template(),
-            after1="Your contributions to Group Accounts A and B (if any) will be presented to your group member during the actual game. Since this is a",
-            afterb=" practice round, the computer will make a random",
-            after2=" decision after you submit yours.",
             group_a_con="",
             group_b_con="",
             display_contributions = 0,
@@ -56,9 +53,6 @@ class p2Game(PracticeGame):
         self.participant.vars['practiceB'] = self.participant.vars.get('practiceB', group_b_con)
         return dict(
             super().vars_for_template(),
-            after1="",
-            afterb="Since this is a practice round, the computer made random contribution decisions. They are presented below.",
-            after2="",
             group_a_con=self.participant.vars['practiceA'],
             group_b_con=self.participant.vars['practiceB'],
             display_contributions = 1,
@@ -72,9 +66,6 @@ class SimGame(PracticeGame):#simultaneous
         return dict(
             super().vars_for_template(),
             all_vars = self.participant.vars,
-            after1="",
-            afterb="",
-            after2="",
             group_a_con="",
             group_b_con="",
             display_contributions = 0,
@@ -158,4 +149,4 @@ class Start(Page):
             all_vars = self.participant.vars
             )
 
-page_sequence = [Practice, p1Game, p2Game, SimGame, Results, Start]
+page_sequence = [Practice, p1Game, p2Game, p3Game, SimGame, Results, Start]
