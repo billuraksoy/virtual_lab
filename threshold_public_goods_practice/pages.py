@@ -19,7 +19,8 @@ class PracticeGame(Page):
         return dict( 
             self.player.TreatmentVars(), 
             roundNum = self.round_number,
-            all_vars = self.participant.vars
+            all_vars = self.participant.vars,
+            id_in_group = self.player.participant.vars["id"]
             )
 
     def error_message(self, values): # entry checking
@@ -60,6 +61,24 @@ class p2Game(PracticeGame):
     def is_displayed(self):
         return not self.session.config['simultaneous'] and self.player.participant.vars["id"]==2
 
+class p2plusGame(PracticeGame):
+    template_name = 'threshold_public_goods_practice/Game.html'
+    def vars_for_template(self):
+        d=self.player.TreatmentVars()
+        group_a_con = random.choice(range(0, d['base_tokens']*(self.player.participant.vars["id"]-1)+1,d['increment']))
+        group_b_con = random.choice(range(0, d['base_tokens']*(self.player.participant.vars["id"]-1)+1-int(group_a_con),d['increment']))
+        #prevent reloading the page from randomizing the contribution again
+        self.participant.vars['practiceA'] = self.participant.vars.get('practiceA', group_a_con)
+        self.participant.vars['practiceB'] = self.participant.vars.get('practiceB', group_b_con)
+        return dict(
+            super().vars_for_template(),
+            group_a_con=self.participant.vars['practiceA'],
+            group_b_con=self.participant.vars['practiceB'],
+            display_contributions = 1,
+            )
+    def is_displayed(self):
+        return not self.session.config['simultaneous'] and self.player.participant.vars["id"]>2
+
 class SimGame(PracticeGame):#simultaneous
     template_name = 'threshold_public_goods_practice/Game.html'
     def vars_for_template(self):
@@ -76,15 +95,18 @@ class SimGame(PracticeGame):#simultaneous
 class Results(Page):
     def vars_for_template(self):
         d=self.player.TreatmentVars()
-        part1 = "You will now be matched with a real player. "
+        if d['group_size'] > 2:
+            part1 = "You will now be matched with real players. "
+        else:
+            part1 = "You will now be matched with a real player. "
         part2 = ""
         part3 = "Please click next when you are ready."
                 
         # Simulate the total contributions
         #make sure that these participant vars are initialized if they're not
-        randA = random.choice(range(0, d['base_tokens']+1,d['increment']))
+        randA = random.choice(range(0, d['base_tokens']*(d['group_size']-1)+1,d['increment']))
         #print(randA)
-        randB = random.choice(range(0, d['base_tokens']+1-int(randA),d['increment']))
+        randB = random.choice(range(0, d['base_tokens']*(d['group_size']-1)+1-int(randA),d['increment']))
         #print(randB)
         #prevent reloading the page from randomizing the contribution again
         self.participant.vars['practiceA'] = self.participant.vars.get('practiceA', randA)
@@ -149,4 +171,4 @@ class Start(Page):
             all_vars = self.participant.vars
             )
 
-page_sequence = [Practice, p1Game, p2Game, p3Game, SimGame, Results, Start]
+page_sequence = [Practice, p1Game, p2Game, p2plusGame, SimGame, Results, Start]

@@ -8,11 +8,17 @@
 
 {% block content %}
 	{% if simultaneous == 0 %}
-	<p>Participants will be randomly assigned a role: first mover or second mover. Shortly, the computer will make this random assignment and you will be informed of your role. You will keep your role for the duration of this study.</p>
+		{% if group_size == 3 %}
+		<p>Participants will be randomly assigned a role: first mover, second mover, or third mover. Shortly, the computer will make this random assignment and you will be informed of your role. You will keep your role for the duration of this study.</p>
 
-	<p>Each group will consist of one first mover and one second mover. The <b>first mover</b> will always make their contribution decision first. And then, the <b>second mover</b> will <b>observe</b> the contribution decision made by the first mover. Next, the second mover will make their own contribution decision.</p>
+		<p>Each group will consist of one first mover, one second mover, and one third mover. The <b>first mover</b> will always make their contribution decision first. And then, the <b>second mover</b> will <b>observe</b> the contribution decision made by the first mover. Next, the second mover will make their own contribution decision. Finally, the <b>third mover</b> will <b>observe</b> the total contributions made by the first and second movers, and will make their own contribution decision as well.</p>
+		{% elif group_size == 2 %}
+		<p>Participants will be randomly assigned a role: first mover or second mover. Shortly, the computer will make this random assignment and you will be informed of your role. You will keep your role for the duration of this study.</p>
+
+		<p>Each group will consist of one first mover and one second mover. The <b>first mover</b> will always make their contribution decision first. And then, the <b>second mover</b> will <b>observe</b> the contribution decision made by the first mover. Next, the second mover will make their own contribution decision.</p>
+		{% endif %}
 	{% else %}
-	<p>Group members will make their contribution decisions <b>simultaneously</b>.</p>
+		<p>Group members will make their contribution decisions <b>simultaneously</b>.</p>
 	{% endif %}
 	<p>At the end of each round, you will be presented a round <b>summary screen</b> that provides information about the contributions to the group accounts and your earnings in that round. After reading the information provided on these summary screens, do not forget to click next in a timely manner. This will prevent delays in the experiment.</p>
 

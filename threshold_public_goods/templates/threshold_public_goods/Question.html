@@ -56,7 +56,7 @@
 		</div>
 	</div>
 	</center>
-	<p>Suppose that your group member contributed {{ oConAt }} to Group Account A and {{ oConBt }} to Group Account B. And suppose that you contributed {{ yConAt }} to Group Account A and {{ yConBt }} to Group Account B. Please answer the following questions for this hypothetical example. </p>
+	<p>Suppose that your group member{% if group_size > 2 %}s{% endif %} contributed{% if group_size > 2 %} a total of{% endif %} {{ oConAt }} to Group Account A and{% if group_size > 2 %} a total of{% endif %} {{ oConBt }} to Group Account B. And suppose that you contributed {{ yConAt }} to Group Account A and {{ yConBt }} to Group Account B. Please answer the following questions for this hypothetical example. </p>
 	{% formfields %}
 	{% next_button %}
 
