@@ -165,27 +165,10 @@ class Results(Page):
     def vars_for_template(self):
         d=self.player.TreatmentVars()
         #handle dropping groupmates
-        part1 = ""
-        part2 = ""
-        part3 = ""
-        dropText=""
-        if(self.player.round_number==self.player.TreatmentVars()['total_rounds']):
-            part1="Please click NEXT."
-        else:
-            if self.session.config['group_size']==2:
-                part1 = "You will be randomly re-matched with a "
-                part3 = " participant in the next round. Please click next when you are ready to start the next round."
-            else:
-                part1 = "You will be randomly re-matched with "
-                part3 = " participants in the next round. Please click next when you are ready to start the next round."
-            part2 = "different"
+        dropped = 0
         if self.participant.vars.get('groupmate_timed_out', None)==True:
-            dropText="Your group member has timed out. Thus, the computer randomly made a decision on their behalf. Since we need an even number of subjects for this study, you will not be able to move forward. However, you will receive $10 from Part 1."
-            part1="We are sorry for this inconvenience. Please click next to proceed."
-            part2=""
-            part3=""
+            dropped=1
                 
-
         # Calculate the total contributions for each group
         players = self.player.group.get_players()
         groupConA = 0
@@ -199,8 +182,6 @@ class Results(Page):
         # Bw = "Threshold is met. You earned "+str(Constants.value_low)+" tokens from Group Account B."
         # Al = "Threshold has not been met. You did not earn any tokens from Group Account A."
         # Bl = "Threshold has not been met. You did not earn any tokens from Group Account B."
-        w = ""
-        l = "not"
         
         # calculate the amount of tokens the player has left over
         kept = d['base_tokens']-self.player.contribution_acc_a-self.player.contribution_acc_b
@@ -211,10 +192,10 @@ class Results(Page):
             pl.thresh_a_met = bool(groupConA>=d['threshold_high'])
             pl.acc_b_total=int(groupConB)
             pl.thresh_b_met = bool(groupConB>=d['threshold_low'])
-
-        ht = w if groupConA>=d['threshold_high'] else l
+        
+        lostHigh = 0 if groupConA>=d['threshold_high'] else 1
         AEarn = d['value_high'] if self.player.thresh_a_met else 0
-        lt = w if groupConB>=d['threshold_low'] else l
+        lostLow = 0 if groupConB>=d['threshold_low'] else 1
         BEarn = d['value_low'] if self.player.thresh_b_met else 0
         
         # save the payoff to the datasheet otherwise it's lost to the void
@@ -231,10 +212,10 @@ class Results(Page):
         return dict(
             d,
             all_vars = self.participant.vars,
-            gDropText=dropText,
+            dropped=dropped,
             roundNum = self.round_number, 
-            highText = ht, 
-            lowText = lt,
+            lostHigh = lostHigh, 
+            lostLow = lostLow,
             groupConA = groupConA-self.player.contribution_acc_a,
             groupConB = groupConB-self.player.contribution_acc_b,
             totConA = groupConA,
@@ -243,9 +224,6 @@ class Results(Page):
             AEarn = AEarn,
             BEarn = BEarn,
             TotEarn = kept+AEarn+BEarn,
-            part1=part1,
-            part2=part2,
-            part3=part3
             )
     def before_next_page(self):
         #If it's the last round save the data to the participant otherwise 
