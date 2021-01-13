@@ -37,7 +37,15 @@
 		}
 	</style>
 	{% if dropped == 1 %}
-		<center><h5>Your group member has timed out. Thus, the computer randomly made a decision on their behalf. Since we need an even number of subjects for this study, you will not be able to move forward. However, you will receive $10 from Part 1.</h5></center>
+		{% if group_size == 2 %}
+			<center><h5>Your group member has timed out. Thus, the computer randomly made a decision on their behalf. Since we need an even number of subjects for this study, you will not be able to move forward. However, you will receive $10 from Part 1.</h5></center>
+		{% elif group_size == 3 %}
+			<center><h5>Your group member has timed out. Thus, the computer randomly made a decision on their behalf. Since we need groups of three subjects for this study, you will not be able to move forward. However, you will receive $10 from Part 1.</h5></center>
+		{% elif group_size == 4 %}
+			<center><h5>Your group member has timed out. Thus, the computer randomly made a decision on their behalf. Since we need groups of four subjects for this study, you will not be able to move forward. However, you will receive $10 from Part 1.</h5></center>
+		{% else %}
+			<center><h5>Your group member has timed out. Thus, the computer randomly made a decision on their behalf. Since we need consistently sized groups of subjects for this study, you will not be able to move forward. However, you will receive $10 from Part 1.</h5></center>
+		{% endif %}
 	{% endif %}
 	<center>
 		<div class="wrapper" style="width:40%;">
