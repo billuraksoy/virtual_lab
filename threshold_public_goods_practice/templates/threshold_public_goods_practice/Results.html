@@ -63,12 +63,12 @@
 			<div class="grid3">
 				<p>Your Contribution:  </p>
 				<p>{{player.pr_contribution_acc_a|cut:" tokens"}}</p>
-				<p>Group Members’ Contribution:</p>
+				<p>Group Members' Contribution:</p>
 				<p>{{groupConA|cut:" tokens"}}</p>
 				<p>TOTAL Contributions:</p>
 				<p>{{totConA|cut:" tokens"}}</p>
 			</div>
-			<div class="pad"><b>Threshold is <u>{{highText}}</u> met.</b></div>
+			<div class="pad"><b>Threshold is {% if lostHigh %}<u>not</u>{% endif %} met.</b></div>
 		</div>
 		<div class = "right wrapper">
 			<h5>Group Account B</h5><br>
@@ -81,16 +81,20 @@
 			<div class="grid3">
 				<p>Your Contribution:  </p>
 				<p>{{player.pr_contribution_acc_b|cut:" tokens"}}</p>
-				<p>Group Members’ Contribution:</p>
+				<p>Group Members' Contribution:</p>
 				<p>{{groupConB|cut:" tokens"}}</p>
 				<p>TOTAL Contributions:</p>
 				<p>{{totConB|cut:" tokens"}}</p>
 			</div>
-			<div class="pad"><b>Threshold is <u>{{lowText}}</u> met.</b></div>
+			<div class="pad"><b>Threshold is {% if lostLow %}<u>not</u>{% endif %} met.</b></div>
 		</div>
 	</div>
 	<center>
-	{{ part1 }}<b>{{ part2 }}</b> {{ part3 }}
+	{% if group_size > 2 %}<!--there's 2 or more other people-->
+		<p>You will now be matched with real players. Please click next when you are ready.</p>
+	{% else %}<!--there's one other person-->
+		<p>You will now be matched with a real player. Please click next when you are ready.</p>
+	{% endif %}
 	</center>
 
     {% next_button %}

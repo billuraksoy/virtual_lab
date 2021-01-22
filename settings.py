@@ -53,7 +53,7 @@ SESSION_CONFIGS = [
         simultaneous=1
         ),
     dict(
-        name='mtpg_seq_large',#Sim=1, ld=1
+        name='mtpg_seq_large',#Sim=0, ld=1
         num_demo_participants=6,
         app_sequence=['threshold_public_goods','threshold_public_goods_practice','threshold_public_goods_game','svo','threshold_public_goods_end','timeout'],
         consent='global/ConsentForm.pdf',#path to pdf
@@ -68,7 +68,7 @@ SESSION_CONFIGS = [
         simultaneous=0
         ),
     dict(
-        name='mtpg_seq_small',#Sim=1, ld=0
+        name='mtpg_seq_small',#Sim=0, ld=0
         num_demo_participants=6,
         app_sequence=['threshold_public_goods','threshold_public_goods_practice','threshold_public_goods_game','svo','threshold_public_goods_end','timeout'],
         consent='global/ConsentForm.pdf',#path to pdf
@@ -80,6 +80,66 @@ SESSION_CONFIGS = [
         increment = 1,
         waiting_room_lowerlimit=2,
         group_size=2,
+        simultaneous=0
+        ),
+    dict(
+        name='mtpg_sim_large_group3',#Sim=1, ld=1
+        num_demo_participants=6,
+        app_sequence=['threshold_public_goods','threshold_public_goods_practice','threshold_public_goods_game','svo','threshold_public_goods_end','timeout'],
+        consent='global/ConsentForm.pdf',#path to pdf
+        threshold_high = 15,
+        threshold_low = 9,
+        value_high = 10,
+        value_low = 7,
+        base_tokens = 5,
+        increment = 1,
+        waiting_room_lowerlimit=3,
+        group_size=3,
+        simultaneous=1
+        ),
+    dict(
+        name='mtpg_sim_small_group3',#Sim=1, ld=0
+        num_demo_participants=6,
+        app_sequence=['threshold_public_goods','threshold_public_goods_practice','threshold_public_goods_game','svo','threshold_public_goods_end','timeout'],
+        consent='global/ConsentForm.pdf',#path to pdf
+        threshold_high=12,
+        threshold_low=9,
+        value_high=10,
+        value_low=7,
+        base_tokens = 5,
+        increment = 1,
+        waiting_room_lowerlimit=3,
+        group_size=3,
+        simultaneous=1
+        ),
+    dict(
+        name='mtpg_seq_large_group3',#Sim=0, ld=1
+        num_demo_participants=6,
+        app_sequence=['threshold_public_goods','threshold_public_goods_practice','threshold_public_goods_game','svo','threshold_public_goods_end','timeout'],
+        consent='global/ConsentForm.pdf',#path to pdf
+        threshold_high = 15,
+        threshold_low = 9,
+        value_high = 10,
+        value_low = 7,
+        base_tokens = 5,
+        increment = 1,
+        waiting_room_lowerlimit=3,
+        group_size=3,
+        simultaneous=0
+        ),
+    dict(
+        name='mtpg_seq_small_group3',#Sim=0, ld=0
+        num_demo_participants=6,
+        app_sequence=['threshold_public_goods','threshold_public_goods_practice','threshold_public_goods_game','svo','threshold_public_goods_end','timeout'],
+        consent='global/ConsentForm.pdf',#path to pdf
+        threshold_high=12,
+        threshold_low=9,
+        value_high=10,
+        value_low=7,
+        base_tokens = 5,
+        increment = 1,
+        waiting_room_lowerlimit=3,
+        group_size=3,
         simultaneous=0
         ),
     dict(

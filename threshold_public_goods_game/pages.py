@@ -49,7 +49,8 @@ class Game(Page):
         return dict( 
             self.player.TreatmentVars(),
             all_vars = self.participant.vars,
-            roundNum = self.round_number
+            roundNum = self.round_number,
+            id_in_group = self.player.id_in_group
             )
 
     def error_message(self, values): # entry checking
@@ -65,9 +66,6 @@ class p1Game(Game):
     def vars_for_template(self):
         return dict(
             super().vars_for_template(),
-            after1="Your contributions to Group Accounts A and B (if any) will be presented to your group member. Your group member will ",
-            afterb="observe your contribution behavior",
-            after2=" and then make their own contribution decision.",
             group_a_con="",
             group_b_con="",
             display_contributions = 0,
@@ -88,9 +86,6 @@ class p2Game(Game):
 
         return dict(
             super().vars_for_template(),
-            after1="",
-            afterb="Your group member’s contributions to Group Accounts A and B (if any) are presented below.",
-            after2="",
             group_a_con=group_a_con,
             group_b_con=group_b_con,
             display_contributions = 1,
@@ -98,25 +93,59 @@ class p2Game(Game):
     def is_displayed(self):
         return not self.session.config['simultaneous'] and self.player.id_in_group==2
 
+class p3Game(Game):
+    template_name = 'threshold_public_goods_game/Game.html'
+    def vars_for_template(self):
+        players = self.player.group.get_players()
+        group_a_con = 0
+        group_b_con = 0
+        for pl in players:
+            if not pl==self.player:#this isn't the point for your contribution to show up
+                group_a_con += pl.contribution_acc_a
+                group_b_con += pl.contribution_acc_b
+
+        return dict(
+            super().vars_for_template(),
+            group_a_con=group_a_con,
+            group_b_con=group_b_con,
+            display_contributions = 1,
+            )
+    def is_displayed(self):
+        return not self.session.config['simultaneous'] and self.player.id_in_group==3
+
 class SeqWait(WaitPage):
     template_name="threshold_public_goods_game/CustWaitPage.html"
     def vars_for_template(self):
-        if self.player.id_in_group==1:
-            return dict(title="Please Wait.",text="Please wait for the second mover to make their contribution decision.")
+        if self.session.config['group_size']==2:
+            if self.player.id_in_group==1:
+                return dict(title="Please Wait.",text="Please wait for the second mover to make their contribution decision.")
+            else:
+                return dict(title="Please Wait.",text="Please wait for the first mover to make their contribution decision. Once they are done, you will see their contribution decision. Then, you will be asked to make your own contribution decision.")
         else:
-            return dict(title="Please Wait.",text="Please wait for the first mover to make their contribution decision. Once they are done, you will see their contribution decision. Then, you will be asked to make your own contribution decision.")
-
+            if self.player.id_in_group ==1:
+                return dict(title="Please Wait.",text="Please wait for the second mover to make their contribution decision.")
+            elif self.player.id_in_group==2:
+                return dict(title="Please Wait.",text="Please wait for the first mover to make their contribution decision. Once they are done, you will see their contribution decision. Then, you will be asked to make your own contribution decision.")
+            else:#player 3+
+                return dict(title="Please Wait.",text="Please wait for the first mover to make their contribution decision.")
     def is_displayed(self):
         return not self.session.config['simultaneous']
+
+class SeqWait2(WaitPage):
+    template_name="threshold_public_goods_game/CustWaitPage.html"
+    def vars_for_template(self):
+        if self.player.id_in_group==3:#shown just to player 3
+            return dict(title="Please Wait.",text="Please wait for the second mover to make their contribution decision. Once they are done, you will see their contribution decision. Then, you will be asked to make your own contribution decision.")
+        else:
+            return dict(title="Please Wait.",text="Please wait for the third mover to make their contribution decision.")
+    def is_displayed(self):
+        return (not self.session.config['simultaneous']) and self.session.config['group_size']==3
 
 class SimGame(Game):#simultaneous
     template_name = 'threshold_public_goods_game/Game.html'
     def vars_for_template(self):
         return dict(
             super().vars_for_template(),
-            after1="",
-            afterb="",
-            after2="",
             group_a_con="",
             group_b_con="",
             display_contributions = 0,
@@ -136,23 +165,10 @@ class Results(Page):
     def vars_for_template(self):
         d=self.player.TreatmentVars()
         #handle dropping groupmates
-        part1 = ""
-        part2 = ""
-        part3 = ""
-        dropText=""
-        if(self.player.round_number==self.player.TreatmentVars()['total_rounds']):
-            part1="Please click NEXT."
-        else:
-            part1 = "You will be randomly re-matched with a "
-            part2 = "different"
-            part3 = " participant in the next round. Please click next when you are ready to start the next round."
+        dropped = 0
         if self.participant.vars.get('groupmate_timed_out', None)==True:
-            dropText="Your group member has timed out. Thus, the computer randomly made a decision on their behalf. Since we need an even number of subjects for this study, you will not be able to move forward. However, you will receive $10 from Part 1."
-            part1="We are sorry for this inconvenience. Please click next to proceed."
-            part2=""
-            part3=""
+            dropped=1
                 
-
         # Calculate the total contributions for each group
         players = self.player.group.get_players()
         groupConA = 0
@@ -166,8 +182,6 @@ class Results(Page):
         # Bw = "Threshold is met. You earned "+str(Constants.value_low)+" tokens from Group Account B."
         # Al = "Threshold has not been met. You did not earn any tokens from Group Account A."
         # Bl = "Threshold has not been met. You did not earn any tokens from Group Account B."
-        w = ""
-        l = "not"
         
         # calculate the amount of tokens the player has left over
         kept = d['base_tokens']-self.player.contribution_acc_a-self.player.contribution_acc_b
@@ -178,10 +192,10 @@ class Results(Page):
             pl.thresh_a_met = bool(groupConA>=d['threshold_high'])
             pl.acc_b_total=int(groupConB)
             pl.thresh_b_met = bool(groupConB>=d['threshold_low'])
-
-        ht = w if groupConA>=d['threshold_high'] else l
+        
+        lostHigh = 0 if groupConA>=d['threshold_high'] else 1
         AEarn = d['value_high'] if self.player.thresh_a_met else 0
-        lt = w if groupConB>=d['threshold_low'] else l
+        lostLow = 0 if groupConB>=d['threshold_low'] else 1
         BEarn = d['value_low'] if self.player.thresh_b_met else 0
         
         # save the payoff to the datasheet otherwise it's lost to the void
@@ -198,10 +212,10 @@ class Results(Page):
         return dict(
             d,
             all_vars = self.participant.vars,
-            gDropText=dropText,
+            dropped=dropped,
             roundNum = self.round_number, 
-            highText = ht, 
-            lowText = lt,
+            lostHigh = lostHigh, 
+            lostLow = lostLow,
             groupConA = groupConA-self.player.contribution_acc_a,
             groupConB = groupConB-self.player.contribution_acc_b,
             totConA = groupConA,
@@ -210,9 +224,6 @@ class Results(Page):
             AEarn = AEarn,
             BEarn = BEarn,
             TotEarn = kept+AEarn+BEarn,
-            part1=part1,
-            part2=part2,
-            part3=part3
             )
     def before_next_page(self):
         #If it's the last round save the data to the participant otherwise 
@@ -225,4 +236,4 @@ class Results(Page):
         if self.participant.vars.get('groupmate_timed_out', None)==True or self.player.round_number==self.player.TreatmentVars()['total_rounds']:
             return upcoming_apps[0]
 
-page_sequence = [GroupWaitAsyncGame, GroupWaitSyncGame, p1Game, SeqWait, p2Game, SimGame, ResWait, Results]
+page_sequence = [GroupWaitAsyncGame, GroupWaitSyncGame, p1Game, SeqWait, p2Game, SeqWait, p3Game, SimGame, ResWait, Results]

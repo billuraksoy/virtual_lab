@@ -9,7 +9,24 @@
 {% block content %}
 
 	You have {{base_tokens}} tokens as your endowment. Please make your contribution decisions below. Remember, you can only contribute in increments of {{increment}} token. Any tokens you do not contribute will be yours to keep.<br><br>
-	{{after1}}<b>{{afterb}}</b>{{after2}}
+	{% if simultaneous == 0 %}
+		{% if group_size > 2 %}
+			{% if id_in_group == 1 %}
+				<p>Your contributions to Group Accounts A and B (if any) will be presented to your group members. Your group members will <b>observe your contribution behavior</b> and then make their own contribution decisions.</p>
+			{% elif id_in_group == 2 %}
+				<p>Your contributions to Group Accounts A and B (if any) will be presented to your final group member. Your final group member will <b>observe your contribution behavior</b> and then make their own contribution decision.</p><br>
+				<b>Your 1st group member's contributions to Group Accounts A and B (if any) are presented below.</b>
+			{% else %}
+				<b>Your group members' contributions to Group Accounts A and B (if any) are presented below.</b>
+			{% endif %}
+		{% else %}
+			{% if id_in_group == 1 %}
+				<p>Your contributions to Group Accounts A and B (if any) will be presented to your group member. Your group member will <b>observe your contribution behavior</b> and then make their own contribution decision.</p>
+			{% else %}
+				<b>Your group member's contributions to Group Accounts A and B (if any) are presented below.</b>
+			{% endif %}
+		{% endif %}
+	{% endif %}
 	<style>
 		.otree-title{
 			text-align:center;
@@ -38,8 +55,16 @@
 				<p>Earnings if threshold is met:</p>
 				<p>{{value_high}} tokens</p>
 				{% if display_contributions == 1 %}
-				<h6><b>Your Group Member's Contribution: </b></h6>
-				<h6><b>{{group_a_con|floatformat:0}}</b></h6>
+					{% if group_size > 2 %}
+						{% if id_in_group == 2 %}
+							<h6><b>1st Mover's Contribution: </b></h6>
+						{% elif id_in_group == 3 %}
+							<h6><b>1st and 2nd Movers' Total contribution: </b></h6>
+						{% endif %}
+					{% else %}
+						<h6><b>Your Group Member's Contribution: </b></h6>
+					{% endif %}
+					<h6><b>{{group_a_con|floatformat:0}}</b></h6>
 				{% endif %}
 			</div>
 			{% formfield player.contribution_acc_a %}
@@ -52,8 +77,16 @@
 				<p>Earnings if threshold is met:</p>
 				<p>{{value_low}} tokens</p>
 				{% if display_contributions == 1 %}
-				<h6><b>Your Group Member's Contribution: </b></h6>
-				<h6><b>{{group_b_con|floatformat:0}}</b></h6>
+					{% if group_size > 2 %}
+						{% if id_in_group == 2 %}
+							<h6><b>1st Mover's Contribution: </b></h6>
+						{% elif id_in_group == 3 %}
+							<h6><b>1st and 2nd Movers' Total contribution: </b></h6>
+						{% endif %}
+					{% else %}
+						<h6><b>Your Group Member's Contribution: </b></h6>
+					{% endif %}
+					<h6><b>{{group_b_con|floatformat:0}}</b></h6>
 				{% endif %}
 			</div>
 			{% formfield player.contribution_acc_b %}

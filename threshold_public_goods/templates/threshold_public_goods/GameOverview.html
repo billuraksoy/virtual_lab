@@ -13,10 +13,9 @@
 
 	You can only contribute to these group accounts in increments of {{increment}} token. <br><br>
 
-	In each round, you and your group member will face the same decision. <b>However, in each round, you will randomly be re-matched with {{other_part}} other participant.</b> <br><br>
+	In each round, you and your group member{% if group_size > 2 %}s{% endif %} will face the same decision. <b>However, in each round, you will randomly be re-matched with {{other_part}} other participant{% if group_size > 2 %}s{% endif %}.</b> <br><br>
 
-  {% formfields %}
-
+  	{% formfields %}
 	At the end of each round, you will receive feedback on the total contributions to each group account and your earnings in that round. <br><br>
 	{% delayed_next wait=30000 %}
 

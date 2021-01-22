@@ -13,10 +13,10 @@
 
 	The threshold for Group Account A is <b>{{threshold_high}} tokens</b>. <br> <br>
 
-	{% if threshold_high == 10 %}
-	If the total amount contributed by your group to Group Account A is {{threshold_high}} tokens, <u>each</u> group member will earn <b>{{value_high}} tokens</b> from this account. Otherwise, nobody earns any tokens from this account.<br> <br>
+	{% if threshold_high == total_tokens %} <!-- (if threshold_high is the maximum contribution don't say "at least") -->
+		If the total amount contributed by your group to Group Account A is {{threshold_high}} tokens, <u>each</u> group member will earn <b>{{value_high}} tokens</b> from this account. Otherwise, nobody earns any tokens from this account.<br> <br>
 	{% else %}
-	If the total amount contributed by your group to Group Account A is at least {{threshold_high}} tokens, <u>each</u> group member will earn <b>{{value_high}} tokens</b> from this account. Otherwise, nobody earns any tokens from this account.<br> <br>
+		If the total amount contributed by your group to Group Account A is at least {{threshold_high}} tokens, <u>each</u> group member will earn <b>{{value_high}} tokens</b> from this account. Otherwise, nobody earns any tokens from this account.<br> <br>
 	{% endif %}
 
 

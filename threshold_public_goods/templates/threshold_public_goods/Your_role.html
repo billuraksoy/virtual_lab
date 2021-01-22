@@ -12,8 +12,23 @@
 			text-align:center;
 		}
 	</style>
-	<h5>{{mover_title}}</h5>
-	<p>{{pt1}}<em>{{italics}}</em><b>{{bold}}</b>{{pt2}}</p><br>
+	{% if simultaneous == 0 %} <!-- sequential -->
+		{% if p_id == 1 %} <!-- first mover, group size doesn't matter -->
+			<h5>You are Randomly Selected to be the First Mover</h5>
+			<p>You are the <em>first mover</em>. This means you will always make your decision first.</p><br>
+		{% elif p_id == 2 and group_size == 2%} <!-- second and last mover -->
+			<h5>You are Randomly Selected to be the Second Mover</h5>
+			<p>You are the <em>second mover</em>. This means you will always make your decision after finding out about your group member's contribution decisions. Your group member goes first and makes their own contribution decisions. And then you see their decisions and make your own decision.</p><br>
+		{% elif p_id == 2 and group_size > 2%} <!-- second and *not* last mover -->
+			<h5>You are Randomly Selected to be the Second Mover</h5>
+			<p>You are the <em>second mover</em>. This means you will always make your decision after finding out about your first group member's contribution decisions. Your first group member goes first and makes their own contribution decisions. And then you see their decisions and make your own decision. After that, your remaining group members will have a turn to see all previous decisions and make their own decision.</p><br>
+		{% elif p_id == 3 and group_size == 3 %} <!-- third mover (specifically for groups of three, not generalizeable) -->
+			<h5>You are Randomly Selected to be the Third Mover</h5>
+			<p>You are the <em>third mover</em>. This means you will always make your decision after finding out about your other group members' contribution decisions. Your other group members go first and make their own contribution decision in turn. And then you see their decisions and make your own decision.</p><br>
+		{% endif %}
+	{% else %}<!-- simultaneous -->
+		<p>You and your group member will make contribution decisions simultaneously.</p><br>
+	{% endif %}
 
 	<p>Your group will be randomly <b>re-constructed</b> at the end of <b>each round.</b></p><br>
 

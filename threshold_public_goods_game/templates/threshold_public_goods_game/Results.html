@@ -36,7 +36,17 @@
 			padding:0 10px 10px 10px;
 		}
 	</style>
-	<center><h5>{{gDropText}}</h5></center>
+	{% if dropped == 1 %}
+		{% if group_size == 2 %}
+			<center><h5>Your group member has timed out. Thus, the computer randomly made a decision on their behalf. Since we need an even number of subjects for this study, you will not be able to move forward. However, you will receive $10 from Part 1.</h5></center>
+		{% elif group_size == 3 %}
+			<center><h5>Your group member has timed out. Thus, the computer randomly made a decision on their behalf. Since we need groups of three subjects for this study, you will not be able to move forward. However, you will receive $10 from Part 1.</h5></center>
+		{% elif group_size == 4 %}
+			<center><h5>Your group member has timed out. Thus, the computer randomly made a decision on their behalf. Since we need groups of four subjects for this study, you will not be able to move forward. However, you will receive $10 from Part 1.</h5></center>
+		{% else %}
+			<center><h5>Your group member has timed out. Thus, the computer randomly made a decision on their behalf. Since we need consistently sized groups of subjects for this study, you will not be able to move forward. However, you will receive $10 from Part 1.</h5></center>
+		{% endif %}
+	{% endif %}
 	<center>
 		<div class="wrapper" style="width:40%;">
 			<h5>Your Earnings</h5>
@@ -64,12 +74,12 @@
 			<div class="grid3">
 				<p>Your Contribution:  </p>
 				<p>{{player.contribution_acc_a|cut:" tokens"}}</p>
-				<p>Group Members’ Contribution:</p>
+				<p>Group Members' Contribution:</p>
 				<p>{{groupConA|cut:" tokens"}}</p>
 				<p>TOTAL Contributions:</p>
 				<p>{{totConA|cut:" tokens"}}</p>
 			</div>
-			<div class="pad"><b>Threshold is <u>{{highText}}</u> met.</b></div>
+			<div class="pad"><b>Threshold is {% if lostHigh %}<u>not</u>{% endif %} met.</b></div>
 		</div>
 		<div class = "right wrapper">
 			<h5>Group Account B</h5><br>
@@ -82,16 +92,24 @@
 			<div class="grid3">
 				<p>Your Contribution:  </p>
 				<p>{{player.contribution_acc_b|cut:" tokens"}}</p>
-				<p>Group Member’s Contribution:</p>
+				<p>Group Members' Contribution:</p>
 				<p>{{groupConB|cut:" tokens"}}</p>
 				<p>TOTAL Contributions:</p>
 				<p>{{totConB|cut:" tokens"}}</p>
 			</div>
-			<div class="pad"><b>Threshold is <u>{{lowText}}</u> met.</b></div>
+			<div class="pad"><b>Threshold is {% if lostLow %}<u>not</u>{% endif %} met.</b></div>
 		</div>
 	</div>
 	<center>
-	{{ part1 }}<b>{{ part2 }}</b> {{ part3 }}
+	{% if dropped == 1 %}<!--groupmate timed out-->
+		<p>We are sorry for this inconvenience. Please click next to proceed.</p>
+	{% elif roundNum == total_rounds %}<!--this is the last round-->
+		<p>Please click NEXT.</p>
+	{% elif group_size > 2 %}<!--this is not the last round and there's 2 or more other people-->
+		<p>You will be randomly re-matched with <b>different</b> participants in the next round. Please click next when you are ready to start the next round.</p>
+	{% else %}<!--this is not the last round and there's one other person-->
+		<p>You will be randomly re-matched with <b>different</b>  participant in the next round. Please click next when you are ready to start the next round.</p>
+	{% endif %}
 	</center>
 
     {% next_button %}
