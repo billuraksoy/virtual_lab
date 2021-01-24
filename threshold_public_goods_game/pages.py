@@ -127,7 +127,7 @@ class SeqWait(WaitPage):
             elif self.player.id_in_group==2:
                 return dict(title="Please Wait.",text="Please wait for the first mover to make their contribution decision. Once they are done, you will see their contribution decision. Then, you will be asked to make your own contribution decision.")
             else:#player 3+
-                return dict(title="Please Wait.",text="Please wait for the first mover to make their contribution decision.")
+                return dict(title="Please Wait.",text="Please wait for the first and the second movers to make their contribution decisions.")
     def is_displayed(self):
         return not self.session.config['simultaneous']
 

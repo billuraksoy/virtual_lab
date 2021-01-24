@@ -42,7 +42,7 @@ class Subsession(BaseSubsession):
                 timed_out[(pl.id_in_group-1)%d['group_size']].append(pl)
         #add the players who are still in to the matrix
         matrix = [list(x) for x in zip(*players)]
-        print(matrix)
+        #print(matrix)
         #shuffle the matrix
         finalMatrix = common._group_randomly(matrix, fixed_id_in_group = not d['simultaneous'])
         #add the players who aren't still in in their own separate groups

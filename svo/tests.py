@@ -6,6 +6,21 @@ from .models import Constants
 
 class PlayerBot(Bot):
 
-    def play_round(self):
-        yield (pages.MyPage)
-        yield (pages.Results)
+	def play_round(self):
+		yield pages.Intro
+		yield pages.Play, dict(
+		input_self_1=0.00,
+		input_self_2=0.00,
+		input_self_3=0.00,
+		input_self_4=0.00,
+		input_self_5=0.00,
+		input_self_6=0.00,
+		input_self_7=0.00,
+		input_self_8=0.00,
+		input_self_9=0.00,
+		input_self_10=0.00,
+		input_self_11=0.00,
+		input_self_12=0.00,
+		input_self_13=0.00,
+		input_self_14=0.00,
+		input_self_15=0.00,)
