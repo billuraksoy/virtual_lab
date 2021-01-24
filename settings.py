@@ -174,6 +174,7 @@ SESSION_CONFIGS = [
 # e.g. self.session.config['participation_fee']
 
 SESSION_CONFIG_DEFAULTS = dict(
+    use_browser_bots=False,
     matching='RING',
     select_items='FULL',
     items_in_random_order=False,
