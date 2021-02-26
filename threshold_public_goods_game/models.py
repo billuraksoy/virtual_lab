@@ -34,12 +34,22 @@ class Subsession(BaseSubsession):
         for n in range(d['group_size']):#create the matrix for zipping
             players.append([])
             timed_out.append([])
-        
+        #init indexes for sim game sort
+        pl_y=0
+        to_y=0
         for pl in mixedPlayers:
-            if pl.participant.vars.get('timed_out_round',0)==0 and not pl.participant.vars.get('groupmate_timed_out', None)==True:
-                players[(pl.id_in_group-1)%d['group_size']].append(pl)
-            else:
-                timed_out[(pl.id_in_group-1)%d['group_size']].append(pl)
+            if not d['simultaneous']:#if you have to worry about maintaining id in group
+                if pl.participant.vars.get('timed_out_round',0)==0 and not pl.participant.vars.get('groupmate_timed_out', None)==True:
+                    players[(pl.id_in_group-1)%d['group_size']].append(pl)
+                else:
+                    timed_out[(pl.id_in_group-1)%d['group_size']].append(pl)
+            else: #otherwise make sure the groups are evenly filled by the given players
+                if pl.participant.vars.get('timed_out_round',0)==0 and not pl.participant.vars.get('groupmate_timed_out', None)==True:
+                    players[pl_y].append(pl)
+                    pl_y = (pl_y + 1) % d['group_size']
+                else:
+                    timed_out[to_y].append(pl)
+                    to_y = (to_y + 1) % d['group_size']
         #add the players who are still in to the matrix
         matrix = [list(x) for x in zip(*players)]
         #print(matrix)
