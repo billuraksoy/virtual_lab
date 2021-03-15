@@ -31,7 +31,6 @@ class Group(BaseGroup):
     pass
 
 class Player(BasePlayer):
-    
     #we don't have to worry about a maximum value here because 
     #the page will error if the total is too high and if we
     #try to base each max off of the base_tokens - the contribution
@@ -48,6 +47,8 @@ class Player(BasePlayer):
         initial=0,
         label = "Your Contribution"
         )
+
+    #internal fields
     pr_acc_a_total=models.IntegerField(label="")
     pr_acc_b_total=models.IntegerField(label="")
     pr_thresh_a_met = models.BooleanField(label="")

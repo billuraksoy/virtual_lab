@@ -1,0 +1,29 @@
+Otree Bot Guide
+
+Preface
+Otree bots allow for incredible levels of testing and automatic interaction with otree pages. I’d recommend reading up on their documentation here: https://otree.readthedocs.io/en/latest/bots.html
+This guide will assume you have already read it and will cover some important notes about using bots as well as some important use cases.
+
+Generator objects
+
+Bots in python are driven by python generator objects; when the “play_round” function is called, it returns a generator that points back to itself. 
+The bot driver code on the server side will repeatedly ask the generator object for responses to each page the bot lands on, and the generator object 
+will respond by resuming the code it points to where it last left off and continuing until the next yield or pass statement, pausing when it gets there.
+
+So if you had:
+class PlayerBot(Bot):
+    def play_round(self):
+        somevar=”Hi”
+        yield pages.First, dict(number=1)
+        print(somevar)
+        yield pages.Second
+        somevar=”Hello”
+        print(somevar)
+        yield pages.Third
+
+On the first page, nothing would print, but a field called “number” would be set to 1. 
+On the second page, “Hi” would be printed to the console and no fields would be set. 
+On the third page “Hello” would be printed to the console and no fields would be set.
+
+This means that if you want the bot to do something on every page, say take a screenshot for example, they would have to be told to do it before every 
+yield or pass statement.

@@ -98,27 +98,18 @@ class Results(Page):
         # Simulate the total contributions
         #make sure that these participant vars are initialized if they're not
         randA = random.choice(range(0, d['base_tokens']*(d['group_size']-1)+1,d['increment']))
-        #print(randA)
         randB = random.choice(range(0, d['base_tokens']*(d['group_size']-1)+1-int(randA),d['increment']))
-        #print(randB)
+
         #prevent reloading the page from randomizing the contribution again
         self.participant.vars['practiceA'] = self.participant.vars.get('practiceA', randA)
         self.participant.vars['practiceB'] = self.participant.vars.get('practiceB', randB)
         self.participant.vars['vars_json_dump']['PracticeGame-computer_con_A'] = self.participant.vars.get('practiceA', randA)
         self.participant.vars['vars_json_dump']['PracticeGame-computer_con_B'] = self.participant.vars.get('practiceB', randB)
+        
         #set up the proper group contributions
         groupConA = self.participant.vars['practiceA'] + self.player.pr_contribution_acc_a
         groupConB = self.participant.vars['practiceB'] + self.player.pr_contribution_acc_b
-        
-        
-        # if (not self.session.config['simultaneous']) and self.player.participant.vars["id"]==2:
-        # #in this case we've already shown them what their group contributed, so we need to be consistent.
-        #     groupConA = self.participant.vars['practiceA'] + self.player.pr_contribution_acc_a
-        #     groupConB = self.participant.vars['practiceB'] + self.player.pr_contribution_acc_b
-        # else:
-        #     groupConA = random.choice(range(0,d['base_tokens']+1,d['increment'])) + self.player.pr_contribution_acc_a
-        #     groupConB = random.choice(range(0,d['base_tokens']+1-int(groupConA),d['increment'])) + self.player.pr_contribution_acc_b
-        
+                
         # calculate the amount of tokens the player has left over
         kept = d['base_tokens']-self.player.pr_contribution_acc_a-self.player.pr_contribution_acc_b
         

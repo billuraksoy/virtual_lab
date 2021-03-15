@@ -9,6 +9,7 @@ class GroupWaitAsyncGame(WaitPage):
     body_text="Please do not leave this page.\n\nOnce your group is constructed, the experiment will start immediately.\n\nIf you do not put your answers in a timely manner, you will be removed from the study."
     def is_displayed(self):
         return not self.session.config['synchronous_game']
+
 class GroupWaitSyncGame(WaitPage):
     wait_for_all_groups = True
     after_all_players_arrive = 'after_arrive'
@@ -16,6 +17,7 @@ class GroupWaitSyncGame(WaitPage):
     body_text="Please do not leave this page.\n\nOnce your group is constructed, the experiment will start immediately.\n\nIf you do not put your answers in a timely manner, you will be removed from the study."
     def is_displayed(self):
         return self.session.config['synchronous_game']
+
 class Game(Page):
     def get_timeout_seconds(self):
         return self.session.config['decision_timer']
@@ -61,6 +63,7 @@ class Game(Page):
             return 'You cannot contribute more tokens than you have.'
 
 #Use what we've coded so far for the game as a parent class and create childclasses for it.
+#note: this is probably less resource efficient than creating multiple apps.
 class p1Game(Game):
     template_name = 'threshold_public_goods_game/Game.html'
     def vars_for_template(self):
@@ -176,12 +179,6 @@ class Results(Page):
         for pl in players:
             groupConA += pl.contribution_acc_a
             groupConB += pl.contribution_acc_b
-        
-        # # Hardcoded text strings Aw=A win, Bl = B loss, etc.
-        # Aw = "Threshold is met. You earned "+str(Constants.value_high)+" tokens from Group Account A."
-        # Bw = "Threshold is met. You earned "+str(Constants.value_low)+" tokens from Group Account B."
-        # Al = "Threshold has not been met. You did not earn any tokens from Group Account A."
-        # Bl = "Threshold has not been met. You did not earn any tokens from Group Account B."
         
         # calculate the amount of tokens the player has left over
         kept = d['base_tokens']-self.player.contribution_acc_a-self.player.contribution_acc_b
