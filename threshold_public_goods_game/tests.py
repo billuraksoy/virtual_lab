@@ -3,9 +3,11 @@ from . import pages
 from ._builtin import Bot
 from .models import Constants
 import random
+from custom_templates.custom_classes import *
 
-class PlayerBot(Bot):
+class PlayerBot(SBot):
     def play_round(self):
+        s=super().snap()
         d=self.player.TreatmentVars()
         
         #randomize the input so that 
@@ -21,7 +23,9 @@ class PlayerBot(Bot):
         elif self.player.participant.vars["id"]==3:
             yield pages.p3Game, dict(contribution_acc_a=randA,contribution_acc_b=randB)
         #testing results
+        s=super().snap()
         yield pages.Results
+        s=super().snap()
         expect(self.player.acc_a_total>=randA,True)
         expect(self.player.acc_b_total>=randB,True)
         expectedTokens = d['base_tokens']-randA-randB

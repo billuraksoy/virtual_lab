@@ -174,7 +174,11 @@ SESSION_CONFIGS = [
 # e.g. self.session.config['participation_fee']
 
 SESSION_CONFIG_DEFAULTS = dict(
+    #screenshot bot
+    screenshot=False,
     use_browser_bots=False,
+    followed_player=1,
+    #svo
     matching='RING',
     select_items='FULL',
     items_in_random_order=False,
@@ -183,9 +187,11 @@ SESSION_CONFIG_DEFAULTS = dict(
     random_payoff='RAND',
     precision='INTEGERS',
     language='en',
+    #default
     real_world_currency_per_point=1.00, 
     participation_fee=0.00, 
     participation_payment=5,
+    #tpg
     decision_timer=60,
     total_rounds=15,#Otree doesn't natively support variable round numbers, there's a number of work arounds but they're all huristics
     synchronous_game=1,

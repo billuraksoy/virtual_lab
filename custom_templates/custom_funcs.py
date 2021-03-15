@@ -8,9 +8,13 @@ from otree.api import (
     Currency as c,
     currency_range,
 )
+from otree.app_template._builtin import Bot
+
+
 def TreatmentVars(self):
     if hasattr(self,'session'):#make sure this is only called on things it would work for
         return dict(
+            screenshot = self.session.config['screenshot'],
             threshold_high = self.session.config['threshold_high'],
             threshold_low = self.session.config['threshold_low'],
             value_high = self.session.config['value_high'],
