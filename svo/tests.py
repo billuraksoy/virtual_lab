@@ -2,12 +2,13 @@ from otree.api import Currency as c, currency_range
 from . import pages
 from ._builtin import Bot
 from .models import Constants
-from custom_templates.custom_classes import *
+from custom_templates.custom_funcs import snap
 
-class PlayerBot(SBot):
+class PlayerBot(Bot):
 	def play_round(self):
+		snap(self)
 		yield pages.Intro
-		s=super().snap()
+		snap(self)
 		yield pages.Play, dict(
 		input_self_1=0.00,
 		input_self_2=0.00,
@@ -24,4 +25,4 @@ class PlayerBot(SBot):
 		input_self_13=0.00,
 		input_self_14=0.00,
 		input_self_15=0.00,)
-		s=super().snap()
+		

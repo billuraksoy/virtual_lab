@@ -3,18 +3,17 @@ from . import pages
 from ._builtin import Bot
 from .models import Constants
 import random
-from custom_templates.custom_classes import *
+from custom_templates.custom_funcs import snap
 
-class PlayerBot(SBot):
+class PlayerBot(Bot):
     def play_round(self):
-        s=super().snap()
+        snap(self)
         yield pages.Practice
         d=self.player.TreatmentVars()
         
         #randomize the input so that 
         randA = random.choice(range(0, d['base_tokens'],d['increment']))
         randB = random.choice(range(0, d['base_tokens']-int(randA),d['increment']))
-        s=super().snap()    
         if d['simultaneous']:
             yield pages.SimGame, dict(pr_contribution_acc_a=randA,pr_contribution_acc_b=randB)
         elif self.player.participant.vars["id"]==1:
@@ -25,7 +24,7 @@ class PlayerBot(SBot):
             yield pages.p2plusGame, dict(pr_contribution_acc_a=randA,pr_contribution_acc_b=randB)
                
         #testing results
-        s=super().snap()
+        snap(self)
         yield pages.Results
         expect(self.player.pr_acc_a_total>=randA,True)
         expect(self.player.pr_acc_b_total>=randB,True)
@@ -38,5 +37,5 @@ class PlayerBot(SBot):
             expectedTokens+=d['value_low']
         expect(self.player.payoff, expectedTokens)
         
-        s=super().snap()
+        snap(self)
         yield pages.Start, dict()

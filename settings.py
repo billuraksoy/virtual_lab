@@ -177,7 +177,6 @@ SESSION_CONFIG_DEFAULTS = dict(
     #screenshot bot
     screenshot=False,
     use_browser_bots=False,
-    followed_player=1,
     #svo
     matching='RING',
     select_items='FULL',
