@@ -3,7 +3,6 @@ from ._builtin import Page, WaitPage
 from .models import Constants
 from custom_templates.custom_funcs import *
 
-
 class PID_Begin(Page):
     form_model = 'player'
     form_fields = ['p_ID']
@@ -27,7 +26,7 @@ class Informed_Consent(Page):
             informed_consent = self.session.config['consent'],
             consent_link = self.session.config['consent_link']
             )
-    def before_next_page(self):
+    def before_next_page(self):#set up participant vars we'll use later
         self.player.participant.vars['timed_out']=False
         self.player.participant.vars['groupmate_timed_out']=False
         
@@ -36,7 +35,7 @@ class Informed_Consent(Page):
         self.player.participant.vars['vars_json_dump']['code'] = self.player.participant.code
         self.player.participant.vars['vars_json_dump']['label'] = self.player.participant.label
         d=self.player.TreatmentVars()
-        if not d['simultaneous']:
+        if not d['simultaneous']:#record participant id
             self.player.participant.vars["id"]=self.player.id_in_group%d['group_size']
         
 
@@ -61,6 +60,7 @@ class GameOverview(Page):
             )
     def before_next_page(self):
         self.player.participant_vars_dump(self)
+
 class GameOverview2(Page):
     form_model = 'player'
     form_fields = ['attention_check_2']
@@ -116,6 +116,7 @@ class Question(Page):
             )
     def before_next_page(self):
         self.player.participant_vars_dump(self)
+
 class Message(Page):
     def vars_for_template(self):
         return dict(self.player.TreatmentVars(), all_vars = self.participant.vars)
@@ -139,6 +140,7 @@ class Wait(WaitPage):
     body_text="Please do not leave this page.\n\nOnce your group is constructed, the experiment will start immediately.\n\nIf you do not put your answers in a timely manner, you will be removed from the study."
     def is_displayed(self):
         return self.session.config['synchronous_game']
+
 page_sequence = [
     #PID_Begin,
     Informed_Consent,

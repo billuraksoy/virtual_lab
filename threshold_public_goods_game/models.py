@@ -52,7 +52,6 @@ class Subsession(BaseSubsession):
                     to_y = (to_y + 1) % d['group_size']
         #add the players who are still in to the matrix
         matrix = [list(x) for x in zip(*players)]
-        #print(matrix)
         #shuffle the matrix
         finalMatrix = common._group_randomly(matrix, fixed_id_in_group = not d['simultaneous'])
         #add the players who aren't still in in their own separate groups
@@ -113,6 +112,8 @@ class Player(BasePlayer):
         initial=0,
         label = "Your Contribution"
         )
+
+    #internal fields
     acc_a_total=models.IntegerField(label="")
     acc_b_total=models.IntegerField(label="")
     thresh_a_met = models.BooleanField(label="")
