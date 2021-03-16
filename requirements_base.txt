@@ -2,3 +2,4 @@ otree>=3.3.7,<5
 django==2.2.13
 python_version >= '3.7'
 pathlib>=1.0.0
+sentry-sdk>=1.0.0
