@@ -1,27 +1,27 @@
 from otree.api import Currency as c, currency_range
-from . import pages
-from ._builtin import Bot
-from .models import Constants
+from . import *
+from otree.api import Bot
+
 from custom_templates.custom_funcs import snap
 
 class PlayerBot(Bot):
     def play_round(self):
         snap(self)
-        yield pages.Informed_Consent, dict(consent=True)
+        yield Informed_Consent, dict(consent=True)
         snap(self)
-        yield pages.Overview
+        yield Overview
         snap(self)
-        yield pages.Rules
+        yield Rules
         snap(self)
-        yield pages.GameOverview, dict(attention_check_1=1)
+        yield GameOverview, dict(attention_check_1=1)
         snap(self)
-        yield pages.GameOverview2, dict(attention_check_2=1)
+        yield GameOverview2, dict(attention_check_2=1)
         snap(self)
-        yield pages.TotalEarnings
+        yield TotalEarnings
         snap(self)
-        yield pages.ContributionDecisions
+        yield ContributionDecisions
         snap(self)
-        yield pages.Question, dict(question1=0,question2=1,question3=self.player.yPay)
+        yield Question, dict(question1=0,question2=1,question3=self.player.yPay)
         snap(self)
         if not self.player.TreatmentVars()['simultaneous']:
-            yield pages.Your_role
+            yield Your_role

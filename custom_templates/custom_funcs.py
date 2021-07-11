@@ -53,11 +53,12 @@ def TreatmentVars(self):
             );
 
 def participant_vars_dump(self,page):
-    if self.participant.vars.get('vars_json_dump',None)==None:#if this doesn't exist
-        self.participant.vars['vars_json_dump']=dict()
-    for field in page.form_fields:
-        page_name = page.get_template_names()[-1].split("/")[-1].split(".")[0]#in the format "app/page.html" extracts just "page"
-        self.participant.vars['vars_json_dump'][page_name+'-'+field+('-'+str(self.round_number)) if (not self.round_number==-1) else ""]=str(getattr(self, field))
+    pass
+    # if self.participant.vars.get('vars_json_dump',None)==None:#if this doesn't exist
+    #     self.participant.vars['vars_json_dump']=dict()
+    # for field in page.form_fields:
+    #     page_name = page.get_template_names()[-1].split("/")[-1].split(".")[0]#in the format "app/page.html" extracts just "page"
+    #     self.participant.vars['vars_json_dump'][page_name+'-'+field+('-'+str(self.round_number)) if (not self.round_number==-1) else ""]=str(getattr(self, field))
 
 BasePlayer.TreatmentVars=TreatmentVars
 BasePlayer.participant_vars_dump = participant_vars_dump

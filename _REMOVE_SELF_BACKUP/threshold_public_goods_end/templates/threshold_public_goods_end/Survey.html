@@ -1,0 +1,33 @@
+{% extends "global/Page.html" %}
+{% load otree static %}
+<!-- {% load custom_tags %} -->
+
+{% block title %}
+    Survey
+{% endblock %}
+
+{% block content %}
+	<style>
+		.otree-title{
+			text-align:center;
+		}
+		ul{
+			margin-bottom:0;
+		}
+	</style>
+	{% formfield player.birth_year %}
+	{% formfield player.gender %}
+	{% formfield player.income %}
+	<p>What is your ethnicity?</p>
+	{% formfield player.Wh %}
+	{% formfield player.Bl %}
+	{% formfield player.Na %}
+	{% formfield player.As %}
+	{% formfield player.Nh %}
+	{% formfield player.Hi %}
+	{% formfield player.Me %}
+	{% formfield player.OtherBool %}
+	{% formfield player.other %}
+	{% formfield player.risk %}
+	{% next_button %}
+{% endblock %}

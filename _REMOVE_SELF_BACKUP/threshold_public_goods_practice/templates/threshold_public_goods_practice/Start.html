@@ -1,0 +1,33 @@
+{% extends "global/Page.html" %}
+{% load otree static %}
+<!-- {% load custom_tags %} -->
+
+{% block title %}
+    You are now ready to start the game
+{% endblock %}
+
+{% block content %}
+	<p>Thanks for completing the practice round. Now the actual Contribution Game will start.  </p>
+
+  	<p>  
+  	{% if group_size == 2 %}
+  		You will be matched with a <b>different participant</b> in each round. 
+  	{% else %}
+  		You will be matched with <b>different participants</b> in each round. 
+  	{% endif %}
+  	<b>Each round is an independent game</b> and your decisions in previous rounds has no impact on future rounds.  </p>
+
+  	<p><b>You will have to submit your decisions within {{decision_timer}} seconds.</b>  This is to ensure that this online study proceeds smoothly. If you fail to make your decision on time, the computer will make a random decision on your behalf and you will be removed from the study. If this happens, you will <u>not</u> receive payment from this study.</p>
+
+	<p>
+	{% if group_size == 2 %}
+		It is <u>highly unlikely</u> that your group member times out and gets removed from the study. 
+	{% else %}
+		It is <u>highly unlikely</u> that one of your group members times out and gets removed from the study.
+	{% endif %}
+	However, if this rare situation occurs, we will inform you on the round summary page. </p>
+
+  	Remember that once you start, you will have {{decision_timer}} seconds to submit your decisions.<br><br>
+
+	{% delayed_next label='START' wait=30000 %}
+{% endblock %}

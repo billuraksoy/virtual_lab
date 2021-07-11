@@ -1,31 +1,31 @@
 from otree.api import Currency as c, currency_range, expect
-from . import pages
-from ._builtin import Bot
-from .models import Constants
+from . import *
+from otree.api import Bot
+
 import random
 from custom_templates.custom_funcs import snap
 
 class PlayerBot(Bot):
     def play_round(self):
         snap(self)
-        yield pages.Practice
+        yield Practice
         d=self.player.TreatmentVars()
         
         #randomize the input so that 
         randA = random.choice(range(0, d['base_tokens'],d['increment']))
         randB = random.choice(range(0, d['base_tokens']-int(randA),d['increment']))
         if d['simultaneous']:
-            yield pages.SimGame, dict(pr_contribution_acc_a=randA,pr_contribution_acc_b=randB)
+            yield SimGame, dict(pr_contribution_acc_a=randA,pr_contribution_acc_b=randB)
         elif self.player.participant.vars["id"]==1:
-            yield pages.p1Game, dict(pr_contribution_acc_a=randA,pr_contribution_acc_b=randB)
+            yield p1Game, dict(pr_contribution_acc_a=randA,pr_contribution_acc_b=randB)
         elif self.player.participant.vars["id"]==2:
-            yield pages.p2Game, dict(pr_contribution_acc_a=randA,pr_contribution_acc_b=randB)
+            yield p2Game, dict(pr_contribution_acc_a=randA,pr_contribution_acc_b=randB)
         elif self.player.participant.vars["id"]>2:
-            yield pages.p2plusGame, dict(pr_contribution_acc_a=randA,pr_contribution_acc_b=randB)
+            yield p2plusGame, dict(pr_contribution_acc_a=randA,pr_contribution_acc_b=randB)
                
         #testing results
         snap(self)
-        yield pages.Results
+        yield Results
         expect(self.player.pr_acc_a_total>=randA,True)
         expect(self.player.pr_acc_b_total>=randB,True)
         expectedTokens = d['base_tokens']-randA-randB
@@ -38,4 +38,4 @@ class PlayerBot(Bot):
         expect(self.player.payoff, expectedTokens)
         
         snap(self)
-        yield pages.Start, dict()
+        yield Start, dict()

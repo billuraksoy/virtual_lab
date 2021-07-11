@@ -1,0 +1,70 @@
+{% extends "global/Page.html" %}
+{% load otree static %}
+<!-- {% load custom_tags %} -->
+
+{% block title %}
+    Understandings Questions
+{% endblock %}
+
+{% block content %}
+	<style>
+		.otree-title{
+			text-align:center;
+		}
+		.grid3{
+			text-align:left;
+			width:100%;
+			display:grid;
+			grid-template-columns:3fr 1fr;
+			padding:0px 10px;
+		}
+		.wrapper{
+			border:2px solid black;
+			margin:10px;
+			padding-top:10px;
+		}
+		.grid2{
+			text-align:center;
+			display: grid;
+			grid-template-columns: 1fr 1fr;
+			width:70%;
+		}
+		.right{
+			text-align:right;
+		}
+	</style>
+	<p>Now, we would like to make sure that you understand the game instructions. If you have any questions please use Zoom’s chat function to ask your questions to the experimenters.</p>
+	<center>
+	<div class = "grid2">
+		<div class = "wrapper">
+			<h5>Group Account A</h5><br>
+			<div class="grid3">
+				<p>Threshold:</p>
+				<p class="right">{{threshold_high}}</p>
+				<p>Earnings if threshold is met:</p>
+				<p class="right">{{value_high}}</p>
+			</div>
+		</div>
+		<div class = "wrapper">
+			<h5>Group Account B</h5><br>
+			<div class="grid3">
+				<p>Threshold:</p>
+				<p class="right">{{threshold_low}}</p>
+				<p>Earnings if threshold is met:</p>
+				<p class="right">{{value_low}}</p>
+			</div>
+		</div>
+	</div>
+	</center>
+	{% if group_size == 4 %}
+		<p>Suppose that the other three group members contributed a total of {{ oConAt }} to Group Account A and a total of {{ oConBt }} to Group Account B. And suppose that you contributed {{ yConAt }} to Group Account A and {{ yConBt }} to Group Account B. Please answer the following questions for this hypothetical example. </p>
+	{% elif group_size == 3 %}
+		<p>Suppose that the other two group members contributed a total of {{ oConAt }} to Group Account A and a total of {{ oConBt }} to Group Account B. And suppose that you contributed {{ yConAt }} to Group Account A and {{ yConBt }} to Group Account B. Please answer the following questions for this hypothetical example. </p>
+	{% else %}
+		<p>Suppose that your group member contributed {{ oConAt }} to Group Account A and {{ oConBt }} to Group Account B. And suppose that you contributed {{ yConAt }} to Group Account A and {{ yConBt }} to Group Account B. Please answer the following questions for this hypothetical example. </p>
+	{% endif %}
+	
+	{% formfields %}
+	{% next_button %}
+
+{% endblock %}
