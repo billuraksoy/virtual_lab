@@ -1,0 +1,31 @@
+{% extends "global/Page.html" %}
+{% load otree static %}
+<!-- {% load custom_tags %} -->
+
+{% block title %}
+
+{% endblock %}
+
+{% block content %}
+    <html>
+      <head>
+        <title></title>
+      </head>
+      <body>
+        <p>There are four statements listed below. In this question, we ask you to tell us how many of them are true for you.
+          We don’t want to know which ones, just how many. </p>
+
+        <li> Statement21  </li>
+        <li> Statement22  </li>
+        <li> Statement23  </li>
+        <li> Statement24  </li>
+
+
+  {% formfields %}
+
+
+    {{ next_button }}
+
+
+
+{% endblock %}
