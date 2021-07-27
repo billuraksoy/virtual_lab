@@ -13,7 +13,6 @@ from pathlib import Path#needed for snap()
 def semantic_diff(html1,html2):#returns weather there is a real semantic difference between two otree pages
     h1=''.join(filter(lambda x: not x.isdigit(), html1.split("<div class=\"card debug-info\">")[0].split("<div class=\"_otree-content\">")[1])) 
     h2=''.join(filter(lambda x: not x.isdigit(), html2.split("<div class=\"card debug-info\">")[0].split("<div class=\"_otree-content\">")[1]))
-    print(h1)
     return not h1==h2
 
 def snap(bot):
