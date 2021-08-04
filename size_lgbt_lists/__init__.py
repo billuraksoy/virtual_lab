@@ -101,7 +101,7 @@ class ListPage1(Page):
 
     @staticmethod
     def is_displayed(player: Player):
-        return player.participant.page_order[player.session.round_number - 1]  == "1"
+        return player.participant.vars["page_order"][player.subsession.round_number - 1]  == "1"
         # get the page order set up earlier, within that order, get a particular variable. since py starts with zero, in round 1, look at 0
         # round_number is updated across rounds.
         # in round 1, the index is 0
@@ -138,7 +138,7 @@ class ListPage2(Page):
 
     @staticmethod
     def is_displayed(player: Player):
-        return player.participant.page_order[player.session.round_number - 1]  == "2"
+        return player.participant.vars["page_order"][player.subsession.round_number - 1]  == "2"
 
 
     @staticmethod
@@ -160,7 +160,7 @@ class ListPage3(Page):
 
     @staticmethod
     def is_displayed(player: Player):
-        return player.participant.page_order[player.session.round_number - 1] == "3"
+        return player.participant.vars["page_order"][player.subsession.round_number - 1] == "3"
 
     @staticmethod
     def vars_for_template(player: Player):

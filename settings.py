@@ -182,6 +182,11 @@ SESSION_CONFIGS = [
     #         Edit the 'precision' parameter with TWO_DIGITS_AFTER_POINT or INTEGERS.
     #         """
     # )
+    dict(
+        name='size',
+        num_demo_participants=2,
+        app_sequence=['size_lgbt_intro','size_lgbt_lists','size_lgbt_survey'],
+        ),
 ]
 
 # if you set a property in SESSION_CONFIG_DEFAULTS, it will be inherited by all configs
