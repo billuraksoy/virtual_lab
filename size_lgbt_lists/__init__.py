@@ -32,7 +32,6 @@ class Group(BaseGroup):
 
 def creating_session(subsession: Subsession):
     if subsession.round_number == 1: #if this is the first round, randomize the order
-        print("Got here")
         for player in subsession.get_players(): #get the list of players and randomize for each player.
             page_list = [x for x in Constants.page_list] #create a copy of the page_list to be shuffled
             random.shuffle(page_list) #shuffle it in its place
@@ -63,7 +62,7 @@ class Player(BasePlayer):
 
     sensitive_q_3 = models.IntegerField(
         choices=[[1, 'Yes'], [0, 'No']],
-        label="SensitiveQuestion12?",
+        label="SensitiveQuestion13?",
         widget=widgets.RadioSelect,
     )
 

@@ -183,8 +183,8 @@ SESSION_CONFIGS = [
     #         """
     # )
     dict(
-        name='size',
-        num_demo_participants=2,
+        name='lgbt_size_sentiments',
+        num_demo_participants=4,
         app_sequence=['size_lgbt_intro','size_lgbt_lists','size_lgbt_survey'],
         ),
 ]
