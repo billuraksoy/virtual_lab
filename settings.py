@@ -158,11 +158,6 @@ SESSION_CONFIGS = [
         group_size=3,
         simultaneous=0
         ),
-    dict(
-        name = "size_lgbt_1",
-        num_demo_participants=4,
-        app_sequence=['size_lgbt_intro','size_lgbt_lists','size_lgbt_survey']
-        ),
     # dict(
     #     name='svo',
     #     display_name= "Social Value Orientation",
