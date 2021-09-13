@@ -24,10 +24,10 @@ class Player(BasePlayer):
 class ConsentPage(Page):
     pass
 
-class overview(Page):
+class Overview(Page):
     pass
 
-class page_intro(Page):
+class PageIntro(Page):
     pass
 
-page_sequence = [ConsentPage, overview, page_intro]
+page_sequence = [ConsentPage, Overview, PageIntro]
