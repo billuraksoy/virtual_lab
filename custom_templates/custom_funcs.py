@@ -1,15 +1,13 @@
-# from otree.api import (
-#     models,
-#     widgets,
-#     BaseConstants,
-#     BaseSubsession,
-#     BaseGroup,
-#     BasePlayer,
-#     Currency as c,
-#     currency_range,
-# )
-
-from otree.api import *
+from otree.api import (
+    models,
+    widgets,
+    BaseConstants,
+    BaseSubsession,
+    BaseGroup,
+    BasePlayer,
+    Currency as c,
+    currency_range,
+)
 from pathlib import Path#needed for snap()
 
 def semantic_diff(html1,html2):#returns weather there is a real semantic difference between two otree pages
