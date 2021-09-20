@@ -18,7 +18,7 @@ class Group(BaseGroup):
     pass
 
 class Player(BasePlayer):
-    pass
+    number_stated_intro = models.IntegerField(min=2,max=2, label='Please enter the total number of statements above that apply to you:')
 
 # PAGES
 class ConsentPage(Page):
@@ -30,4 +30,8 @@ class Overview(Page):
 class PageIntro(Page):
     pass
 
-page_sequence = [ConsentPage, Overview, PageIntro]
+class Example(Page):
+    form_model = 'player'
+    form_fields = ['number_stated_intro']
+
+page_sequence = [ConsentPage, Overview, PageIntro, Example]

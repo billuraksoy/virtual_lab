@@ -6,11 +6,4 @@ from custom_templates.custom_funcs import snap
 
 class PlayerBot(Bot):
     def play_round(self):
-        #snap(self)
-        yield ConsentPage
-        #snap(self)
-        yield Overview
-        #snap(self)
-        yield PageIntro
-
-        yield Example, dict(number_stated_intro=2)
+    	yield P_ID, dict(p_ID="ffffffffffffffffffffffff")
