@@ -1,0 +1,31 @@
+{% extends "global/Page.html" %}
+{% load otree static %}
+<!-- {% load custom_tags %} -->
+
+{% block title %}
+
+{% endblock %}
+
+{% block content %}
+    <html>
+      <head>
+        <title></title>
+      </head>
+      <body>
+        <p>There are four statements listed below. In this question, we ask you to tell us how many of them are true for you.
+          We don’t want to know which ones, just how many. </p>
+
+        <li> I usually respond to my emails within 24 hours.  </li>
+        <li> I have at least eight years of education beyond my high school degree.  </li>
+        <li> Please put seven as your answer below regardless of how many of the others are true for you.  </li>
+        <li> This is because we would like to see whether you are reading each item carefully.  </li>
+
+
+  {% formfields %}
+
+
+    {{ next_button }}
+
+
+
+{% endblock %}
