@@ -60,9 +60,11 @@ class Player(BasePlayer):
 
 # PAGES
 class Impressions1(Page):
-	pass
+    form_model = 'player'
+    form_fields = ['clearInstructions','about','unclear']
 
 class Impressions2(Page):
-	pass
+    form_model = 'player'
+    form_fields = ['figureOut','suspicion','share']
 
 page_sequence = [Impressions1, Impressions2]

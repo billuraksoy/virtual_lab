@@ -104,6 +104,7 @@ class Player(BasePlayer):
 
     #Page 9
     religion = make_list_field("What is your religious affiliation?",["Christian (any denomination)","Jewish","Muslim (any denomination)","Hindu","Buddhist ","Asian Folk Religion (e.g., Taoist, Confucian) ","I am not religious ","Some other religious affiliation (please specify below)"])
+    religion_oth = models.StringField(label="",blank=True)
     religion_imp = make_list_field("How important is religion in your life?",["Very Important","Somewhat Important","Not Too Important","Not At All Important"])
 
     #Page 10
@@ -244,7 +245,7 @@ class SurveyPage8(SurveyPage):
     form_fields = ["same_sex","attraction"]
 
 class SurveyPage9(SurveyPage):
-    form_fields = ["religion","religion_imp"]
+    form_fields = ["religion","religion_oth","religion_imp"]
 
 class SurveyPage10(SurveyPage):
     form_fields = ["party","pol_spectrum","pres_2016","pres_2020"]
@@ -258,4 +259,4 @@ class SurveyPage13(Page):
     form_model = 'player'
     form_fields = ["pop_manager","pop_emp"]
 
-page_sequence = [survey_intro, survey_intro_2,SurveyPage1,SurveyPage2,SurveyPage3,SurveyPage4,SurveyPage5,SurveyPage6,SurveyPage7,SurveyPage8,SurveyPage9,SurveyPage10,SurveyPage11, survey_1, SurveyPage13]
+page_sequence = [survey_intro_2, survey_intro,SurveyPage1,SurveyPage2,SurveyPage3,SurveyPage4,SurveyPage5,SurveyPage6,SurveyPage7,SurveyPage8,SurveyPage9,SurveyPage10,SurveyPage11, survey_1, SurveyPage13]
