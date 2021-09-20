@@ -12,5 +12,3 @@ class PlayerBot(Bot):
         yield Overview
         #snap(self)
         yield PageIntro
-
-        yield Example, dict(number_stated_intro=2)
