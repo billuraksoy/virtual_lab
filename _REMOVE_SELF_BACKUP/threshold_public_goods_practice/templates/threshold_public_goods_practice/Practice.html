@@ -1,0 +1,15 @@
+{% extends "global/Page.html" %}
+{% load otree static %}
+<!-- {% load custom_tags %} -->
+
+{% block title %}
+    Practice Round
+{% endblock %}
+
+{% block content %}
+	First, we would like you to participate in a practice round. This will help you get familiar with how the game works. In this practice round only, you will be matched with a computer and the computer will make decisions <u>randomly</u>. <br><br>
+
+  	Your decisions in this practice round will <u>not</u> impact your earnings. <br><br>
+
+	{% delayed_next label='Start Practice Round' wait=10000 %}
+{% endblock %}

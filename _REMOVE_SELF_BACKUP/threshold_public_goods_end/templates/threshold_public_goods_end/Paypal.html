@@ -1,0 +1,20 @@
+{% extends "global/Page.html" %}
+{% load otree static %}
+<!-- {% load custom_tags %} -->
+
+{% block title %}
+    Survey
+{% endblock %}
+
+{% block content %}
+	<style>
+		.otree-title{
+			text-align:center;
+		}
+	</style>
+	<p>Thank you for completing this study.You will receive your earnings via PayPal or Venmo. If you want to be paid via Paypal, provide the email address associated with your PayPal account. If you want to be paid via Venmo, you have to provide both your username and the phone number associated with your Venmo account.<br><br>
+
+	Please note that you are responsible to provide the correct information. If your information is not correct, you may not receive your earnings.</p>
+	{% formfields %}
+	{% next_button %}
+{% endblock %}
