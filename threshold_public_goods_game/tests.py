@@ -1,7 +1,7 @@
 from otree.api import Currency as c, currency_range, expect
-from . import *
-from otree.api import Bot
-
+from . import pages
+from ._builtin import Bot
+from .models import Constants
 import random
 from custom_templates.custom_funcs import snap
 
@@ -15,16 +15,16 @@ class PlayerBot(Bot):
         randB = random.choice(range(0, d['base_tokens']-int(randA),d['increment']))
 
         if d['simultaneous']:
-            yield SimGame, dict(contribution_acc_a=randA,contribution_acc_b=randB)
+            yield pages.SimGame, dict(contribution_acc_a=randA,contribution_acc_b=randB)
         elif self.player.participant.vars["id"]==1:
-            yield p1Game, dict(contribution_acc_a=randA,contribution_acc_b=randB)
+            yield pages.p1Game, dict(contribution_acc_a=randA,contribution_acc_b=randB)
         elif self.player.participant.vars["id"]==2:
-            yield p2Game, dict(contribution_acc_a=randA,contribution_acc_b=randB)
+            yield pages.p2Game, dict(contribution_acc_a=randA,contribution_acc_b=randB)
         elif self.player.participant.vars["id"]==3:
-            yield p3Game, dict(contribution_acc_a=randA,contribution_acc_b=randB)
+            yield pages.p3Game, dict(contribution_acc_a=randA,contribution_acc_b=randB)
         #testing results
         snap(self)
-        yield Results
+        yield pages.Results
         expect(self.player.acc_a_total>=randA,True)
         expect(self.player.acc_b_total>=randB,True)
         expectedTokens = d['base_tokens']-randA-randB

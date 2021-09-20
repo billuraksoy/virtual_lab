@@ -25,9 +25,7 @@ SESSION_CONFIGS = [
     dict(
         name='mtpg_sim_large',#Sim=1, ld=1
         num_demo_participants=6,
-        app_sequence=['threshold_public_goods','threshold_public_goods_practice','threshold_public_goods_game',
-        #'svo',
-        'threshold_public_goods_end','timeout'],
+        app_sequence=['threshold_public_goods','threshold_public_goods_practice','threshold_public_goods_game','svo','threshold_public_goods_end','timeout'],
         consent='global/ConsentForm.pdf',#path to pdf
         threshold_high = 10,
         threshold_low = 6,
@@ -42,9 +40,7 @@ SESSION_CONFIGS = [
     dict(
         name='mtpg_sim_small',#Sim=1, ld=0
         num_demo_participants=6,
-        app_sequence=['threshold_public_goods','threshold_public_goods_practice','threshold_public_goods_game',
-        #'svo',
-        'threshold_public_goods_end','timeout'],
+        app_sequence=['threshold_public_goods','threshold_public_goods_practice','threshold_public_goods_game','svo','threshold_public_goods_end','timeout'],
         consent='global/ConsentForm.pdf',#path to pdf
         threshold_high=8,
         threshold_low=6,
@@ -59,9 +55,7 @@ SESSION_CONFIGS = [
     dict(
         name='mtpg_seq_large',#Sim=0, ld=1
         num_demo_participants=6,
-        app_sequence=['threshold_public_goods','threshold_public_goods_practice','threshold_public_goods_game',
-        #'svo',
-        'threshold_public_goods_end','timeout'],
+        app_sequence=['threshold_public_goods','threshold_public_goods_practice','threshold_public_goods_game','svo','threshold_public_goods_end','timeout'],
         consent='global/ConsentForm.pdf',#path to pdf
         threshold_high = 10,
         threshold_low = 6,
@@ -76,9 +70,7 @@ SESSION_CONFIGS = [
     dict(
         name='mtpg_seq_small',#Sim=0, ld=0
         num_demo_participants=6,
-        app_sequence=['threshold_public_goods','threshold_public_goods_practice','threshold_public_goods_game',
-        #'svo',
-        'threshold_public_goods_end','timeout'],
+        app_sequence=['threshold_public_goods','threshold_public_goods_practice','threshold_public_goods_game','svo','threshold_public_goods_end','timeout'],
         consent='global/ConsentForm.pdf',#path to pdf
         threshold_high=8,
         threshold_low=6,
@@ -93,9 +85,7 @@ SESSION_CONFIGS = [
     dict(
         name='mtpg_sim_large_group3',#Sim=1, ld=1
         num_demo_participants=6,
-        app_sequence=['threshold_public_goods','threshold_public_goods_practice','threshold_public_goods_game',
-        #'svo',
-        'threshold_public_goods_end','timeout'],
+        app_sequence=['threshold_public_goods','threshold_public_goods_practice','threshold_public_goods_game','svo','threshold_public_goods_end','timeout'],
         consent='global/ConsentForm.pdf',#path to pdf
         threshold_high = 15,
         threshold_low = 9,
@@ -110,9 +100,7 @@ SESSION_CONFIGS = [
     dict(
         name='mtpg_sim_small_group3',#Sim=1, ld=0
         num_demo_participants=6,
-        app_sequence=['threshold_public_goods','threshold_public_goods_practice','threshold_public_goods_game',
-        #'svo',
-        'threshold_public_goods_end','timeout'],
+        app_sequence=['threshold_public_goods','threshold_public_goods_practice','threshold_public_goods_game','svo','threshold_public_goods_end','timeout'],
         consent='global/ConsentForm.pdf',#path to pdf
         threshold_high=12,
         threshold_low=9,
@@ -127,9 +115,7 @@ SESSION_CONFIGS = [
     dict(
         name='mtpg_seq_large_group3',#Sim=0, ld=1
         num_demo_participants=6,
-        app_sequence=['threshold_public_goods','threshold_public_goods_practice','threshold_public_goods_game',
-        #'svo',
-            'threshold_public_goods_end','timeout'],
+        app_sequence=['threshold_public_goods','threshold_public_goods_practice','threshold_public_goods_game','svo','threshold_public_goods_end','timeout'],
         consent='global/ConsentForm.pdf',#path to pdf
         threshold_high = 15,
         threshold_low = 9,
@@ -144,9 +130,7 @@ SESSION_CONFIGS = [
     dict(
         name='mtpg_seq_small_group3',#Sim=0, ld=0
         num_demo_participants=6,
-        app_sequence=['threshold_public_goods','threshold_public_goods_practice','threshold_public_goods_game',
-        #'svo',
-        'threshold_public_goods_end','timeout'],
+        app_sequence=['threshold_public_goods','threshold_public_goods_practice','threshold_public_goods_game','svo','threshold_public_goods_end','timeout'],
         consent='global/ConsentForm.pdf',#path to pdf
         threshold_high=12,
         threshold_low=9,
@@ -158,30 +142,30 @@ SESSION_CONFIGS = [
         group_size=3,
         simultaneous=0
         ),
-    # dict(
-    #     name='svo',
-    #     display_name= "Social Value Orientation",
-    #     num_demo_participants= 4,
-    #     app_sequence=['svo'],
-    #     matching='RING',
-    #     select_items='FULL',
-    #     items_in_random_order=False,
-    #     scale=0.1 ,
-    #     slider_init='LEFT',
-    #     random_payoff='RAND',
-    #     precision='INTEGERS',
-    #     language='en',
-    #     doc="""
-    #         Edit the 'matching' parameter to select RING matching or 
-    #         RANDOM_DICTATOR matching.</br>
-    #         Edit the 'select_items' parameter to whether we use the first six items 
-    #         to calculate the payoff (PRIMARY) or the 15 items (FULL).</br>
-    #         Edit the 'scale' parameter to scale the slider values.</br>
-    #         Edit the 'slider_init' parameter with LEFT, RIGHT, RAND or AVG to initialize the slider.</br>
-    #         Edit the 'random_payoff' parameter with RAND or SUM to determine the way to calculate the payoff.</br>
-    #         Edit the 'precision' parameter with TWO_DIGITS_AFTER_POINT or INTEGERS.
-    #         """
-    # )
+    dict(
+        name='svo',
+        display_name= "Social Value Orientation",
+        num_demo_participants= 4,
+        app_sequence=['svo'],
+        matching='RING',
+        select_items='FULL',
+        items_in_random_order=False,
+        scale=0.1 ,
+        slider_init='LEFT',
+        random_payoff='RAND',
+        precision='INTEGERS',
+        language='en',
+        doc="""
+            Edit the 'matching' parameter to select RING matching or 
+            RANDOM_DICTATOR matching.</br>
+            Edit the 'select_items' parameter to whether we use the first six items 
+            to calculate the payoff (PRIMARY) or the 15 items (FULL).</br>
+            Edit the 'scale' parameter to scale the slider values.</br>
+            Edit the 'slider_init' parameter with LEFT, RIGHT, RAND or AVG to initialize the slider.</br>
+            Edit the 'random_payoff' parameter with RAND or SUM to determine the way to calculate the payoff.</br>
+            Edit the 'precision' parameter with TWO_DIGITS_AFTER_POINT or INTEGERS.
+            """
+    )
 ]
 
 # if you set a property in SESSION_CONFIG_DEFAULTS, it will be inherited by all configs

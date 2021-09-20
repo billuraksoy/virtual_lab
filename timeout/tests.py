@@ -1,7 +1,7 @@
 from otree.api import Currency as c, currency_range
-from . import *
-from otree.api import Bot
-
+from . import pages
+from ._builtin import Bot
+from .models import Constants
 from custom_templates.custom_funcs import snap
 
 class PlayerBot(Bot):
