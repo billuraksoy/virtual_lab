@@ -32,6 +32,7 @@ class Group(BaseGroup):
 
 def creating_session(subsession: Subsession):
     if subsession.round_number == 1: #if this is the first round, randomize the order
+        print("Got here")
         for player in subsession.get_players(): #get the list of players and randomize for each player.
             page_list = [x for x in Constants.page_list] #create a copy of the page_list to be shuffled
             random.shuffle(page_list) #shuffle it in its place
@@ -62,7 +63,7 @@ class Player(BasePlayer):
 
     sensitive_q_3 = models.IntegerField(
         choices=[[1, 'Yes'], [0, 'No']],
-        label="SensitiveQuestion13?",
+        label="SensitiveQuestion12?",
         widget=widgets.RadioSelect,
     )
 
@@ -100,7 +101,7 @@ class ListPage1(Page):
 
     @staticmethod
     def is_displayed(player: Player):
-        return player.participant.vars["page_order"][player.subsession.round_number - 1]  == "1"
+        return player.participant.page_order[player.session.round_number - 1]  == "1"
         # get the page order set up earlier, within that order, get a particular variable. since py starts with zero, in round 1, look at 0
         # round_number is updated across rounds.
         # in round 1, the index is 0
@@ -137,7 +138,7 @@ class ListPage2(Page):
 
     @staticmethod
     def is_displayed(player: Player):
-        return player.participant.vars["page_order"][player.subsession.round_number - 1]  == "2"
+        return player.participant.page_order[player.session.round_number - 1]  == "2"
 
 
     @staticmethod
@@ -159,7 +160,7 @@ class ListPage3(Page):
 
     @staticmethod
     def is_displayed(player: Player):
-        return player.participant.vars["page_order"][player.subsession.round_number - 1] == "3"
+        return player.participant.page_order[player.session.round_number - 1] == "3"
 
     @staticmethod
     def vars_for_template(player: Player):
