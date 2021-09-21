@@ -44,7 +44,7 @@ class Player(BasePlayer):
         widget=widgets.RadioSelect
         )
 
-    Hl = make_yn_field("Are you of Hispanic, Latino, or Spanish origin? [American Community Survey]")
+    Hl = make_yn_field("Are you of Hispanic, Latino, or Spanish origin?")
     age = models.IntegerField(
       label = "What is your age in years?",
       min=0,
@@ -58,16 +58,16 @@ class Player(BasePlayer):
         widget=widgets.RadioSelect
         )
 
-    marital = make_list_field("What is your marital status? (choose one) [American Community Survey]", ["Now married","Widowed","Divorced","Separated","Never married"])
+    marital = make_list_field("What is your marital status? (choose one)", ["Now married","Widowed","Divorced","Separated","Never married"])
 
     #page 2
     occupants = models.IntegerField( label = "How many people live in your household including yourself", min=0, max=100)
-    children = models.IntegerField(label="How many children less than 18 years of age live in your household? If none, please put 0.\n [Behavioral risk factor surveillance system survey, 2018]\nNumber of children:", min= 0, max=100)
+    children = models.IntegerField(label="How many children less than 18 years of age live in your household? If none, please put 0.\n \nNumber of children:", min= 0, max=100)
     education = make_list_field("What is the highest level of education you've completed? (choose one) (If currently enrolled, mark the previous grade or highest degree received.)", ["High school, GED, or less","Some college credits, no degree","Associate's degree (for example: AA, AS)","Bachelor’s degree or equivalent (for example: BA, BS)","Master’s degree (for example: MA, MS, MEng, MEd, MSW, MBA) or higher (for example: MD, DDS, DVM, LLB, JD, PhD, EdD)"])
-    employment = make_list_field("Are you currently…? [Behavioral risk factor surveillance system survey, 2018]",["Employed for wages","Self-employed","Out of work for 1 year or more","Out of work for less than 1 year","A homemaker","A student","Retired","Unable to work"])
+    employment = make_list_field("Are you currently…?",["Employed for wages","Self-employed","Out of work for 1 year or more","Out of work for less than 1 year","A homemaker","A student","Retired","Unable to work"])
 
     #page 3
-    community = make_list_field("What type of community do you live in? [PEW question]",["Rural area","Large city","Small city or town","Suburb near a large city"])
+    community = make_list_field("What type of community do you live in?",["Rural area","Large city","Small city or town","Suburb near a large city"])
     state = models.StringField(label="In which US state/territory do you currently live?")
     early_state = models.StringField(label="In which US state/territory did you spend the most time for the first 18 years of life?")
 
