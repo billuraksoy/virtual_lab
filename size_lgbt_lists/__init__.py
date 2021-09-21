@@ -117,7 +117,9 @@ class ListPage(Page):
     form_model = 'player'
     @staticmethod
     def get_form_fields(player: Player):
-        return ["number_stated_"+player.participant.vars["page_order"][player.participant.vars["page_ind"]].player_model]
+        fields = ["number_stated_"+player.participant.vars["page_order"][player.participant.vars["page_ind"]].player_model]
+        random.shuffle(fields)
+        return fields
 
     @staticmethod
     def vars_for_template(player: Player):
