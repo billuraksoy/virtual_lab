@@ -124,7 +124,7 @@ class ListPage(Page):
     def vars_for_template(player: Player):
         page_data_obj = player.participant.vars["page_order"][player.participant.vars["page_ind"]]
         (S1,S2,S3,S4,S5) = page_data_obj.list_q
-        if player.participant.vars["page_order"][player.participant.vars["page_ind"]]!=3:
+        if player.participant.vars["page_order"][player.participant.vars["page_ind"]]!='3':
             if S5:
                 temp = page_data_obj.list_q
                 random.shuffle(temp)
