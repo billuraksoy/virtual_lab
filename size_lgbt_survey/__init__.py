@@ -105,7 +105,7 @@ class Player(BasePlayer):
     #Page 9
     religion = make_list_field("What is your religious affiliation?",["Christian (any denomination)","Jewish","Muslim (any denomination)","Hindu","Buddhist ","Asian Folk Religion (e.g., Taoist, Confucian) ","I am not religious ","Some other religious affiliation (please specify below)"])
     religion_oth = models.StringField(label="",blank=True)
-    religion_imp = make_list_field("How important is religion in your life?",["Very Important","Somewhat Important","Not Too Important","Not At All Important"])
+    religion_imp = make_list_field("How important is religion in your life?",["Very important","Somewhat important","Not too important","Not at all important"])
 
     #Page 10
     party = make_list_field("Generally speaking, do you usually think of yourself as a Republican, Democrat, or Independent/Other? Choose the option that best describes you.",["Republican","Democrat","Independent or Other"])
