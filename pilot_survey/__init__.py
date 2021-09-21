@@ -22,7 +22,7 @@ class Group(BaseGroup):
 
 class Player(BasePlayer):
 	clearInstructions = models.IntegerField(
-				label = "Please indicate the extent to which you agree or disagree with the following statement:\n\"The instructions were clear\”",
+				label = "Please indicate the extent to which you agree or disagree with the following statement:\n\"The instructions were clear”",
 				choices = [
 				[0,"Strongly Agree"],
 				[1,"Agree"],
