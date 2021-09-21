@@ -35,18 +35,18 @@ class Player(BasePlayer):
 			label = "What do you think this study is about?"
 		)
 	unclear = models.StringField(
-			label = "Is there anything unclear or confusing so far?"
+			label = "Is there anything unclear or confusing with the study? Please explain which specific parts of the instructions were unclear or confusing to you."
 		)
 
 	figureOut = models.BooleanField(
-				label = "Do you think that it is possible for the researchers to figure out exactly which items were true for you?",
+				label = "Do you think that it is possible for the researchers to figure out exactly which individual statements were true for you?",
 				choices = [
 					[True, "Yes"],
 					[False, "No"]
 				]
 				)
 	suspicion = models.BooleanField(
-				label = "Do you think that it is possible for the researchers to figure out exactly which items were true for you?",
+				label = "Do you think that it is possible for the researchers to figure out exactly which individual statements were true for you?",
 				choices = [
 					[True, "Yes"],
 					[False, "No"]
