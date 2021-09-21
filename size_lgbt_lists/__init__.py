@@ -27,30 +27,30 @@ class Constants(BaseConstants):
     #
     list_of_SI = [
         "I think the law should prohibit employment discrimination against transgender individuals.",#1
-        "I would be comfortable having a transgender manager at work."
+        "I would be comfortable with having a transgender manager at work."
     ]
     list_of_lists = [
         [#1A
         "I have personally met the current Pope.",
         "I own a smartphone.",
         "I think recreational marijuana use should be legal.",
-        "I have voted for a political candidate who is pro-life.",
+        "I would vote for a political candidate who is pro-life (i.e., is anti-abortion).",
         ],
         [#1B
         "I have personally met the current U.S. President.",
-        "I own a computer.",
-        "I have voted for a political candidate who is pro-choice.",
+        "I have at least one social media account (e.g., Facebook, Twitter, Instagram).",
+        "I would vote for a political candidate who is pro-choice (i.e., supports abortion rights).",
         "I think laws covering the sale of guns should be relaxed."
         ],
         [#2A
-        "I can fluently speak at least three languages. [no]",
-        "I have a driver’s license. [yes]",
+        "I can fluently speak at least three languages.",
+        "I have a driver’s license.",
         "I think COVID-19 risks were overstated.",
         "I support the Black Lives Matter movement.",
         ],
         [#2B
-        "I have travelled to more than twenty countries. [no]",
-        "I own a car. [yes]",
+        "I have visited more than twenty countries.",
+        "I own a car.",
         "I think parents should be able to opt their children out of a COVID-19 school mask mandate.",
         "I think the law should prohibit employment discrimination against African Americans."
         ],
