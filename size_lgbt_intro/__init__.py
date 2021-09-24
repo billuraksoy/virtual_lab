@@ -31,7 +31,6 @@ class PageIntro(Page):
     pass
 
 class Example(Page):
-    form_model = 'player'
-    form_fields = ['number_stated_intro']
+    pass
 
 page_sequence = [ConsentPage, Overview, PageIntro, Example]

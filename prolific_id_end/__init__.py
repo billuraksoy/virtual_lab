@@ -46,13 +46,10 @@ class P_ID(Page):
 class P_Return(Page):
     form_model = 'player'
 
-    #def vars_for_template(self):
-    #    parvars = self.participant.vars
-    #    self.player.participant_vars = json.dumps(parvars)
-    #   return dict(
-    #       p_return_url=self.session.config['p_completion_link'],
-    #       par_vars=parvars,
-    #   )
+    def vars_for_template(self):
+      return dict(
+          p_return_url=self.session.config['p_completion_link'],
+      )
 
 
-page_sequence = [P_ID]#,P_Return
+page_sequence = [P_ID,P_Return]
