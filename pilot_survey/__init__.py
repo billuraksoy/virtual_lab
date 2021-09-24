@@ -31,10 +31,10 @@ class Player(BasePlayer):
 				[4,"Strongly Disagree"]
 				]
 			)
-	about = models.StringField(
+	about = models.LongStringField(
 			label = "What do you think this study is about?"
 		)
-	unclear = models.StringField(
+	unclear = models.LongStringField(
 			label = "Is there anything unclear or confusing with the study? Please explain which specific parts of the instructions were unclear or confusing to you."
 		)
 
@@ -52,7 +52,7 @@ class Player(BasePlayer):
 					[False, "No"]
 				]
 			)
-	share = models.StringField(
+	share = models.LongStringField(
 			label = "Is there anything else you would like share with the researchers?"
 		)
 
