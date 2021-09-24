@@ -12,7 +12,7 @@ class PageData:
         self.list_q = list_q
         self.player_model = player_model
     def __str__(self):
-        return str(self.list_q)+str(self.player_model)
+        return str(self.player_model)
 
 
 
