@@ -101,15 +101,15 @@ def creating_session(subsession: Subsession):
 
 class Player(BasePlayer):
     page_order = models.StringField()
-    number_stated_1A = models.IntegerField(min=0, max=4, label='Please enter the total number of statements above that apply to you:')
-    number_stated_1AS = models.IntegerField(min=0, max=5, label='Please enter the total number of statements above that apply to you:')
-    number_stated_1B = models.IntegerField(min=0, max=4, label='Please enter the total number of statements above that apply to you:')
-    number_stated_1BS = models.IntegerField(min=0, max=5, label='Please enter the total number of statements above that apply to you:')
-    number_stated_2A = models.IntegerField(min=0, max=4, label='Please enter the total number of statements above that apply to you:')
-    number_stated_2AS = models.IntegerField(min=0, max=5, label='Please enter the total number of statements above that apply to you:')
-    number_stated_2B = models.IntegerField(min=0, max=4, label='Please enter the total number of statements above that apply to you:')
-    number_stated_2BS = models.IntegerField(min=0, max=5, label='Please enter the total number of statements above that apply to you:')
-    number_stated_3 = models.IntegerField(min=0, max=10, label='Please enter the total number of statements above that apply to you:')
+    number_stated_1A = models.IntegerField(min=0, max=4, label='Please enter the total number of the above statements that are true for you:')
+    number_stated_1AS = models.IntegerField(min=0, max=5, label='Please enter the total number of the above statements that are true for you:')
+    number_stated_1B = models.IntegerField(min=0, max=4, label='Please enter the total number of the above statements that are true for you:')
+    number_stated_1BS = models.IntegerField(min=0, max=5, label='Please enter the total number of the above statements that are true for you:')
+    number_stated_2A = models.IntegerField(min=0, max=4, label='Please enter the total number of the above statements that are true for you:')
+    number_stated_2AS = models.IntegerField(min=0, max=5, label='Please enter the total number of the above statements that are true for you:')
+    number_stated_2B = models.IntegerField(min=0, max=4, label='Please enter the total number of the above statements that are true for you:')
+    number_stated_2BS = models.IntegerField(min=0, max=5, label='Please enter the total number of the above statements that are true for you:')
+    number_stated_3 = models.IntegerField(min=0, max=10, label='Please enter the total number of the above statements that are true for you:')
 
 
 class ListPage(Page):
