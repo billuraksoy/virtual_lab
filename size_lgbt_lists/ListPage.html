@@ -6,20 +6,16 @@
 {% endblock %}
 
 {% block content %}
-    <html>
-      <head>
-        <title></title>
-      </head>
-      <body>
-        <p>There are {{ if S5 }}five{{ else }}four{{ endif }} statements listed below. We would like to know how many of them are true for you. We don’t want to know which specific ones are true for you. We just want to know <strong>how many</strong> of the following statements are true for you.</p>
+    {{include "global/smaller_int_field.html" }}
+    <p>There are {{ if S5 }}five{{ else }}four{{ endif }} statements listed below. We would like to know how many of them are true for you. We don’t want to know which specific ones are true for you. We just want to know <strong>how many</strong> of the following statements are true for you.</p>
 
-        <li> {{ S1 }} </li>
-        <li> {{ S2 }}  </li>
-        <li> {{ S3 }}  </li>
-        <li> {{ S4 }}  </li>
-        {{ if S5 }}
-        <li> {{ S5 }}  </li>
-        {{ endif }}
+    <li> {{ S1 }} </li>
+    <li> {{ S2 }}  </li>
+    <li> {{ S3 }}  </li>
+    <li> {{ S4 }}  </li>
+    {{ if S5 }}
+    <li> {{ S5 }}  </li>
+    {{ endif }}
 
 
     {{ formfields }}

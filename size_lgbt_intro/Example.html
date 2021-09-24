@@ -7,7 +7,12 @@
 <h3><strong>
 Example:
 </strong></h3>
-
+{{include "global/smaller_int_field.html" }}
+<style>
+	input.form-control:disabled{
+		background-color:white;
+	}
+</style>
 <i>We want to be sure that you understand how this works. Here is how your screen will look like:</i>
 
 
@@ -18,7 +23,9 @@ There are three statements listed below. We would like to know how many of them 
 -	I regularly recycle. <br>
 <br>
 
-{{ formfields }}
+<div class="controls">
+	<input type="number" class="form-control" value="2" disabled="disabled">
+</div>
 
 <p> 
 <i> Suppose that you do own an orange t-shirt and your household has at least four pets. But you do not recycle. In that case, two of the above statements are true for you. Hence, you would indicate this by entering 2 in the answer box as shown above.  </i> 
