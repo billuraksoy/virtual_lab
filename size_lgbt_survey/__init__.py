@@ -338,6 +338,7 @@ class SurveyPage8(SurveyPage):
     form_fields = ["same_sex","attraction"]
 
 class SurveyPage9(SurveyPage):
+    template_name = "size_lgbt_survey/Survey_Basic_NoI.html"
     form_fields = ["religion","religion_oth","religion_imp"]
 
 class SurveyPage10(SurveyPage):
