@@ -22,6 +22,73 @@ class Group(BaseGroup):
     pass
 
 
+states = {
+    'AK': 'Alaska',
+    'AL': 'Alabama',
+    'AR': 'Arkansas',
+    'AS': 'American Samoa',
+    'AZ': 'Arizona',
+    'CA': 'California',
+    'CO': 'Colorado',
+    'CT': 'Connecticut',
+    'DC': 'District of Columbia',
+    'DE': 'Delaware',
+    'FL': 'Florida',
+    'GA': 'Georgia',
+    'GU': 'Guam',
+    'HI': 'Hawaii',
+    'IA': 'Iowa',
+    'ID': 'Idaho',
+    'IL': 'Illinois',
+    'IN': 'Indiana',
+    'KS': 'Kansas',
+    'KY': 'Kentucky',
+    'LA': 'Louisiana',
+    'MA': 'Massachusetts',
+    'MD': 'Maryland',
+    'ME': 'Maine',
+    'MI': 'Michigan',
+    'MN': 'Minnesota',
+    'MO': 'Missouri',
+    'MP': 'Northern Mariana Islands',
+    'MS': 'Mississippi',
+    'MT': 'Montana',
+    'NA': 'National',
+    'NC': 'North Carolina',
+    'ND': 'North Dakota',
+    'NE': 'Nebraska',
+    'NH': 'New Hampshire',
+    'NJ': 'New Jersey',
+    'NM': 'New Mexico',
+    'NV': 'Nevada',
+    'NY': 'New York',
+    'OH': 'Ohio',
+    'OK': 'Oklahoma',
+    'OR': 'Oregon',
+    'PA': 'Pennsylvania',
+    'PR': 'Puerto Rico',
+    'RI': 'Rhode Island',
+    'SC': 'South Carolina',
+    'SD': 'South Dakota',
+    'TN': 'Tennessee',
+    'TX': 'Texas',
+    'UT': 'Utah',
+    'VA': 'Virginia',
+    'VI': 'Virgin Islands',
+    'VT': 'Vermont',
+    'WA': 'Washington',
+    'WI': 'Wisconsin',
+    'WV': 'West Virginia',
+    'WY': 'Wyoming'
+}
+state_list = []
+for key in states:
+    if key != 'NA':
+        state_list.append(key + ' (' + states[key] + ')')
+
+live_state_list = state_list + ['Other (please state below)']
+grew_up_state_list = state_list + ['Other (please state below)']
+
 class Player(BasePlayer):
     #first page
     def make_check_field(label):
@@ -67,9 +134,26 @@ class Player(BasePlayer):
     employment = make_list_field("Are you currently…?",["Employed for wages","Self-employed","Out of work for 1 year or more","Out of work for less than 1 year","A homemaker","A student","Retired","Unable to work"])
 
     #page 3
-    community = make_list_field("What type of community do you live in?",["Rural area","Large city","Small city or town","Suburb near a large city"])
-    state = models.StringField(label="In which US state/territory do you currently live?")
-    early_state = models.StringField(label="In which US state/territory did you spend the most time for the first 18 years of life?")
+    # community = make_list_field("What type of community do you live in?",["Rural area","Large city","Small city or town","Suburb near a large city"])
+    # state = models.StringField(label="In which US state/territory do you currently live?")
+    # early_state = models.StringField(label="In which US state/territory did you spend the most time for the first 18 years of life?")
+
+    live_in = models.StringField(
+        label = 'In which US state/territory do you currently live?',
+        choices = live_state_list
+        )
+    grew_up_in = models.StringField(
+        label = 'In which US state/territory did you spend the most time in for the first 18 years of your life?',
+        choices = grew_up_state_list
+        )
+    other_live_location = models.StringField(
+        label = '',
+        blank = True
+        )
+    other_grew_up_location = models.StringField(
+        label = '',
+        blank = True
+        )
 
     #page 4
     trans_manager = make_yn_field("Would you be comfortable having a transgender manager at work?")
@@ -225,8 +309,17 @@ class SurveyPage2(SurveyPage):
                     "education",
                     "employment"]
 
-class SurveyPage3(SurveyPage):
-    form_fields = ["community","state","early_state"]
+class SurveyPage3(Page):
+    template_name = "size_lgbt_survey/Survey_Basic_NoI.html"
+    form_model = 'player'
+
+    form_fields = ['live_in',
+                   'other_live_location',
+                   'grew_up_in',
+                   'other_grew_up_location']
+    def error_message(self,values):
+        if (values['live_in'] =='Other (please state below)' and type(values['other_live_location']) == type(None)) or(values['grew_up_in'] =='Other (please state below)' and type(values['other_grew_up_location']) == type(None)) :
+            return 'If you select Other, you must specify in the provided field'
 
 class SurveyPage4(SurveyPage):
     form_fields = ["trans_manager","trans_emp_disc"]
