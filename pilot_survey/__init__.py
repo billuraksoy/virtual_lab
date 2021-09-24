@@ -29,7 +29,8 @@ class Player(BasePlayer):
 				[2,"Neither Agree nor Disagree"],
 				[3,"Disagree"],
 				[4,"Strongly Disagree"]
-				]
+				],
+				widget=widgets.RadioSelect,
 			)
 	about = models.LongStringField(
 			label = "What do you think this study is about?"
