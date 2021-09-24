@@ -8,3 +8,4 @@ class PlayerBot(Bot):
     def play_round(self):
     	yield Impressions1, dict(clearInstructions=0, about="F", unclear = "F")
     	yield Impressions2, dict(figureOut = False, suspicion=False, share="F")
+    	yield Impressions3

@@ -353,4 +353,4 @@ class SurveyPage13(Page):
     form_model = 'player'
     form_fields = ["pop_manager","pop_emp"]
 
-page_sequence = [survey_intro_2, survey_intro,SurveyPage1,SurveyPage2,SurveyPage3,SurveyPage4,SurveyPage5,SurveyPage6,SurveyPage7,SurveyPage8,SurveyPage9,SurveyPage10,SurveyPage11, survey_1, SurveyPage13]
+page_sequence = [survey_intro,SurveyPage1,SurveyPage2,SurveyPage3,SurveyPage4,SurveyPage5,SurveyPage6,SurveyPage7,SurveyPage8,SurveyPage9,SurveyPage10,SurveyPage11, survey_1, SurveyPage13]

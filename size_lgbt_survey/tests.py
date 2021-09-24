@@ -9,7 +9,6 @@ class PlayerBot(Bot):
         #snap(self)
         yield survey_intro#, dict(promised=1)
         #snap(self)
-        yield survey_intro_2
         yield SurveyPage1, dict(Hl=False,age=0,marital=0)
         yield SurveyPage2, dict(occupants=0,children=0,education=0,employment=0)
         yield SurveyPage3, dict(community=0,state="New York",early_state = "New York")

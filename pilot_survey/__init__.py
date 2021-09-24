@@ -68,4 +68,7 @@ class Impressions2(Page):
     form_model = 'player'
     form_fields = ['figureOut','suspicion','share']
 
-page_sequence = [Impressions1, Impressions2]
+class Impressions3(Page):
+	pass
+
+page_sequence = [Impressions1, Impressions2,Impressions3]
