@@ -17,7 +17,7 @@ class PageData:
 
 
 class Constants(BaseConstants):
-    name_in_url = 'size_lgbt_lists'
+    name_in_url = 'size_lists'
     players_per_group = None
     num_rounds = 1
     #
