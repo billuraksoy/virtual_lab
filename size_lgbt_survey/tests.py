@@ -11,7 +11,7 @@ class PlayerBot(Bot):
         #snap(self)
         yield SurveyPage1, dict(Hl=False,age=0,marital=0)
         yield SurveyPage2, dict(occupants=0,children=0,education=0,employment=0)
-        yield SurveyPage3, dict(community=0,state="New York",early_state = "New York")
+        yield SurveyPage3, dict(live_in="SD (South Dakota)", grew_up_in="SD (South Dakota)")
         yield SurveyPage4, dict(trans_manager=False,trans_emp_disc=False)
         yield SurveyPage5, dict(trans_house_disc=False, trans_neighbor=False)
         yield SurveyPage6, dict(gay_manager=False, gay_emp_disc=False, gay_house_disc=False, gay_neighbor=False)
