@@ -33,4 +33,8 @@ class PageIntro(Page):
 class Example(Page):
     pass
 
-page_sequence = [ConsentPage, Overview, PageIntro, Example]
+class StartPage(Page):
+    pass
+
+
+page_sequence = [ConsentPage, Overview, PageIntro, Example, StartPage]
