@@ -226,7 +226,7 @@ class Player(BasePlayer):
         blank=True)
 
     pol_beliefs = models.BooleanField(
-        label='Political beliefs/preferences/leaning',
+        label='Political beliefs',
         widget=widgets.CheckboxInput,
         initial=False,
         blank=True)
