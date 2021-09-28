@@ -34,18 +34,18 @@ class Constants(BaseConstants):
         "I have personally met the current Pope.",
         "I own a smartphone.",
         "I think recreational marijuana use should be legal.",
-        "I would vote for a political candidate who is pro-life (i.e., is anti-abortion).",
+        "I would vote for a political candidate who is pro-life (anti-abortion).",
         ],
         [#1B
         "I have personally met the current U.S. President.",
         "I have at least one social media account (e.g., Facebook, Twitter, Instagram).",
-        "I would vote for a political candidate who is pro-choice (i.e., supports abortion rights).",
-        "I think laws covering the sale of guns should be relaxed."
+        "I would vote for a political candidate who is pro-choice (supports abortion rights).",
+        "I think gun control laws should be relaxed."
         ],
         [#2A
         "I can fluently speak at least three languages.",
         "I have a driver’s license.",
-        "I think COVID-19 risks were overstated.",
+        "I think COVID-19 health risks were overstated.",
         "I support the Black Lives Matter movement.",
         ],
         [#2B
