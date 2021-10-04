@@ -137,6 +137,7 @@ class Player(BasePlayer):
     # community = make_list_field("What type of community do you live in?",["Rural area","Large city","Small city or town","Suburb near a large city"])
     # state = models.StringField(label="In which US state/territory do you currently live?")
     # early_state = models.StringField(label="In which US state/territory did you spend the most time for the first 18 years of life?")
+    rural = make_list_field("What type of community do you live in?",["Rural area","Large city","Small city or town","Suburb near a large city"])
 
     live_in = models.StringField(
         label = 'In which US state/territory do you currently live?',
@@ -168,6 +169,9 @@ class Player(BasePlayer):
     gay_emp_disc = make_yn_field ("Do you think the law should prohibit employment discrimination against lesbian, gay, or bisexual individuals?")
     gay_house_disc = make_yn_field ("Do you think the law should prohibit housing discrimination against lesbian, gay, or bisexual individuals?")
     gay_neighbor = make_yn_field ("Would you be comfortable to have an openly lesbian, gay, or bisexual person as a neighbor?")
+
+    #insert
+    refuse = make_yn_field("Do you think that private businesses (such as cake decorators or florists) should be able to refuse service to same-sex couples or other LGBTQ+ individuals for religious reasons?")
 
     #page 7
     #NOTE: Sex at birth is not a binary, should update that.
@@ -330,6 +334,9 @@ class SurveyPage5(SurveyPage):
 class SurveyPage6(SurveyPage):
     form_fields = ["gay_manager","gay_emp_disc","gay_house_disc","gay_neighbor"]
 
+class SurveyPage6_2(SurveyPage):
+    form_fields = ["refuse"]
+
 class SurveyPage7(Page):
     form_model = 'player'
     form_fields = ["your_sex","Ma","Fe","Tr","Nb","straight","sexuality"]
@@ -353,4 +360,4 @@ class SurveyPage13(Page):
     form_model = 'player'
     form_fields = ["pop_manager","pop_emp"]
 
-page_sequence = [survey_intro,SurveyPage1,SurveyPage2,SurveyPage3,SurveyPage4,SurveyPage5,SurveyPage6,SurveyPage7,SurveyPage8,SurveyPage9,SurveyPage10,SurveyPage11, survey_1, SurveyPage13]
+page_sequence = [survey_intro,SurveyPage1,SurveyPage2,SurveyPage3,SurveyPage4,SurveyPage5,SurveyPage6,SurveyPage6_2, SurveyPage7,SurveyPage8,SurveyPage9,SurveyPage10,SurveyPage11, survey_1, SurveyPage13]
