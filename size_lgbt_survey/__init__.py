@@ -183,12 +183,13 @@ class Player(BasePlayer):
     Nb = make_check_field("Non-Binary/Other")
 
     straight = make_yn_field("Are you heterosexual/straight?")
-    sexuality = make_list_field("Which of the following best represents how you think of yourself?",["Gay or Lesbian ","Straight, that is, not gay or lesbian","Bisexual","Something else","I don’t know the answer"])
+    sexuality = make_list_field("Which of the following best represents how you think of yourself?",["Gay or Lesbian","Straight, that is, not gay or lesbian","Bisexual","Something else","I don’t know the answer"])
 
     #page 8
     same_sex = make_yn_field("Since age 18, have you had at least one same-sex sexual partner?")
     #SUGGESTION: Follow up question on romantic attraction since that can differ
-    attraction = make_list_field("People are different in their sexual attraction to other people. Which category below best describes your feelings?",["Only attracted to females","Mostly attracted to females","Equally attracted to females and males","Mostly attracted to males","Only attracted to males","None of the above"])
+    attraction = make_list_field("People are different in their sexual attraction to other people. Which category below best describes your feelings?",["Only attracted to females","Mostly attracted to females","Equally attracted to females and males","Mostly attracted to males","Only attracted to males","Other (please specify below)"])
+    attr_other = models.StringField(blank=True)
 
     #Page 9
     religion = make_list_field("What is your religious affiliation?",["Christian (any denomination)","Jewish","Muslim (any denomination)","Hindu","Buddhist ","Asian Folk Religion (e.g., Taoist, Confucian) ","I am not religious ","Some other religious affiliation (please specify below)"])
@@ -342,7 +343,11 @@ class SurveyPage7(Page):
     form_fields = ["your_sex","Ma","Fe","Tr","Nb","straight","sexuality"]
 
 class SurveyPage8(SurveyPage):
-    form_fields = ["same_sex","attraction"]
+    form_fields = ["same_sex","attraction","attr_other"]
+    @staticmethod
+    def error_message(player: Player, values):
+        if values["attraction"]==5 and attr_other == None:
+            return 'If you select Other, you must specify in the provided field'
 
 class SurveyPage9(SurveyPage):
     template_name = "size_lgbt_survey/Survey_Basic_NoI.html"
