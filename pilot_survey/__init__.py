@@ -47,7 +47,7 @@ class Player(BasePlayer):
 				]
 				)
 	suspicion = models.BooleanField(
-				label = "Do you think that it is possible for the researchers to figure out exactly which individual statements were true for you?",
+				label = "When providing your answers in the study, did you suspect that researchers may know a way to know exactly which individual statements were true for you?",
 				choices = [
 					[True, "Yes"],
 					[False, "No"]
