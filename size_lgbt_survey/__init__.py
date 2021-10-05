@@ -129,7 +129,7 @@ class Player(BasePlayer):
 
     #page 2
     occupants = models.IntegerField( label = "How many people live in your household including yourself?", min=0, max=100)
-    children = models.IntegerField(label="How many children less than 18 years of age live in your household? If none, please put 0.\n \nNumber of children:", min= 0, max=100)
+    children = models.IntegerField(label="How many children less than 18 years of age live in your household? If none, please put 0. Number of children:", min= 0, max=100)
     education = make_list_field("What is the highest level of education you've completed? (choose one) (If currently enrolled, mark the previous grade or highest degree received.)", ["High school, GED, or less","Some college credits, no degree","Associate's degree (for example: AA, AS)","Bachelor’s degree or equivalent (for example: BA, BS)","Master’s degree (for example: MA, MS, MEng, MEd, MSW, MBA) or higher (for example: MD, DDS, DVM, LLB, JD, PhD, EdD)"])
     employment = make_list_field("Are you currently…?",["Employed for wages","Self-employed","Out of work for 1 year or more","Out of work for less than 1 year","A homemaker","A student","Retired","Unable to work"])
 
@@ -189,7 +189,7 @@ class Player(BasePlayer):
     same_sex = make_yn_field("Since age 18, have you had at least one same-sex sexual partner?")
     #SUGGESTION: Follow up question on romantic attraction since that can differ
     attraction = make_list_field("People are different in their sexual attraction to other people. Which category below best describes your feelings?",["Only attracted to females","Mostly attracted to females","Equally attracted to females and males","Mostly attracted to males","Only attracted to males","Other (please specify below)"])
-    attr_other = models.StringField(blank=True)
+    attr_other = models.StringField(label="",blank=True)
 
     #Page 9
     religion = make_list_field("What is your religious affiliation?",["Christian (any denomination)","Jewish","Muslim (any denomination)","Hindu","Buddhist ","Asian Folk Religion (e.g., Taoist, Confucian) ","I am not religious ","Some other religious affiliation (please specify below)"])
@@ -318,12 +318,16 @@ class SurveyPage3(Page):
     template_name = "size_lgbt_survey/Survey_Basic_NoI.html"
     form_model = 'player'
 
-    form_fields = ['live_in',
+    form_fields = ['rural',
+                   'live_in',
                    'other_live_location',
                    'grew_up_in',
                    'other_grew_up_location']
-    def error_message(self,values):
-        if (values['live_in'] =='Other (please state below)' and type(values['other_live_location']) == type(None)) or(values['grew_up_in'] =='Other (please state below)' and type(values['other_grew_up_location']) == type(None)) :
+    @staticmethod
+    def error_message(player,values):
+        print(values['live_in'])
+        print(values['other_live_location'])
+        if (values['live_in'] =='Other (please state below)' and len(values['other_live_location']) == 0) or (values['grew_up_in'] =='Other (please state below)' and len(values['other_grew_up_location']) == 0) :
             return 'If you select Other, you must specify in the provided field'
 
 class SurveyPage4(SurveyPage):
@@ -345,13 +349,17 @@ class SurveyPage7(Page):
 class SurveyPage8(SurveyPage):
     form_fields = ["same_sex","attraction","attr_other"]
     @staticmethod
-    def error_message(player: Player, values):
-        if values["attraction"]==5 and attr_other == None:
+    def error_message(player, values):
+        if values["attraction"]==5 and len(values["attr_other"]) == 0:
             return 'If you select Other, you must specify in the provided field'
 
 class SurveyPage9(SurveyPage):
     template_name = "size_lgbt_survey/Survey_Basic_NoI.html"
     form_fields = ["religion","religion_oth","religion_imp"]
+    @staticmethod
+    def error_message(player, values):
+        if values["religion"]==7 and len(values["religion_oth"]) == 0:
+            return 'If you select Other, you must specify in the provided field'
 
 class SurveyPage10(SurveyPage):
     form_fields = ["party","pol_spectrum","pres_2016","pres_2020"]
