@@ -81,17 +81,17 @@ class Group(BaseGroup):
 
 def creating_session(subsession: Subsession):
     for player in subsession.get_players(): #get the list of players and randomize for each player.
-        player.participant.vars["T1"] = T1 = bool((player.participant.id_in_session%16) & 1)#get the first bit of the number   1 place
-        player.participant.vars["G1First"] = G1First = bool((player.participant.id_in_session%16)>>1 & 1)# second bit of the number 2 place
-        player.participant.vars["1AFirst"] = A1First = bool((player.participant.id_in_session%16)>>2 & 1)# third bit of the number  4 place
-        player.participant.vars["2AFirst"] = A2First = bool((player.participant.id_in_session%16)>>3 & 1)# fourth bit of the number 8 place
+        player.participant.vars["T1"] = T1 = bool((player.participant.id_in_session%8) & 1)#get the first bit of the number   1 place
+        player.participant.vars["G1First"] = G1First = bool((player.participant.id_in_session%8)>>1 & 1)# second bit of the number 2 place
+        player.participant.vars["1AFirst"] = AFirst = bool((player.participant.id_in_session%8)>>2 & 1)# third bit of the number  4 place
+        #player.participant.vars["2AFirst"] = A2First = bool((player.participant.id_in_session%16)>>3 & 1)# fourth bit of the number 8 place
         
         A1 = PageData(Constants.list_of_lists[0]+([""] if T1 else [Constants.list_of_SI[0]]),  "1A" if T1 else "1AS")
         B1 = PageData(Constants.list_of_lists[1]+([""] if not T1 else [Constants.list_of_SI[0]]), "1B" if not T1 else "1BS")
         A2 = PageData(Constants.list_of_lists[2]+([""] if T1 else [Constants.list_of_SI[1]]), "2A" if T1 else "2AS")
         B2 = PageData(Constants.list_of_lists[3]+([""] if not T1 else [Constants.list_of_SI[1]]), "2B" if not T1 else "2BS")
-        G1 = [A1,B1] if A1First else [B1,A1]
-        G2 = [A2,B2] if A2First else [B2,A2]
+        G1 = [A1,B1] if AFirst else [B1,A1]
+        G2 = [A2,B2] if AFirst else [B2,A2]
         page_list = G1+G2 if G1First else G2+G1
         page_list += [PageData(Constants.list_of_lists[4],"3")]
         player.participant.vars["page_order"] = page_list #copy that list to page order
@@ -124,7 +124,7 @@ class ListPage(Page):
     def vars_for_template(player: Player):
         page_data_obj = player.participant.vars["page_order"][player.participant.vars["page_ind"]]
         (S1,S2,S3,S4,S5) = page_data_obj.list_q
-        if player.participant.vars["page_order"][player.participant.vars["page_ind"]]!='3':
+        if str(page_data_obj) !='3':
             if S5:
                 temp = page_data_obj.list_q
                 random.shuffle(temp)

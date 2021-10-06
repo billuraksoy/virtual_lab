@@ -14,3 +14,5 @@ class PlayerBot(Bot):
         yield PageIntro
 
         yield Example
+
+        yield StartPage
