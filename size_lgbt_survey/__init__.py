@@ -90,7 +90,7 @@ live_state_list = state_list + ['Other (please state below)']
 grew_up_state_list = state_list + ['Other (please state below)']
 
 class Player(BasePlayer):
-    #first page
+    #custom field maker functions
     def make_check_field(label):
         return models.BooleanField(
             label=label,
@@ -98,26 +98,12 @@ class Player(BasePlayer):
             initial=False,
             blank=True
             )
-    Wh = make_check_field("White")
-    Bl = make_check_field("Black or African American")
-    Na = make_check_field("American Indian or Alaskan Native")
-    Ah = make_check_field("Asian or Native Hawaiian or Pacific Islander")
-    Ot = make_check_field("Some Other Race")
-
     def make_yn_field(label):
       return models.BooleanField(
         label = label,
         choices = [[True, 'Yes'], [False, 'No']],
         widget=widgets.RadioSelect
         )
-
-    Hl = make_yn_field("Are you of Hispanic, Latino, or Spanish origin?")
-    age = models.IntegerField(
-      label = "What is your age in years?",
-      min=18,
-      max=150
-      )
-
     def make_list_field(label,choiceList):
       return models.IntegerField(
         label=label,
@@ -125,6 +111,18 @@ class Player(BasePlayer):
         widget=widgets.RadioSelect
         )
 
+    #First page
+    Wh = make_check_field("White")
+    Bl = make_check_field("Black or African American")
+    Na = make_check_field("American Indian or Alaskan Native")
+    Ah = make_check_field("Asian or Native Hawaiian or Pacific Islander")
+    Ot = make_check_field("Some Other Race")
+    Hl = make_yn_field("Are you of Hispanic, Latino, or Spanish origin?")
+    age = models.IntegerField(
+      label = "What is your age in years?",
+      min=18,
+      max=150
+      )
     marital = make_list_field("What is your marital status? (choose one)", ["Now married","Widowed","Divorced","Separated","Never married"])
 
     #page 2
@@ -272,7 +270,7 @@ class Player(BasePlayer):
 
 
 # PAGES
-class survey_intro(Page):
+class survey_intro(Page):#basic page
     form_model = 'player'
     form_fields = []
 
@@ -283,7 +281,7 @@ class survey_intro_2(Page):
 class survey_1(Page):
     form_model = 'player'
     @staticmethod
-    def get_form_fields(player: Player):
+    def get_form_fields(player: Player):#randomly shuffle these fields
         fields = ['disability',
                    'pol_beliefs',
                    'race',
@@ -297,7 +295,7 @@ class SurveyPage(Page):#template page to make the basic survey pages easier
     template_name = "size_lgbt_survey/Survey_Basic.html"
     form_model = 'player'
 
-class SurveyPage1(Page):
+class SurveyPage1(Page):#
     form_model = 'player'
     form_fields = ["Wh",
                     "Bl",
@@ -324,9 +322,7 @@ class SurveyPage3(Page):
                    'grew_up_in',
                    'other_grew_up_location']
     @staticmethod
-    def error_message(player,values):
-        print(values['live_in'])
-        print(values['other_live_location'])
+    def error_message(player,values):#dynamic multi-field validation
         if (values['live_in'] =='Other (please state below)' and len(values['other_live_location']) == 0) or (values['grew_up_in'] =='Other (please state below)' and len(values['other_grew_up_location']) == 0) :
             return 'If you select Other, you must specify in the provided field'
 
