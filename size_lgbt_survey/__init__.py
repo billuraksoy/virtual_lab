@@ -182,6 +182,8 @@ class Player(BasePlayer):
 
     straight = make_yn_field("Are you heterosexual/straight?")
     sexuality = make_list_field("Which of the following best represents how you think of yourself?",["Gay or Lesbian","Straight, that is, not gay or lesbian","Bisexual","Something else","I don’t know the answer"])
+    a_check_2 = make_list_field("Before providing an answer, one should always read the text carefully. To check whether you have been reading the text carefully, we ask you to select the third option below as your answer.",["1. Right Leaning","2. Left Leaning","3. Both left and right leaning","4. Neither left nor right leaning"])
+
 
     #page 8
     same_sex = make_yn_field("Since age 18, have you had at least one same-sex sexual partner?")
@@ -211,6 +213,9 @@ class Player(BasePlayer):
     )
     pres_2016 = make_list_field("Who did you vote for in the 2016 presidential election?",["Hillary Clinton ","Donald Trump","Other","Did not vote","Not eligible to vote","I do not remember"])
     pres_2020 = make_list_field("Who did you vote for in the 2020 presidential election?",["Joe Biden","Donald Trump","Other","Did not vote","Not eligible to vote","I do not remember"])
+    a_check_3 = make_list_field("We would like to be sure that you are reading these questions and not making random decisions. Thus, please select the last option for this question.",["Urban","Suburban","Rural"])
+
+
 
     #Page 11
     income = make_list_field("What is your household income before taxes?", ["Less than $20,000","$20,000 - $39,999","$40,000 - $59,999","$60,000 - $79,999","$80,000 - $99,999","$100,000 - $149,999","$150,000 - $199,999","$200,000 or higher"])
@@ -340,7 +345,7 @@ class SurveyPage6_2(SurveyPage):
 
 class SurveyPage7(Page):
     form_model = 'player'
-    form_fields = ["your_sex","Ma","Fe","Tr","Nb","straight","sexuality"]
+    form_fields = ["your_sex","Ma","Fe","Tr","Nb","straight","sexuality", "a_check_2"]
 
 class SurveyPage8(Page):
     template_name = "size_lgbt_survey/Survey_Basic_NoI.html"
@@ -360,7 +365,7 @@ class SurveyPage9(SurveyPage):
             return 'If you select Other, you must specify in the provided field'
 
 class SurveyPage10(SurveyPage):
-    form_fields = ["party","pol_spectrum","pres_2016","pres_2020"]
+    form_fields = ["party","pol_spectrum","a_check_3","pres_2016","pres_2020"]
 
 class SurveyPage11(SurveyPage):
     form_fields = ["income"]
