@@ -16,10 +16,10 @@ class PlayerBot(Bot):
         yield SurveyPage5, dict(trans_house_disc=False, trans_neighbor=False)
         yield SurveyPage6, dict(gay_manager=False, gay_emp_disc=False, gay_house_disc=False, gay_neighbor=False)
         yield SurveyPage6_2, dict(refuse=False)
-        yield SurveyPage7, dict(your_sex="Male",straight=False,sexuality=0)
+        yield SurveyPage7, dict(your_sex="Male",straight=False,sexuality=0,a_check_2=2)
         yield SurveyPage8, dict(same_sex=False,attraction=0)
         yield SurveyPage9, dict(religion=0,religion_imp=0)
-        yield SurveyPage10, dict(party=0,pol_spectrum=1,pres_2016=0,pres_2020=0)
+        yield SurveyPage10, dict(party=0,pol_spectrum=1,pres_2016=0,pres_2020=0,a_check_3=2)
        	yield SurveyPage11, dict(income=0)
         yield survey_1
         yield SurveyPage13, dict(pop_manager=0,pop_emp=0)
