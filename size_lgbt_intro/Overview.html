@@ -1,0 +1,48 @@
+{% extends "global/Page.html" %}
+{% load otree static %}
+
+{% block title %}
+    Overview of Study
+{% endblock %}
+
+{% block content %}
+    <html>
+      <head>
+        <title></title>
+      </head>
+      <body>
+        <p>
+          <h5> Welcome! </h5>
+
+            <p>    In this study, you will be asked to answer some questions. Please try to answer these questions truthfully. Your answers will be <u>anonymous</u>.
+            </p>
+
+          <p>
+          The study should take no longer than 5 minutes in total.
+             </p>
+
+<br>
+
+        <h5>  How much payment will I receive for my participation?
+        </h5>
+
+            <p>    You will be paid 1 USD for completing the study.
+            </p>
+
+<br>
+
+    <h5> Attention Checks
+    </h5>
+
+    <p>    There will be several <u><strong>Attention Check</strong></u> questions throughout this study meant to test whether you are paying attention.
+        If you fail to correctly complete two or more of these Attention Check questions, you may not be paid.
+    </p>
+
+
+<br>
+
+    {{ next_button }}
+
+
+
+{% endblock %}

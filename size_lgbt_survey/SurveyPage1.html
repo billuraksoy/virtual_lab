@@ -1,0 +1,12 @@
+{{ block title }}
+Survey
+{{ endblock }}
+
+{{ block content }}
+{{include "global/smaller_int_field.html" }}
+	What is your race? Choose all that apply.
+	{% formfields %}
+
+
+    {{ next_button }}
+{{ endblock }}

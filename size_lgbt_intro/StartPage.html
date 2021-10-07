@@ -1,0 +1,48 @@
+{{ block title }}
+
+{{ endblock }}
+
+{{ block content }}
+  
+<p>
+
+If you would like to review the instructions one more time, please <button type="button" onclick="show_hide_Instructions()">Click Here</button>
+
+    <style>
+    	button{
+    		border-radius:5px;
+    		padding:0px 3px;
+    	}
+	    #instructions {
+	    	padding:5px;
+	      display: none;
+	      border:2px solid grey;
+	      background-color: LightGray;
+	      border-radius:5px;
+	    }
+	</style>
+
+    <script>
+    function show_hide_Instructions() {
+      var x = document.getElementById("instructions");
+      if (x.style.display == "block") {
+        x.style.display = "none";
+      } else {
+        x.style.display = "block";
+      }
+    }
+    </script>
+</p>
+
+<p id="instructions">
+  In the following pages, you will be presented with a series of statements that may or may not be true for you. The statements will be about yourself and your views on social issues. We would like to know how many of them are true for you.
+
+  We do not want to know which specific ones are true for you. Instead, we just want to know how many of the statements are true for you.
+</p>
+
+<p> When you are ready, please click next to start. 
+</p>
+<br>
+
+{{ next_button }}
+{{ endblock }}

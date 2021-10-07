@@ -174,6 +174,8 @@ SESSION_CONFIGS = [
 # e.g. self.session.config['participation_fee']
 
 SESSION_CONFIG_DEFAULTS = dict(
+    #prolific
+    p_completion_link = 'xxxxxxxx',
     #screenshot bot
     screenshot=False,
     use_browser_bots=False,
