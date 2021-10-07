@@ -95,7 +95,7 @@ def creating_session(subsession: Subsession):
         page_list = G1+G2 if G1First else G2+G1
         page_list += [PageData(Constants.list_of_lists[4],"3")]
         player.participant.vars["page_order"] = page_list #copy that list to page order
-        player.page_order = "".join([str(p) for p in page_list])
+        player.page_order = ",".join([str(p) for p in page_list])#this is the list order variable "," is spacer
         player.participant.vars["page_ind"] = 0
 
 class Player(BasePlayer):
