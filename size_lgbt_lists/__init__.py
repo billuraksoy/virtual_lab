@@ -97,7 +97,6 @@ def creating_session(subsession: Subsession):
         player.participant.vars["page_order"] = page_list #copy that list to page order
         player.page_order = "".join([str(p) for p in page_list])
         player.participant.vars["page_ind"] = 0
-        print(vars(player))
 
 class Player(BasePlayer):
     page_order = models.StringField()
