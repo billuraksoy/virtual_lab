@@ -28,7 +28,6 @@ class Player(BasePlayer):
         if len(value) != 24:
             return "Your prolific ID must be 24 characters long."
 
-
 # PAGES
 class P_ID(Page):
     form_model = 'player'
