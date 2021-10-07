@@ -342,7 +342,9 @@ class SurveyPage7(Page):
     form_model = 'player'
     form_fields = ["your_sex","Ma","Fe","Tr","Nb","straight","sexuality"]
 
-class SurveyPage8(SurveyPage):
+class SurveyPage8(Page):
+    template_name = "size_lgbt_survey/Survey_Basic_NoI.html"
+    form_model = 'player'
     form_fields = ["same_sex","attraction","attr_other"]
     @staticmethod
     def error_message(player, values):
