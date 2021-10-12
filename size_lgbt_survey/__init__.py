@@ -86,8 +86,8 @@ for key in states:
     if key != 'NA':
         state_list.append(key + ' (' + states[key] + ')')
 
-live_state_list = state_list + ['Other (please state below)']
-grew_up_state_list = state_list + ['Other (please state below)']
+live_state_list = state_list + ['Other']
+grew_up_state_list = state_list + ['Other']
 
 class Player(BasePlayer):
     #custom field maker functions
@@ -145,14 +145,15 @@ class Player(BasePlayer):
         label = 'In which US state/territory did you spend the most time in for the first 18 years of your life?',
         choices = grew_up_state_list
         )
-    other_live_location = models.StringField(
-        label = '',
-        blank = True
-        )
-    other_grew_up_location = models.StringField(
-        label = '',
-        blank = True
-        )
+
+    #other_live_location = models.StringField(
+    #    label = '',
+    #    blank = True
+    #    )
+    #other_grew_up_location = models.StringField(
+    #    label = '',
+    #    blank = True
+    #    )
 
     #page 4
     trans_manager = make_yn_field("Would you be comfortable having a transgender manager at work?")
@@ -322,16 +323,7 @@ class SurveyPage2(SurveyPage):
 class SurveyPage3(Page):
     template_name = "size_lgbt_survey/Survey_Basic_NoI.html"
     form_model = 'player'
-
-    form_fields = ['rural',
-                   'live_in',
-                   'other_live_location',
-                   'grew_up_in',
-                   'other_grew_up_location']
-    @staticmethod
-    def error_message(player,values):#dynamic multi-field validation
-        if (values['live_in'] =='Other (please state below)' and len(values['other_live_location']) == 0) or (values['grew_up_in'] =='Other (please state below)' and len(values['other_grew_up_location']) == 0) :
-            return 'If you select Other, you must specify in the provided field'
+    form_fields = ['rural', 'live_in', 'grew_up_in']
 
 class SurveyPage4(SurveyPage):
     form_fields = ["trans_manager","trans_emp_disc"]
