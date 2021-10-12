@@ -125,13 +125,12 @@ class Player(BasePlayer):
       )
     marital = make_list_field("What is your marital status? (choose one)", ["Now married","Widowed","Divorced","Separated","Never married"])
 
-    #page 2
     occupants = models.IntegerField( label = "How many people live in your household including yourself?", min=0, max=100)
     children = models.IntegerField(label="How many children less than 18 years of age live in your household? If none, please put 0. Number of children:", min= 0, max=100)
     education = make_list_field("What is the highest level of education you've completed? (choose one) (If currently enrolled, mark the previous grade or highest degree received.)", ["High school, GED, or less","Some college credits, no degree","Associate's degree (for example: AA, AS)","Bachelor’s degree or equivalent (for example: BA, BS)","Master’s degree or higher (for example: MA, MS, MEng, MEd, MSW, MBA, MD, DDS, DVM, LLB, JD, PhD, EdD)"])
     employment = make_list_field("Are you currently…?",["Employed for wages","Self-employed","Out of work for 1 year or more","Out of work for less than 1 year","A homemaker","A student","Retired","Unable to work"])
 
-    #page 3
+    #page 2
     # community = make_list_field("What type of community do you live in?",["Rural area","Large city","Small city or town","Suburb near a large city"])
     # state = models.StringField(label="In which US state/territory do you currently live?")
     # early_state = models.StringField(label="In which US state/territory did you spend the most time for the first 18 years of life?")
@@ -155,15 +154,15 @@ class Player(BasePlayer):
     #    blank = True
     #    )
 
-    #page 4
+    #page 3
     trans_manager = make_yn_field("Would you be comfortable having a transgender manager at work?")
     trans_emp_disc = make_yn_field("Do you think the law should prohibit employment discrimination against transgender individuals?")
 
-    #page 5
+    #page 3
     trans_house_disc = make_yn_field("Do you think the law should prohibit housing discrimination against transgender individuals?")
     trans_neighbor = make_yn_field ("Would you be comfortable to have a transgender person as a neighbor?")
 
-    #page 6
+    #page 5
     gay_manager = make_yn_field ("Would you be comfortable having an openly lesbian, gay, or bisexual manager at work?")
     gay_emp_disc = make_yn_field ("Do you think the law should prohibit employment discrimination against lesbian, gay, or bisexual individuals?")
     gay_house_disc = make_yn_field ("Do you think the law should prohibit housing discrimination against lesbian, gay, or bisexual individuals?")
@@ -185,21 +184,19 @@ class Player(BasePlayer):
     sexuality = make_list_field("Which of the following best represents how you think of yourself?",["Gay or Lesbian","Straight, that is, not gay or lesbian","Bisexual","Something else","I don’t know the answer"])
     a_check_2 = make_list_field("Before providing an answer, one should always read the text carefully. To check whether you have been reading the text carefully, we ask you to select the third option below as your answer.",["1. Right Leaning","2. Left Leaning","3. Both left and right leaning","4. Neither left nor right leaning"])
 
-
-    #page 8
     same_sex = make_yn_field("Since age 18, have you had at least one same-sex sexual partner?")
     #SUGGESTION: Follow up question on romantic attraction since that can differ
     attraction = make_list_field("People are different in their sexual attraction to other people. Which category below best describes your feelings?",["Only attracted to females","Mostly attracted to females","Equally attracted to females and males","Mostly attracted to males","Only attracted to males","Other (please specify below)"])
     attr_other = models.StringField(label="",blank=True)
 
-    #Page 9
+    #Page 8
     religion = make_list_field("What is your current religious affiliation?",["Christian (any denomination)","Jewish","Muslim (any denomination)","Hindu","Buddhist ","Asian Folk Religion (e.g., Taoist, Confucian) ","I am not religious ","Some other religious affiliation (please specify below)"])
     religion_oth = models.StringField(label="",blank=True)
     religion_raised = make_list_field("Which of the following religious affiliations best describes how you were raised?",["Christian (any denomination)","Jewish","Muslim (any denomination)","Hindu","Buddhist ","Asian Folk Religion (e.g., Taoist, Confucian) ","I was not raised in any religion ","Some other religious affiliation (please specify below)"])
     religion_raised_oth = models.StringField(label="",blank=True)
     religion_imp = make_list_field("How important is religion in your life?",["Very important","Somewhat important","Not too important","Not at all important"])
 
-    #Page 10
+    #Page 9
     party = make_list_field("Generally speaking, do you usually think of yourself as a Republican, Democrat, or Independent/Other? Choose the option that best describes you.",["Republican","Democrat","Independent or Other"])
     pol_spectrum = models.IntegerField(
       label = "On a scale of 1-7, 1 being extremely liberal and 7 being extremely conservative, how liberal/conservative would you say your political views on social issues are?",
@@ -220,7 +217,7 @@ class Player(BasePlayer):
 
 
 
-    #Page 11
+    #Page 10
     income = make_list_field("What is your household income before taxes?", ["Less than $20,000","$20,000 - $39,999","$40,000 - $59,999","$60,000 - $79,999","$80,000 - $99,999","$100,000 - $149,999","$150,000 - $199,999","$200,000 or higher"])
 
     # federal protection question options
@@ -312,45 +309,39 @@ class SurveyPage1(Page):#
                     "Ot",
                     "Hl",
                     "age",
-                    "marital"]
-
-class SurveyPage2(SurveyPage):
-    form_fields=["occupants",
+                    "marital",
+                    "occupants",
                     "children",
                     "education",
                     "employment"]
 
-class SurveyPage3(Page):
+class SurveyPage2(Page):
     template_name = "size_lgbt_survey/Survey_Basic_NoI.html"
     form_model = 'player'
     form_fields = ['rural', 'live_in', 'grew_up_in']
 
-class SurveyPage4(SurveyPage):
+class SurveyPage3(SurveyPage):
     form_fields = ["trans_manager","trans_emp_disc"]
 
-class SurveyPage5(SurveyPage):
+class SurveyPage4(SurveyPage):
     form_fields = ["trans_house_disc","trans_neighbor"]
 
-class SurveyPage6(SurveyPage):
+class SurveyPage5(SurveyPage):
     form_fields = ["gay_manager","gay_emp_disc","gay_house_disc","gay_neighbor"]
 
-class SurveyPage6_2(SurveyPage):
+class SurveyPage6(SurveyPage):
     form_fields = ["refuse"]
 
 class SurveyPage7(Page):
+    template_name = "size_lgbt_survey/Survey_Basic_NoI_page7.html"
     form_model = 'player'
-    form_fields = ["your_sex","Ma","Fe","Tr","Nb","straight","sexuality", "a_check_2"]
-
-class SurveyPage8(Page):
-    template_name = "size_lgbt_survey/Survey_Basic_NoI.html"
-    form_model = 'player'
-    form_fields = ["same_sex","attraction","attr_other"]
+    form_fields = ["your_sex","Ma","Fe","Tr","Nb","straight","sexuality", "a_check_2", "same_sex","attraction","attr_other"]
     @staticmethod
     def error_message(player, values):
         if values["attraction"]==5 and len(values["attr_other"]) == 0:
             return 'If you select Other, you must specify in the provided field'
 
-class SurveyPage9(SurveyPage):
+class SurveyPage8(SurveyPage):
     template_name = "size_lgbt_survey/Survey_Basic_NoI.html"
     form_fields = ["religion","religion_oth","religion_raised", "religion_raised_oth", "religion_imp"]
     @staticmethod
@@ -361,10 +352,10 @@ class SurveyPage9(SurveyPage):
         if values["religion_raised"]==7 and len(values["religion_raised_oth"]) == 0:
             return 'If you select Other, you must specify in the provided field'
 
-class SurveyPage10(SurveyPage):
+class SurveyPage9(SurveyPage):
     form_fields = ["party","pol_spectrum","a_check_3","pres_2016","pres_2020"]
 
-class SurveyPage11(SurveyPage):
+class SurveyPage10(SurveyPage):
     form_fields = ["income"]
 
 #SurveyPage12 is survey_1 since that was developed before the rest of the survey
@@ -373,4 +364,4 @@ class SurveyPage13(Page):
     form_model = 'player'
     form_fields = ["pop_manager","pop_emp"]
 
-page_sequence = [survey_intro,SurveyPage1,SurveyPage2,SurveyPage3,SurveyPage4,SurveyPage5,SurveyPage6,SurveyPage6_2, SurveyPage7,SurveyPage8,SurveyPage9,SurveyPage10,SurveyPage11, survey_1, SurveyPage13]
+page_sequence = [survey_intro,SurveyPage1,SurveyPage2,SurveyPage3,SurveyPage4,SurveyPage5,SurveyPage6, SurveyPage7,SurveyPage8,SurveyPage9,SurveyPage10, survey_1, SurveyPage13]
