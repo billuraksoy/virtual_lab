@@ -196,7 +196,6 @@ class Player(BasePlayer):
     religion_raised_oth = models.StringField(label="",blank=True)
     religion_imp = make_list_field("How important is religion in your life?",["Very important","Somewhat important","Not too important","Not at all important"])
 
-    #Page 9
     party = make_list_field("Generally speaking, do you usually think of yourself as a Republican, Democrat, or Independent/Other? Choose the option that best describes you.",["Republican","Democrat","Independent or Other"])
     pol_spectrum = models.IntegerField(
       label = "On a scale of 1-7, 1 being extremely liberal and 7 being extremely conservative, how liberal/conservative would you say your political views on social issues are?",
@@ -213,11 +212,8 @@ class Player(BasePlayer):
     )
     pres_2016 = make_list_field("Who did you vote for in the 2016 presidential election?",["Donald Trump","Hillary Clinton","Other","Did not vote","Not eligible to vote","I do not remember"])
     pres_2020 = make_list_field("Who did you vote for in the 2020 presidential election?",["Joe Biden","Donald Trump","Other","Did not vote","Not eligible to vote","I do not remember"])
-    a_check_3 = make_list_field("We would like to be sure that you are reading these questions and not making random decisions. Thus, please select the last option for this question.",["Urban","Suburban","Rural"])
+    a_check_3 = make_list_field("We would like to be sure that you are reading these questions and not making random decisions. Thus, please select the last option for this question.",["Urban or Suburban","Suburban or Rural","Rural or Urban"])
 
-
-
-    #Page 10
     income = make_list_field("What is your household income before taxes?", ["Less than $20,000","$20,000 - $39,999","$40,000 - $59,999","$60,000 - $79,999","$80,000 - $99,999","$100,000 - $149,999","$150,000 - $199,999","$200,000 or higher"])
 
     # federal protection question options
@@ -343,7 +339,7 @@ class SurveyPage7(Page):
 
 class SurveyPage8(SurveyPage):
     template_name = "size_lgbt_survey/Survey_Basic_NoI.html"
-    form_fields = ["religion","religion_oth","religion_raised", "religion_raised_oth", "religion_imp"]
+    form_fields = ["religion","religion_oth","religion_raised", "religion_raised_oth", "religion_imp","party","pol_spectrum","a_check_3","pres_2016","pres_2020", "income"]
     @staticmethod
     def error_message(player, values):
         if values["religion"]==7 and len(values["religion_oth"]) == 0:
@@ -352,11 +348,6 @@ class SurveyPage8(SurveyPage):
         if values["religion_raised"]==7 and len(values["religion_raised_oth"]) == 0:
             return 'If you select Other, you must specify in the provided field'
 
-class SurveyPage9(SurveyPage):
-    form_fields = ["party","pol_spectrum","a_check_3","pres_2016","pres_2020"]
-
-class SurveyPage10(SurveyPage):
-    form_fields = ["income"]
 
 #SurveyPage12 is survey_1 since that was developed before the rest of the survey
 
@@ -364,4 +355,4 @@ class SurveyPage13(Page):
     form_model = 'player'
     form_fields = ["pop_manager","pop_emp"]
 
-page_sequence = [survey_intro,SurveyPage1,SurveyPage2,SurveyPage3,SurveyPage4,SurveyPage5,SurveyPage6, SurveyPage7,SurveyPage8,SurveyPage9,SurveyPage10, survey_1, SurveyPage13]
+page_sequence = [survey_intro,SurveyPage1,SurveyPage2,SurveyPage3,SurveyPage4,SurveyPage5,SurveyPage6, SurveyPage7,SurveyPage8, survey_1, SurveyPage13]
