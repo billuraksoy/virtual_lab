@@ -51,7 +51,7 @@ class Constants(BaseConstants):
         [#2B
         "I have visited more than twenty countries.",
         "I own a car.",
-        "I think parents should be able to opt their children out of a COVID-19 school mask mandate.",
+        "I think parents should be able to opt their children out of a COVID-19 school mask mandate for any reason.",
         "I think the law should prohibit employment discrimination against African Americans."
         ],
         [#3
