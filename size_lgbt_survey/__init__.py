@@ -194,6 +194,8 @@ class Player(BasePlayer):
     #Page 9
     religion = make_list_field("What is your current religious affiliation?",["Christian (any denomination)","Jewish","Muslim (any denomination)","Hindu","Buddhist ","Asian Folk Religion (e.g., Taoist, Confucian) ","I am not religious ","Some other religious affiliation (please specify below)"])
     religion_oth = models.StringField(label="",blank=True)
+    religion_raised = make_list_field("Which of the following religious affiliations best describes how you were raised?",["Christian (any denomination)","Jewish","Muslim (any denomination)","Hindu","Buddhist ","Asian Folk Religion (e.g., Taoist, Confucian) ","I was not raised in any religion ","Some other religious affiliation (please specify below)"])
+    religion_raised_oth = models.StringField(label="",blank=True)
     religion_imp = make_list_field("How important is religion in your life?",["Very important","Somewhat important","Not too important","Not at all important"])
 
     #Page 10
@@ -358,10 +360,13 @@ class SurveyPage8(Page):
 
 class SurveyPage9(SurveyPage):
     template_name = "size_lgbt_survey/Survey_Basic_NoI.html"
-    form_fields = ["religion","religion_oth","religion_imp"]
+    form_fields = ["religion","religion_oth","religion_raised", "religion_raised_oth", "religion_imp"]
     @staticmethod
     def error_message(player, values):
         if values["religion"]==7 and len(values["religion_oth"]) == 0:
+            return 'If you select Other, you must specify in the provided field'
+    def error_message(player, values):
+        if values["religion_raised"]==7 and len(values["religion_raised_oth"]) == 0:
             return 'If you select Other, you must specify in the provided field'
 
 class SurveyPage10(SurveyPage):
