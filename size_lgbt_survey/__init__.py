@@ -212,7 +212,7 @@ class Player(BasePlayer):
     )
     pres_2016 = make_list_field("Who did you vote for in the 2016 presidential election?",["Donald Trump","Hillary Clinton","Other","Did not vote","Not eligible to vote","I do not remember"])
     pres_2020 = make_list_field("Who did you vote for in the 2020 presidential election?",["Joe Biden","Donald Trump","Other","Did not vote","Not eligible to vote","I do not remember"])
-    a_check_3 = make_list_field("We would like to be sure that you are reading these questions and not making random decisions. Thus, please select the last option for this question.",["Urban or Suburban","Suburban or Rural","Rural or Urban"])
+    a_check_3 = make_list_field("We would like to be sure that you are reading these questions and not making random decisions. Thus, please select the last option for this question.",["First","Second","Last"])
 
     income = make_list_field("What is your household income before taxes?", ["Less than $20,000","$20,000 - $39,999","$40,000 - $59,999","$60,000 - $79,999","$80,000 - $99,999","$100,000 - $149,999","$150,000 - $199,999","$200,000 or higher"])
 
