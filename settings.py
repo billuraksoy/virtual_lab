@@ -203,7 +203,7 @@ SESSION_CONFIG_DEFAULTS = dict(
     total_rounds=15,#Otree doesn't natively support variable round numbers, there's a number of work arounds but they're all huristics
     synchronous_game=1,
     doc="",
-    consent_link="https://virtual-experimental-lab.github.io/virtual-experimental-lab.github.io/Consent_Form_SK_UCG_16.pdf"
+    consent_link="https://billuraksoy.github.io/virtual_lab/information_sheet.pdf"
 )
 
 # ISO-639 code
