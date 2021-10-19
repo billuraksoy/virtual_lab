@@ -141,7 +141,7 @@ class Player(BasePlayer):
         choices = live_state_list
         )
     grew_up_in = models.StringField(
-        label = 'In which US state/territory did you spend the most time in for the first 18 years of your life?',
+        label = 'In which US state/territory did you spend the most time for the first 18 years of your life?',
         choices = grew_up_state_list
         )
 
