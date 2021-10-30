@@ -24,9 +24,9 @@ class Group(BaseGroup):
 class Player(BasePlayer):
     p_ID = models.StringField(label='Paste your Prolific ID here')
 
-    def p_ID_error_message(self, value):
-        if len(value) != 24:
-            return "Your prolific ID must be 24 characters long."
+    # def p_ID_error_message(self, value):
+    #     if len(value) != 24:
+    #         return "Your prolific ID must be 24 characters long."
 
 # PAGES
 class P_ID(Page):
