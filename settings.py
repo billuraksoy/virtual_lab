@@ -217,11 +217,11 @@ POINTS_CUSTOM_NAME = 'tokens'
 POINTS_DECIMAL_PLACES = 2
 
 ROOMS = [
-    dict(
         dict(
         name='virtual_lab',
         display_name='Virtual Econ Lab'
         ),
+        dict(
         name='erl',
         display_name='ERL',
         participant_label_file='_rooms/erl.txt',
