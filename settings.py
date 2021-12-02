@@ -181,7 +181,7 @@ SESSION_CONFIGS = [
 
 SESSION_CONFIG_DEFAULTS = dict(
     #prolific
-    p_completion_link = "https://app.prolific.co/submissions/complete?cc=3642A10E",
+    p_completion_link = 'xxxxxxxx',
     #screenshot bot
     screenshot=False,
     use_browser_bots=False,
