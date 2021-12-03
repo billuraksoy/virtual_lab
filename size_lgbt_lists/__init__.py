@@ -105,7 +105,7 @@ def creating_session(subsession: Subsession):
         B1 = PageData(Constants.list_of_lists[1]+([""] if not T1 else [Constants.list_of_SI[0]]), "1B" if not T1 else "1BS")
         A2 = PageData(Constants.list_of_lists[2]+([""] if T1 else [Constants.list_of_SI[1]]), "2A" if T1 else "2AS")
         B2 = PageData(Constants.list_of_lists[3]+([""] if not T1 else [Constants.list_of_SI[1]]), "2B" if not T1 else "2BS")
-        page_list = [A1,B1,A2,B2] if G1First else [A2, B2, A1, B1]
+        page_list = [A1,B1,A2,B2] if G1First else [B2, A2, B1, A1]
         #TO HERE
 
         page_list += [PageData(Constants.list_of_lists[4],"3")]
