@@ -296,7 +296,7 @@ class SurveyPage(Page):#template page to make the basic survey pages easier
     template_name = "size_lgbt_survey/Survey_Basic.html"
     form_model = 'player'
 
-class SurveyPage1(Page):#
+class SurveyPage1(Page):
     form_model = 'player'
     form_fields = ["Wh",
                     "Bl",
@@ -305,8 +305,9 @@ class SurveyPage1(Page):#
                     "Ot",
                     "Hl",
                     "age",
-                    "marital",
-                    "occupants",
+                    "marital"]
+class SurveyPage1b(SurveyPage):
+    form_fields = ["occupants",
                     "children",
                     "education",
                     "employment"]
@@ -355,4 +356,4 @@ class SurveyPage13(Page):
     form_model = 'player'
     form_fields = ["pop_manager","pop_emp"]
 
-page_sequence = [survey_intro,SurveyPage1,SurveyPage2,SurveyPage3,SurveyPage4,SurveyPage5,SurveyPage6, SurveyPage7,SurveyPage8, survey_1, SurveyPage13]
+page_sequence = [survey_intro,SurveyPage1,SurveyPage1b,SurveyPage2,SurveyPage3,SurveyPage4,SurveyPage5,SurveyPage6, SurveyPage7,SurveyPage8, survey_1, SurveyPage13]
