@@ -53,9 +53,7 @@ class Player(BasePlayer):
 	#				[False, "No"]
 	#			]
 	#		)
-	share = models.LongStringField(
-			label = "Is there anything else you would like share with the researchers?"
-		)
+
 
 	figureOut_share = models.LongStringField(
 			label = "Please explain why you think it is possible/impossible for the researchers to figure out exactly which individual statements were true for you."
