@@ -46,17 +46,20 @@ class Player(BasePlayer):
 					[False, "No"]
 				]
 				)
-	suspicion = models.BooleanField(
-				label = "When providing your answers in the study, did you suspect that researchers may know a way to know exactly which individual statements were true for you?",
-				choices = [
-					[True, "Yes"],
-					[False, "No"]
-				]
-			)
+	#suspicion = models.BooleanField(
+	#			label = "When providing your answers in the study, did you suspect that researchers may know a way to know exactly which individual statements were true for you?",
+	#			choices = [
+	#				[True, "Yes"],
+	#				[False, "No"]
+	#			]
+	#		)
 	share = models.LongStringField(
 			label = "Is there anything else you would like share with the researchers?"
 		)
 
+	figureOut_share = models.LongStringField(
+			label = "Please explain why you think it is possible/impossible for the researchers to figure out exactly which individual statements were true for you."
+		)
 
 
 # PAGES
@@ -66,7 +69,7 @@ class Impressions1(Page):
 
 class Impressions2(Page):
     form_model = 'player'
-    form_fields = ['figureOut','suspicion','share']
+    form_fields = ['figureOut','figureOut_share']
 
 class Impressions3(Page):
 	pass
