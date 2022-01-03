@@ -160,13 +160,13 @@ class Player(BasePlayer):
 
     #page 3
     trans_house_disc = make_yn_field("Do you think the law should prohibit housing discrimination against transgender individuals?")
-    trans_neighbor = make_yn_field ("Would you be comfortable to have a transgender person as a neighbor?")
+    trans_neighbor = make_yn_field ("Would you be comfortable having a transgender person as a neighbor?")
 
     #page 5
     gay_manager = make_yn_field ("Would you be comfortable having an openly lesbian, gay, or bisexual manager at work?")
     gay_emp_disc = make_yn_field ("Do you think the law should prohibit employment discrimination against lesbian, gay, or bisexual individuals?")
     gay_house_disc = make_yn_field ("Do you think the law should prohibit housing discrimination against lesbian, gay, or bisexual individuals?")
-    gay_neighbor = make_yn_field ("Would you be comfortable to have an openly lesbian, gay, or bisexual person as a neighbor?")
+    gay_neighbor = make_yn_field ("Would you be comfortable having an openly lesbian, gay, or bisexual person as a neighbor?")
 
     #insert
     refuse = make_yn_field("Do you think that private businesses (such as cake decorators or florists) should be able to refuse service to same-sex couples or other LGBTQ+ individuals for religious reasons?")
