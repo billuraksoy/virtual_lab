@@ -27,7 +27,7 @@ class Constants(BaseConstants):
     #
     list_of_SI = [
         "I think the law should prohibit employment discrimination against transgender individuals.",#1
-        "I would be comfortable with having a transgender manager at work."
+        "I would be comfortable having a transgender manager at work."
     ]
     list_of_lists = [
         [#1A
