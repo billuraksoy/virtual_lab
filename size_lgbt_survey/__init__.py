@@ -182,7 +182,7 @@ class Player(BasePlayer):
 
     straight = make_yn_field("Are you heterosexual/straight?")
     sexuality = make_list_field("Which of the following best represents how you think of yourself?",["Gay or Lesbian","Straight, that is, not gay or lesbian","Bisexual","Something else","I don’t know the answer"])
-    a_check_2 = make_list_field("Before providing an answer, one should always read the text carefully. To check whether you have been reading the text carefully, we ask you to select the third option below as your answer.",["1. Right Leaning","2. Left Leaning","3. Both left and right leaning","4. Neither left nor right leaning"])
+    a_check_2 = make_list_field("Before providing an answer, one should always read the text carefully. To check whether you have been reading the text carefully, we ask you to select the third option below as your answer.",["First","Second","Third","Fourth"])
 
     same_sex = make_yn_field("Since age 18, have you had at least one same-sex sexual partner?")
     #SUGGESTION: Follow up question on romantic attraction since that can differ
