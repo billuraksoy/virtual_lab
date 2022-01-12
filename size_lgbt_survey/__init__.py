@@ -251,10 +251,10 @@ class Player(BasePlayer):
         widget=widgets.RadioSelect
     )
     pres_2016 = make_list_field("Who did you vote for in the 2016 presidential election?",
-                                ["Donald Trump", "Hillary Clinton", "Other", "Did not vote", "Not eligible to vote",
+                                ["Donald Trump", "Hillary Clinton", "Other", "I did not vote", "Not eligible to vote",
                                  "I do not remember"])
     pres_2020 = make_list_field("Who did you vote for in the 2020 presidential election?",
-                                ["Joe Biden", "Donald Trump", "Other", "Did not vote", "Not eligible to vote",
+                                ["Joe Biden", "Donald Trump", "Other", "I did not vote", "Not eligible to vote",
                                  "I do not remember"])
     a_check_3 = make_list_field(
         "We would like to be sure that you are reading these questions and not making random decisions. Thus, please select the last option for this question.",
