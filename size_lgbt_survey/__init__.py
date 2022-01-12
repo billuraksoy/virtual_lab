@@ -264,7 +264,11 @@ class Player(BasePlayer):
     pop_manager = models.IntegerField(label = "Out of every 100 people in the general US population, I think approximately _____ out of 100 would be comfortable having a transgender manager at work.", min=0, max=100)
     pop_emp = models.IntegerField(label="Out of every 100 people in the general US population, I think approximately _____ out of 100 would agree that the law should prohibit employment discrimination against transgender individuals.", min=0, max=100)
 
+<<<<<<< HEAD
     #page 14 Further Thoughts Question
+=======
+    #page 14 Pilot Question
+>>>>>>> parent of 914cd48 (removing pilot questions)
     share = models.LongStringField(
         label="Is there anything else you would like share with the researchers?"
     )
