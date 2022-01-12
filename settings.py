@@ -169,7 +169,7 @@ SESSION_CONFIGS = [
     dict(
         num_demo_participants=4,
         name='size_sentiments',
-        app_sequence=['prolific_id_begin','size_lgbt_intro','size_lgbt_lists','pilot_survey','size_lgbt_survey','prolific_id_end'],
+        app_sequence=['prolific_id_begin','size_lgbt_intro','size_lgbt_lists','size_lgbt_survey','prolific_id_end'],
 
         )
 ]
