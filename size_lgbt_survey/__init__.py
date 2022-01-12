@@ -265,9 +265,9 @@ class Player(BasePlayer):
     pop_emp = models.IntegerField(label="Out of every 100 people in the general US population, I think approximately _____ out of 100 would agree that the law should prohibit employment discrimination against transgender individuals.", min=0, max=100)
 
     #page 14 Pilot Question
-    share = models.LongStringField(
-        label="Is there anything else you would like share with the researchers?"
-    )
+    #share = models.LongStringField(
+    #    label="Is there anything else you would like share with the researchers?"
+    #)
 
 
 
@@ -357,8 +357,9 @@ class SurveyPage13(Page):
     form_model = 'player'
     form_fields = ["pop_manager","pop_emp"]
 
-class SurveyPageEnd(Page):
-    form_model = 'player'
-    form_fields = ['share']
+#class SurveyPageEnd(Page):
+#    form_model = 'player'
+#    form_fields = ['share']
 
-page_sequence = [survey_intro,SurveyPage1,SurveyPage1b,SurveyPage2,SurveyPage3,SurveyPage4,SurveyPage5,SurveyPage6, SurveyPage7,SurveyPage8, survey_1, SurveyPage13, SurveyPageEnd]
+#page_sequence = [survey_intro,SurveyPage1,SurveyPage1b,SurveyPage2,SurveyPage3,SurveyPage4,SurveyPage5,SurveyPage6, SurveyPage7,SurveyPage8, survey_1, SurveyPage13, SurveyPageEnd]
+page_sequence = [survey_intro,SurveyPage1,SurveyPage1b,SurveyPage2,SurveyPage3,SurveyPage4,SurveyPage5,SurveyPage6, SurveyPage7,SurveyPage8, survey_1, SurveyPage13]
